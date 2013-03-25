@@ -45,7 +45,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -75,9 +74,7 @@
     [self.stopWatchLabelMS setText:@".0"];
     [self.stopWatchLabelMS setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
     
-    self.stopWatch = [[StopWatch alloc] init];
-    
-    
+    self.stopWatch = [[StopWatch alloc] init];  
     
     winWidth = [[UIScreen mainScreen] bounds].size.height;
     winHeight = [[UIScreen mainScreen] bounds].size.width;
@@ -99,8 +96,6 @@
     btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winWidth-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
     [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
     [btnMenu addTarget:self action:@selector(inGameMenu) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@"self.view width: %f", self.view.frame.size.width);
-    
     
     [self.view addSubview:btnMenu];
     
@@ -121,27 +116,22 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void) setCurrentQuestion:(EQQuestion *)currentQuestion{
     _currentQuestion=currentQuestion;
     [_currentQuestion createQuestionArray];
-//    [self configureViews];
 }
 
 -(void) configureViews{
     
     if(questionViewLeftSide==nil){
         questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
-//        questionViewLeftSide.backgroundColor=[UIColor greenColor];
     
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
-//        questionViewRightSide.backgroundColor=[UIColor yellowColor];
 
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
-//        _QuestionView.backgroundColor=[UIColor yellowColor];
     }
     else{
         [questionViewLeftSide removeFromSuperview];
@@ -150,16 +140,13 @@
         questionViewRightSide=nil;
         
         questionViewLeftSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
-//        questionViewLeftSide.backgroundColor=[UIColor greenColor];
         
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
-//        questionViewRightSide.backgroundColor=[UIColor yellowColor];
         
         [_QuestionView addSubview:questionViewLeftSide];
         [_QuestionView addSubview:questionViewRightSide];
     }
     [self placingBoxes];
-//    NSLog(@"Question %i", [_currentQuestion questionId]);
     
     [self placingCounters];
 }
@@ -173,16 +160,11 @@
 
 -(void)placingBoxes{
     
-    NSLog(@"Current Question ID:%d and current difficulty:%d",self.currentQuestion.questionId,self.difficulty);
-    
     [EQBox cleanInstances];
     BOOL isRightSide=NO;
     NSArray * questionLeftAndRightSide=[_currentQuestion.wholeQuestion componentsSeparatedByString:@"="];
     int leftSideLength=((NSString *)questionLeftAndRightSide[0]).length;
     int rightSideLength=((NSString *)questionLeftAndRightSide[1]).length;
-    
-    
-    NSLog(@"*******leftSide length: %i",leftSideLength);
 
     UIImage * leftEdgeImage=[UIImage imageNamed:@"container_left.png"];
     UIImage * innerImage=[UIImage imageNamed:@"container_tile.png"];
@@ -220,7 +202,6 @@
                 [questionViewRightSide addSubview:innerContainerBelow];
                 [questionViewRightSide addSubview:rightEdgeContainerBelow];
             }
-           
             
             EQBox * box=[EQBox BoxWithFrame:CGRectMake(([self boxSize]+[self boxSpace])*i, 0, [self boxSize], [self boxSize]) andTitle:[_currentQuestion.questionArray objectAtIndex:i]];
             box.caller=self;
@@ -235,7 +216,6 @@
                 questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*(i-leftSideLength)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+equalImage.size.height+14, ([self boxSize]+[self boxSpace])*(i-leftSideLength)-[self boxSpace], [self boxSize]);
             }
         }
-        
     }
 }
 
@@ -243,7 +223,7 @@
     
     deleteCount = 0;
     moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
-    NSLog(@"MoveCount: %i", moveCount);
+    
     UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
     UIView * counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-6.0*moveCount)/2, 20, 6.0*moveCount, image.size.height)];
     
@@ -257,15 +237,11 @@
             [counterView addSubview:count];
         }
     }
-    
     [btnControl addSubview:counterView];
-    
 }
 
 -(void)animateBox:(UIButton *)button {
-    NSLog(@"entered deletebox");
     EQBox* box = [EQBox boxByOrder:button.tag];
-    NSLog(@"%@",box);
     
     if(!box.isDeleted){
         if (deleteCount != moveCount) {
@@ -393,16 +369,23 @@
     [EQScore addScore:[_stopWatch getElapsedMiliseconds] withDifficulty:_difficulty];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
-    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
-    [[GameCenterManager sharedInstance] submitScore:[[EQStatistic getStatisticsWithDifficulty:_difficulty] totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.totalSolvedQuestion%d", _difficulty]];
+    EQStatistic *currentStats = [EQStatistic getStatisticsWithDifficulty:_difficulty];
+    
+    if ([currentStats minTime] < INT32_MAX) {
+        [[GameCenterManager sharedInstance] submitScore:[currentStats minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
+    }
+    if ([currentStats totalSolvedQuestion] > 0) {
+        [[GameCenterManager sharedInstance] submitScore:[currentStats totalSolvedQuestion] category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.totalSolvedQuestion%d", _difficulty]];
+    }
+    int average = [EQScore getAverageWithDifficulty:_difficulty];
+    if (average != -1) {
+        [[GameCenterManager sharedInstance] submitScore:average category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.%d", _difficulty]];
+    }
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self configureViews];
     [self.stopWatch resetTimer];
     [self.view setUserInteractionEnabled:YES];
-    
-//    [self.navigationController popViewControllerAnimated:YES];
-
     
 }
 
@@ -412,7 +395,6 @@
     [self.stopWatch resetTimer];
     [self configureViews];
 }
-
 
 -(void)inGameMenu{
     
