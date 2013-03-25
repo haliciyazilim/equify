@@ -97,12 +97,17 @@
 }
 - (NSString*) toStringWithoutMiliseconds {
     NSString *wholeString = [self toString];
-    return [wholeString substringToIndex:5]
-    ;
+    
+    NSRange range = [wholeString rangeOfString:@"."];
+    
+    return [wholeString substringToIndex:range.location];
 }
 - (NSString*) toStringMiliseconds {
     NSString *wholeString = [self toString];
-    return [wholeString substringFromIndex:5];
+    
+    NSRange range = [wholeString rangeOfString:@"."];
+
+    return [wholeString substringFromIndex:range.location];
 }
 + (NSString*) textWithMiliseconds:(int)totalMiliseconds
 {
