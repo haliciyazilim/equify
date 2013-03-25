@@ -432,7 +432,6 @@
     [menu addSubview:seperator3];
     
     [self.view addSubview:menu];
-   
 
 }
 
@@ -457,7 +456,8 @@
 
 - (void) openMainMenu {
     [self.navigationController popViewControllerAnimated:YES];
-    [self skipQuestion];
+    [self.stopWatch stopTimer];
+    [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
 }
 
 - (void) btnResumeGame {
