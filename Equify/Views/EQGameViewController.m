@@ -306,41 +306,46 @@
     }
     else{
         
-        UIImage *frameImage;
-        if([[UIScreen mainScreen] bounds].size.height == 568){
-            frameImage = [UIImage imageNamed:@"frame_false-568h.png"];
-        }
-        else{
-            frameImage = [UIImage imageNamed:@"frame_false.png"];
-        }
+//        UIImage *frameImage;
+//        if([[UIScreen mainScreen] bounds].size.height == 568){
+//            frameImage = [UIImage imageNamed:@"frame_false-568h.png"];
+//        }
+//        else{
+//            frameImage = [UIImage imageNamed:@"frame_false.png"];
+//        }
+//        
+//        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
+//        [self.view addSubview:answerFrame];
+//        isSolutionCorrect = NO;
+//        [self fadeOutAnswerFrames];
         
-        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
-        [self.view addSubview:answerFrame];
-        isSolutionCorrect = NO;
-        [self fadeOutAnswerFrames];
-        
-//        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-//            self.view.transform = CGAffineTransformTranslate(self.view.transform, -25, 0);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-//                self.view.transform = CGAffineTransformTranslate(self.view.transform, 50, 0);   
-//            } completion:^(BOOL finished) {
-//                [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-//                    self.view.transform = CGAffineTransformTranslate(self.view.transform, -50, 0);
-//                } completion:^(BOOL finished) {
-//                    [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
-//                        self.view.transform = CGAffineTransformTranslate(self.view.transform, 25, 0);
-//                    } completion:^(BOOL finished) {
-//                        ;
-//                    }];
-//                }];
-//            }];
-//        }];
+        [self shakeView:self.view];
         
     }
 }
+
+- (void)shakeView:(UIView *)viewToShake
+{
+    CGFloat t = 10.0;
+    CGAffineTransform translateRight  = CGAffineTransformTranslate(CGAffineTransformIdentity, t, 0.0);
+    CGAffineTransform translateLeft = CGAffineTransformTranslate(CGAffineTransformIdentity, -t, 0.0);
+    
+    viewToShake.transform = translateLeft;
+    
+    [UIView animateWithDuration:0.07 delay:0.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+        [UIView setAnimationRepeatCount:3.0];
+        viewToShake.transform = translateRight;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                viewToShake.transform = CGAffineTransformIdentity;
+            } completion:NULL];
+        }
+    }];
+}
+
 -(void)fadeOutAnswerFrames {
-    [self pauseGame];
+//    [self pauseGame];
     if (answerFrame) {
         [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             answerFrame.alpha = 0.0;
