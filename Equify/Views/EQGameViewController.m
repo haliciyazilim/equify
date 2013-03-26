@@ -384,7 +384,7 @@
     }
     int average = [EQScore getAverageWithDifficulty:_difficulty];
     if (average != -1) {
-        [[GameCenterManager sharedInstance] submitScore:average category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.%d", _difficulty]];
+        [[GameCenterManager sharedInstance] submitScore:average category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestFifteen%d", _difficulty]];
     }
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
