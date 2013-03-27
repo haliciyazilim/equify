@@ -1,146 +1,143 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="XtN-vf-XIw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="CyZ-dM-BXS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Qipad Stats View Controller-->
-        <scene sceneID="qyd-In-JAo">
+        <!--Qipad Settings View Controller-->
+        <scene sceneID="IrR-du-jOT">
             <objects>
-                <viewController id="eb5-8Y-oUQ" customClass="EQipadStatsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Vz-uO-Yxg">
+                <viewController id="qCA-h9-GWN" customClass="EQipadSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7qH-9u-LeE">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="46K-eX-wM7"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lKn-jf-veS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1290" y="254"/>
+        </scene>
+        <!--Qipad Stats View Controller-->
+        <scene sceneID="xvU-8R-L55">
+            <objects>
+                <viewController id="hrQ-Ka-lUy" customClass="EQipadStatsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aJL-7G-Dz8">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="G0X-Sa-Y5L"/>
+                    <navigationItem key="navigationItem" id="mK3-cS-K0h"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wjN-Mn-T0l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6j-YF-Iag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1190" y="731"/>
+            <point key="canvasLocation" x="1290" y="1132"/>
         </scene>
         <!--Qipad View Controller-->
-        <scene sceneID="TAF-en-pOd">
+        <scene sceneID="T1e-fZ-eqK">
             <objects>
-                <viewController id="jwV-KO-3xd" customClass="EQipadViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SeW-Zo-VZU">
+                <viewController id="kB5-2E-QwK" customClass="EQipadViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LHF-i8-Txh">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dpz-Yy-28n"/>
+                    <navigationItem key="navigationItem" id="roH-Tf-T6n"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <segue destination="ODG-rC-Dxy" kind="push" identifier="GameStartSegue" id="VDP-x9-Cu2"/>
-                        <segue destination="eb5-8Y-oUQ" kind="push" identifier="StatsSegue" id="Ua2-x2-BRw"/>
+                        <segue destination="Kmp-Rw-Zoe" kind="push" identifier="GameStartSegue" id="K8W-Il-fWS"/>
+                        <segue destination="hrQ-Ka-lUy" kind="push" identifier="StatsSegue" id="f4S-SF-oYO"/>
+                        <segue destination="qCA-h9-GWN" kind="push" identifier="SettingsSegue" id="yhi-Uo-DMV"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0ak-wb-wo7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zgb-MQ-Fcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-202" y="254"/>
+            <point key="canvasLocation" x="62" y="254"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="qdy-KN-OgA">
+        <scene sceneID="0AY-un-kgA">
             <objects>
-                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="XtN-vf-XIw" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" navigationBarHidden="YES" id="CyZ-dM-BXS" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tGE-Kc-QBw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0zN-T3-Kcs">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jwV-KO-3xd" kind="relationship" relationship="rootViewController" id="UXz-yr-JhU"/>
+                        <segue destination="kB5-2E-QwK" kind="relationship" relationship="rootViewController" id="V2p-dt-sZb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JRe-vB-MXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tib-AT-OM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1457" y="254"/>
+            <point key="canvasLocation" x="-1113" y="254"/>
         </scene>
         <!--Qipad Game View Controller-->
-        <scene sceneID="xMw-VD-Vp8">
+        <scene sceneID="yd7-0Q-uHU">
             <objects>
-                <viewController id="ODG-rC-Dxy" customClass="EQipadGameViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Axm-K9-N29">
+                <viewController id="Kmp-Rw-Zoe" customClass="EQipadGameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EOQ-kP-0MO">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="StopWatch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr4-85-nke">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skx-MG-0Bd">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="MGn-NE-DuM"/>
-                                    <constraint firstAttribute="width" constant="78" id="gf8-TP-8aI"/>
+                                    <constraint firstAttribute="width" constant="78" id="Mud-Kl-yCE"/>
+                                    <constraint firstAttribute="height" constant="23" id="ge4-K5-Rq4"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ioi-Ho-5rv">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNI-ZL-zhr"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6l-5d-Mnd">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iE-h8-7mm"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=".00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIO-Ez-INC">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="umJ-zt-HSH"/>
+                                    <constraint firstAttribute="height" constant="21" id="MCY-0i-5no"/>
+                                    <constraint firstAttribute="width" constant="42" id="Ypv-7a-2Kv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRO-JS-fTz">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gr4-85-nke" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" constant="31" id="90a-vA-gEk"/>
-                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="baseline" secondItem="gr4-85-nke" secondAttribute="baseline" type="default" id="9lh-VY-aPu"/>
-                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="centerY" secondItem="Axm-K9-N29" secondAttribute="centerY" type="default" id="Bh2-OI-l6d"/>
-                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="centerX" secondItem="Ioi-Ho-5rv" secondAttribute="centerX" type="default" id="G0w-hT-MHe"/>
-                            <constraint firstAttribute="bottom" secondItem="zRO-JS-fTz" secondAttribute="bottom" constant="26" id="GdO-pY-5Sr"/>
-                            <constraint firstItem="zRO-JS-fTz" firstAttribute="baseline" secondItem="Ioi-Ho-5rv" secondAttribute="baseline" type="default" id="Nky-4E-u5z"/>
-                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="top" secondItem="gr4-85-nke" secondAttribute="top" type="default" id="PzG-R3-qHp"/>
-                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" type="default" id="REB-W6-rEJ"/>
-                            <constraint firstItem="z6l-5d-Mnd" firstAttribute="leading" secondItem="Axm-K9-N29" secondAttribute="leading" constant="68" id="RHv-Sr-nCr"/>
-                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="trailing" secondItem="Axm-K9-N29" secondAttribute="trailing" type="default" id="UxX-Ip-KRe"/>
-                            <constraint firstItem="PNI-ZL-zhr" firstAttribute="top" secondItem="Axm-K9-N29" secondAttribute="top" constant="80" id="og2-Gc-Jzm"/>
-                            <constraint firstItem="gr4-85-nke" firstAttribute="top" secondItem="Axm-K9-N29" secondAttribute="top" constant="37" id="qTl-jw-Z4A"/>
-                            <constraint firstAttribute="trailing" secondItem="zRO-JS-fTz" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="vGG-O2-hsb"/>
+                            <constraint firstItem="2iE-h8-7mm" firstAttribute="trailing" secondItem="EOQ-kP-0MO" secondAttribute="trailing" type="default" id="7aA-iJ-g9f"/>
+                            <constraint firstItem="pIO-Ez-INC" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="31" id="BC5-zP-NRn"/>
+                            <constraint firstItem="skx-MG-0Bd" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="27" id="Plx-9B-Uis"/>
+                            <constraint firstItem="pIO-Ez-INC" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="106" id="aPP-Ce-LMa"/>
+                            <constraint firstItem="skx-MG-0Bd" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="31" id="amp-9p-Y5L"/>
+                            <constraint firstItem="2iE-h8-7mm" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="80" id="bVg-fM-LYc"/>
+                            <constraint firstItem="2iE-h8-7mm" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" type="default" id="eJ9-Zm-ntW"/>
+                            <constraint firstItem="2iE-h8-7mm" firstAttribute="centerY" secondItem="EOQ-kP-0MO" secondAttribute="centerY" type="default" id="hs1-c1-XOB"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="v7b-nK-X7Y"/>
+                    <navigationItem key="navigationItem" id="Z0C-Q9-waC"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="QuestionView" destination="PNI-ZL-zhr" id="ej0-0C-eKD"/>
-                        <outlet property="btnControl" destination="Ioi-Ho-5rv" id="QC6-hH-Hh1"/>
-                        <outlet property="btnSkip" destination="zRO-JS-fTz" id="KJz-e8-Zs1"/>
-                        <outlet property="stopWatchLabel" destination="gr4-85-nke" id="Pxd-9X-Ifd"/>
-                        <outlet property="stopWatchLabelMS" destination="z6l-5d-Mnd" id="mQi-6h-CMV"/>
+                        <outlet property="QuestionView" destination="2iE-h8-7mm" id="Htj-qS-2Cv"/>
+                        <outlet property="stopWatchLabel" destination="skx-MG-0Bd" id="mq8-Yx-z0w"/>
+                        <outlet property="stopWatchLabelMS" destination="pIO-Ez-INC" id="Fwv-1t-gcQ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uSD-K2-GR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I39-jc-j53" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1190" y="-238"/>
+            <point key="canvasLocation" x="1282" y="-708"/>
         </scene>
     </scenes>
     <classes>
@@ -148,11 +145,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQGameViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="QuestionView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="btnControl" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnSkip" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="stopWatchLabelMS" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="EQSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQSettingsViewController.h"/>
         </class>
         <class className="EQStatsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQStatsViewController.h"/>
@@ -165,6 +163,9 @@
         </class>
         <class className="EQipadGameViewController" superclassName="EQGameViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadGameViewController.h"/>
+        </class>
+        <class className="EQipadSettingsViewController" superclassName="EQSettingsViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadSettingsViewController.h"/>
         </class>
         <class className="EQipadStatsViewController" superclassName="EQStatsViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EQipadStatsViewController.h"/>

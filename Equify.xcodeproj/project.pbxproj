@@ -120,6 +120,7 @@
 		AECBA45916F07B96008D36D0 /* game_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA45616F07B96008D36D0 /* game_bg-568h@2x.png */; };
 		AECBA45A16F07B96008D36D0 /* game_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA45716F07B96008D36D0 /* game_bg.png */; };
 		AECBA45B16F07B96008D36D0 /* game_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AECBA45816F07B96008D36D0 /* game_bg@2x.png */; };
+		AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE233E3170310480096DEC0 /* EQipadSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -275,6 +276,8 @@
 		AECBA45616F07B96008D36D0 /* game_bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_bg-568h@2x.png"; sourceTree = "<group>"; };
 		AECBA45716F07B96008D36D0 /* game_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_bg.png; sourceTree = "<group>"; };
 		AECBA45816F07B96008D36D0 /* game_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_bg@2x.png"; sourceTree = "<group>"; };
+		AEE233E2170310480096DEC0 /* EQipadSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQipadSettingsViewController.h; sourceTree = "<group>"; };
+		AEE233E3170310480096DEC0 /* EQipadSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQipadSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,6 +539,8 @@
 				AE8C0AE516F1F7D10084A808 /* EQipadGameViewController.m */,
 				AE8C0AE716F1F8100084A808 /* EQipadStatsViewController.h */,
 				AE8C0AE816F1F8100084A808 /* EQipadStatsViewController.m */,
+				AEE233E2170310480096DEC0 /* EQipadSettingsViewController.h */,
+				AEE233E3170310480096DEC0 /* EQipadSettingsViewController.m */,
 			);
 			path = iPadViews;
 			sourceTree = "<group>";
@@ -766,6 +771,7 @@
 				AE8C0AE916F1F8110084A808 /* EQipadStatsViewController.m in Sources */,
 				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
 				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
+				AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
