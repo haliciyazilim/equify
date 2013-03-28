@@ -91,22 +91,21 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skx-MG-0Bd">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="Mud-Kl-yCE"/>
-                                    <constraint firstAttribute="height" constant="23" id="ge4-K5-Rq4"/>
+                                    <constraint firstAttribute="width" constant="117" id="77d-HJ-0Tg"/>
+                                    <constraint firstAttribute="height" constant="41" id="jEw-HF-ckQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="45"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2iE-h8-7mm"/>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=".00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIO-Ez-INC">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="MCY-0i-5no"/>
-                                    <constraint firstAttribute="width" constant="42" id="Ypv-7a-2Kv"/>
+                                    <constraint firstAttribute="width" constant="50" id="lmk-Ma-z4k"/>
+                                    <constraint firstAttribute="height" constant="26" id="wCp-qa-N99"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="33"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -115,14 +114,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2iE-h8-7mm" firstAttribute="trailing" secondItem="EOQ-kP-0MO" secondAttribute="trailing" type="default" id="7aA-iJ-g9f"/>
-                            <constraint firstItem="pIO-Ez-INC" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="31" id="BC5-zP-NRn"/>
-                            <constraint firstItem="skx-MG-0Bd" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="27" id="Plx-9B-Uis"/>
-                            <constraint firstItem="pIO-Ez-INC" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="106" id="aPP-Ce-LMa"/>
-                            <constraint firstItem="skx-MG-0Bd" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="31" id="amp-9p-Y5L"/>
-                            <constraint firstItem="2iE-h8-7mm" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="80" id="bVg-fM-LYc"/>
-                            <constraint firstItem="2iE-h8-7mm" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" type="default" id="eJ9-Zm-ntW"/>
-                            <constraint firstItem="2iE-h8-7mm" firstAttribute="centerY" secondItem="EOQ-kP-0MO" secondAttribute="centerY" type="default" id="hs1-c1-XOB"/>
+                            <constraint firstItem="skx-MG-0Bd" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="170" id="923-fx-NkE"/>
+                            <constraint firstItem="pIO-Ez-INC" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="286" id="HXh-er-Ol3"/>
+                            <constraint firstItem="skx-MG-0Bd" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="172" id="rGF-PG-BkR"/>
+                            <constraint firstItem="pIO-Ez-INC" firstAttribute="baseline" secondItem="skx-MG-0Bd" secondAttribute="baseline" type="default" id="xV1-4v-wAs"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -130,7 +125,6 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="QuestionView" destination="2iE-h8-7mm" id="Htj-qS-2Cv"/>
                         <outlet property="stopWatchLabel" destination="skx-MG-0Bd" id="mq8-Yx-z0w"/>
                         <outlet property="stopWatchLabelMS" destination="pIO-Ez-INC" id="Fwv-1t-gcQ"/>
                     </connections>
