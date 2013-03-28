@@ -66,15 +66,15 @@ static NSMutableArray* boxes = nil;
         self.boxButton.layer.shadowRadius = 2.0;
         self.boxButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
         self.boxButton.layer.shadowOpacity = 0.3;
-        [self.boxButton.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 1, 48.0, 48.0)] CGPath]];
+        [self.boxButton.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 1, frame.size.width, frame.size.height)] CGPath]];
         
         self.boxButton.layer.shadowColor = [[UIColor blackColor] CGColor];
 //        self.boxButton.layer.borderColor = [[UIColor colorWithRed:0.596 green:0.596 blue:0.596 alpha:1.0] CGColor];
         [self.boxButton setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]];
         
-        UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake(4, 4, 40, 40)];
+        UILabel * title=[[UILabel alloc]initWithFrame:CGRectMake((frame.size.width-40)/2, (frame.size.height-40)/2, 40, 40)];
         [title setTextColor:[UIColor colorWithRed:0.333 green:0.333 blue:0.333 alpha:1.0]];
-        [title setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:33.0 ]];
+        [title setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:frame.size.width/1.45 ]];
         [title setShadowColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
         [title setShadowOffset:CGSizeMake(0.0, 1.0)];
         [title setTextAlignment:NSTextAlignmentCenter];
