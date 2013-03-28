@@ -15,13 +15,13 @@
 @implementation EQipadGameViewController
 
 -(int)boxSize{
-    return 96;
+    return 72;
 }
 -(int)boxSpace{
-    return 20;
+    return 7.5;
 }
 -(int) leftAndRightViewSpace{
-    return 100;
+    return 75;
 }
 
 @end
