@@ -54,14 +54,16 @@
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
 }
-
+-(float) screenHeight{
+    return [[UIScreen mainScreen] bounds].size.width;
+}
 
 -(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 }
 
@@ -88,18 +90,18 @@
     [self.view addSubview:difficultyButtonsView];
     
     
-    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, 100, [self buttonsViewWidth], [self buttonsViewHeight])];
+    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, ([self screenHeight]-[self buttonsViewHeight])/2, [self buttonsViewWidth], [self buttonsViewHeight])];
 //    buttonsView.backgroundColor=[UIColor yellowColor];
     
     [self.view addSubview:buttonsView];
     
-    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, [self btnSize]/2, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
     [btnGameSettings addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnStartGame=[EQViewController makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil) ];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[EQViewController makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
+    UIButton * btnUserStats=[EQViewController makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], [self btnSize]/2, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(([self buttonsViewWidth]-[self btnGCSize])/2, [self buttonsViewHeight]-[self btnGCSize], [self btnGCSize], [self btnGCSize])];
@@ -141,7 +143,7 @@
         [lblA setTextAlignment:NSTextAlignmentCenter];
     
     
-        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 30)];
+        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 40)];
         [lblB setText:tile[1]];
         [lblB setFont:font];
         [lblB setBackgroundColor:[UIColor clearColor]];

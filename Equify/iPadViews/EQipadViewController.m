@@ -15,7 +15,10 @@
 @implementation EQipadViewController
 
 -(float) btnSize{
-    return [UIImage imageNamed:@"main_btn.png"].size.width;
+    
+    UIImage *image=[UIImage imageNamed:@"main_btn.png"];
+    NSLog(@"imagesise: %f",image.size.width);
+    return image.size.width;
 }
 
 -(float) btnGCSize{
@@ -27,11 +30,11 @@
 }
 
 -(float) buttonsViewHeight{
-    return 204.0;
+    return 293.0;
 }
 
 -(float) buttonsViewWidth{
-    return 404.0;
+    return 580.0;
 }
 
 -(float) screenWidth{
@@ -40,7 +43,7 @@
 
 
 -(void) setBackgrounds{
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
 }
 
 -(UIImageView *) setLogo{

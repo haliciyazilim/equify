@@ -52,10 +52,10 @@
 
 -(void) setBackground{
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 }
 
@@ -407,10 +407,10 @@
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 
     

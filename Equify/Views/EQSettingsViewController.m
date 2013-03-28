@@ -110,10 +110,10 @@
 }
 -(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 }
 
@@ -149,10 +149,10 @@
     aboutScreen=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        aboutScreen.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        aboutScreen.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        aboutScreen.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        aboutScreen.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
     
     
