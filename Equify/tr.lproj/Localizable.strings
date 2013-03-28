@@ -7,7 +7,7 @@
 */
 
 // stats screen
-"STATS" = "kullanıcı istatistikleri";
+"STATS" = "kullanıcı verileri";
 "BEST_TIME" = "en iyi süre";
 "WORST_TIME"  = "en kötü süre";
 "TOTAL_SOLVED_COUNT" = "çözülen toplam soru";

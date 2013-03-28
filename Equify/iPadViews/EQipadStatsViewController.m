@@ -22,7 +22,43 @@
     }
     return self;
 }
-
+- (CGSize) getMainViewSize {
+    return CGSizeMake(720.0, 480.0);
+}
+- (CGSize) getInnerSize {
+    CGSize size = [self getMainViewSize];
+    return CGSizeMake(size.height-50.0, size.width-50.0);
+}
+- (CGFloat) lineHeight {
+    return 60.0;
+}
+-(CGFloat) headerHeight {
+    return 68.0;
+}
+-(CGFloat) headerSingleLineHeight {
+    return 3.0;
+}
+-(CGFloat) headerDoubleLineHeight {
+    return 5.0;
+}
+-(CGFloat) seperatorHeight {
+    return 3.0;
+}
+-(CGFloat) closeButtonHeight {
+    return 45.0;
+}
+- (CGFloat) buttonsTop {
+    return 8.0;
+}
+-(CGFloat) closeButtonsTop {
+    return 10.0;
+}
+-(CGFloat) headerFontSize {
+    return 45.0;
+}
+-(CGFloat) fontSize {
+    return 30.0;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
