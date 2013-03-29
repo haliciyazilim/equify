@@ -63,12 +63,12 @@
     UIView *settingView=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
 
     
-        
+    UIImage * imgClose=[UIImage imageNamed:@"close_btn.png"];
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
+    [closeButton setBackgroundImage:imgClose forState:UIControlStateNormal];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn_pressed.png"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeSettings) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.frame = CGRectMake(winWidth-45.0, 5.0, 35.0, 35.0);
+    closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
     UIImage * imgSeperator=[UIImage imageNamed:@"single_line.png"];
     NSLog(@"button witdh: %f",buttonWidth);
@@ -208,11 +208,12 @@
     UIView *headerDoubleLine = [[UIView alloc] initWithFrame:CGRectMake((winWidth-(winWidth/3))/2, 45.0, winWidth/3, 3.0)];
     [headerDoubleLine setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"double_line.png"]]];
     
+    UIImage * imgClose=[UIImage imageNamed:@"close_btn.png"];
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn.png"] forState:UIControlStateNormal];
+    [closeButton setBackgroundImage:imgClose forState:UIControlStateNormal];
     [closeButton setBackgroundImage:[UIImage imageNamed:@"close_btn_pressed.png"] forState:UIControlStateHighlighted];
     [closeButton addTarget:self action:@selector(closeAbout) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.frame = CGRectMake(winWidth-45.0, 5.0, 35.0, 35.0);
+    closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
     UIView * mask=[[UIView alloc]initWithFrame:CGRectMake(20, 60, winWidth-40, winHeight-60)];
     [mask setBackgroundColor:[UIColor clearColor]];
