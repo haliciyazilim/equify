@@ -467,8 +467,11 @@
 
 -(void)inGameMenu{
     
+    float screenWidth=[[UIScreen mainScreen] bounds].size.height;
+    float screenHeight=[[UIScreen mainScreen] bounds].size.width;
+    
     [self.stopWatch pauseTimer];
-    menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
+    menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
         menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
@@ -478,20 +481,20 @@
     }
 
     
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-30, 175, 2.0)];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-30, 200, 2.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
 
-    UIButton * btnResume=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-25, 175, 40) title:NSLocalizedString(@"RESUME", nil)];
+    UIButton * btnResume=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-25, 200, 40) title:NSLocalizedString(@"RESUME", nil)];
     
     [btnResume addTarget:self action:@selector(btnResumeGame) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+20, 175, 2.0)];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+20, 200, 2.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
-    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2+25, 175, 40) title:NSLocalizedString(@"MAINMENU", nil)];
+    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+25, 200, 40) title:NSLocalizedString(@"MAINMENU", nil)];
     [btnMainMenu addTarget:self action:@selector(openMainMenu) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+75, 175, 2.0)];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+75, 200, 2.0)];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
     [menu addSubview:seperator1];
@@ -508,8 +511,8 @@
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
     UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:25.0];
-    
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:[self boxSize]/1.92];
+    NSLog(@"Font size: %f",[self boxSize]/1.92);
     [lblReset setText:title];
     [lblReset setFont:font];
     [lblReset setBackgroundColor:[UIColor clearColor]];
