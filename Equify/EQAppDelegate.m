@@ -23,7 +23,7 @@
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
 //    [self generateJson];
-    
+//    sleep(10);
     
 //    [self.window makeKeyAndVisible];
     return YES;

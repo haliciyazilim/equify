@@ -15,7 +15,6 @@
 		05192B6E16CB83F5002F9529 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05192B6C16CB83F5002F9529 /* InfoPlist.strings */; };
 		05192B7016CB83F5002F9529 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05192B6F16CB83F5002F9529 /* main.m */; };
 		05192B7416CB83F5002F9529 /* EQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05192B7316CB83F5002F9529 /* EQAppDelegate.m */; };
-		05192B7616CB83F5002F9529 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05192B7516CB83F5002F9529 /* Default.png */; };
 		05192B7816CB83F5002F9529 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05192B7716CB83F5002F9529 /* Default@2x.png */; };
 		05192B7A16CB83F5002F9529 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05192B7916CB83F5002F9529 /* Default-568h@2x.png */; };
 		05192B7D16CB83F5002F9529 /* EQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05192B7C16CB83F5002F9529 /* EQViewController.m */; };
@@ -51,6 +50,19 @@
 		05C05B1C16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B1A16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf */; };
 		05C05B1F16F1CD2000913437 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2116F1CD2000913437 /* Localizable.strings */; };
 		05CE69C41705886D00353F3C /* TypeDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CE69C31705886D00353F3C /* TypeDefs.m */; };
+		05CE69CB1705B62B00353F3C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C51705B62B00353F3C /* Icon-72.png */; };
+		05CE69CC1705B62B00353F3C /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C61705B62B00353F3C /* Icon-72@2x.png */; };
+		05CE69CD1705B62B00353F3C /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C71705B62B00353F3C /* Icon-Small-50.png */; };
+		05CE69CE1705B62B00353F3C /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C81705B62B00353F3C /* Icon-Small-50@2x.png */; };
+		05CE69CF1705B62B00353F3C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C91705B62B00353F3C /* Icon.png */; };
+		05CE69D01705B62B00353F3C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69CA1705B62B00353F3C /* Icon@2x.png */; };
+		05CE69EC1705BC6B00353F3C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69E91705BC6B00353F3C /* Default-568h@2x.png */; };
+		05CE69ED1705BC6B00353F3C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EA1705BC6B00353F3C /* Default.png */; };
+		05CE69EE1705BC6B00353F3C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EB1705BC6B00353F3C /* Default@2x.png */; };
+		05CE69F11705BE9F00353F3C /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EF1705BE9F00353F3C /* Default-Landscape.png */; };
+		05CE69F21705BE9F00353F3C /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69F01705BE9F00353F3C /* Default-Landscape@2x.png */; };
+		05CE69F51705C14800353F3C /* equify_logo@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69F31705C14800353F3C /* equify_logo@2x~ipad.png */; };
+		05CE69F61705C14800353F3C /* equify_logo~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69F41705C14800353F3C /* equify_logo~ipad.png */; };
 		05CF051716FC508800309FC3 /* standard-3000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05CF051616FC508800309FC3 /* standard-3000-3.questionpack */; };
 		05D0DA9316F70617000159DF /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D0DA9216F70617000159DF /* EQQuestion.m */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
@@ -250,6 +262,19 @@
 		05C05B2016F1CD2000913437 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C05B2216F1CD8A00913437 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05CE69C31705886D00353F3C /* TypeDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeDefs.m; sourceTree = "<group>"; };
+		05CE69C51705B62B00353F3C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = SOURCE_ROOT; };
+		05CE69C61705B62B00353F3C /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69C71705B62B00353F3C /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = SOURCE_ROOT; };
+		05CE69C81705B62B00353F3C /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69C91705B62B00353F3C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
+		05CE69CA1705B62B00353F3C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69E91705BC6B00353F3C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Equify/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69EA1705BC6B00353F3C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Equify/Default.png; sourceTree = SOURCE_ROOT; };
+		05CE69EB1705BC6B00353F3C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Equify/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69EF1705BE9F00353F3C /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Equify/Default-Landscape.png"; sourceTree = SOURCE_ROOT; };
+		05CE69F01705BE9F00353F3C /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x.png"; path = "Equify/Default-Landscape@2x.png"; sourceTree = SOURCE_ROOT; };
+		05CE69F31705C14800353F3C /* equify_logo@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "equify_logo@2x~ipad.png"; sourceTree = "<group>"; };
+		05CE69F41705C14800353F3C /* equify_logo~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "equify_logo~ipad.png"; sourceTree = "<group>"; };
 		05CF051616FC508800309FC3 /* standard-3000-3.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-3.questionpack"; sourceTree = "<group>"; };
 		05D0DA9116F70617000159DF /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
 		05D0DA9216F70617000159DF /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
@@ -606,6 +631,17 @@
 		AEAD83D3170434AE00055E7E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				05CE69EF1705BE9F00353F3C /* Default-Landscape.png */,
+				05CE69F01705BE9F00353F3C /* Default-Landscape@2x.png */,
+				05CE69E91705BC6B00353F3C /* Default-568h@2x.png */,
+				05CE69EA1705BC6B00353F3C /* Default.png */,
+				05CE69EB1705BC6B00353F3C /* Default@2x.png */,
+				05CE69C51705B62B00353F3C /* Icon-72.png */,
+				05CE69C61705B62B00353F3C /* Icon-72@2x.png */,
+				05CE69C71705B62B00353F3C /* Icon-Small-50.png */,
+				05CE69C81705B62B00353F3C /* Icon-Small-50@2x.png */,
+				05CE69C91705B62B00353F3C /* Icon.png */,
+				05CE69CA1705B62B00353F3C /* Icon@2x.png */,
 				AEAD83D4170434AE00055E7E /* game_bg-568h@2x.jpg */,
 				AEAD83D5170434AE00055E7E /* game_bg.jpg */,
 				AEAD83D6170434AE00055E7E /* game_bg@2x.jpg */,
@@ -675,6 +711,8 @@
 			children = (
 				AEAD8415170434AE00055E7E /* equify_logo.png */,
 				AEAD8416170434AE00055E7E /* equify_logo@2x.png */,
+				05CE69F31705C14800353F3C /* equify_logo@2x~ipad.png */,
+				05CE69F41705C14800353F3C /* equify_logo~ipad.png */,
 				AEAD8417170434AE00055E7E /* game_center_btn.png */,
 				AEAD8418170434AE00055E7E /* game_center_btn@2x.png */,
 				AEAD8419170434AE00055E7E /* game_center_btn@2x~ipad.png */,
@@ -813,7 +851,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05192B6E16CB83F5002F9529 /* InfoPlist.strings in Resources */,
-				05192B7616CB83F5002F9529 /* Default.png in Resources */,
 				05192B7816CB83F5002F9529 /* Default@2x.png in Resources */,
 				05192B7A16CB83F5002F9529 /* Default-568h@2x.png in Resources */,
 				059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -936,6 +973,19 @@
 				AEAD84DB170434AF00055E7E /* single_line@2x~ipad.png in Resources */,
 				AEAD84DC170434AF00055E7E /* single_line~ipad.png in Resources */,
 				AEAD84DE1704932000055E7E /* btngolge-ipad.png in Resources */,
+				05CE69CB1705B62B00353F3C /* Icon-72.png in Resources */,
+				05CE69CC1705B62B00353F3C /* Icon-72@2x.png in Resources */,
+				05CE69CD1705B62B00353F3C /* Icon-Small-50.png in Resources */,
+				05CE69CE1705B62B00353F3C /* Icon-Small-50@2x.png in Resources */,
+				05CE69CF1705B62B00353F3C /* Icon.png in Resources */,
+				05CE69D01705B62B00353F3C /* Icon@2x.png in Resources */,
+				05CE69EC1705BC6B00353F3C /* Default-568h@2x.png in Resources */,
+				05CE69ED1705BC6B00353F3C /* Default.png in Resources */,
+				05CE69EE1705BC6B00353F3C /* Default@2x.png in Resources */,
+				05CE69F11705BE9F00353F3C /* Default-Landscape.png in Resources */,
+				05CE69F21705BE9F00353F3C /* Default-Landscape@2x.png in Resources */,
+				05CE69F51705C14800353F3C /* equify_logo@2x~ipad.png in Resources */,
+				05CE69F61705C14800353F3C /* equify_logo~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

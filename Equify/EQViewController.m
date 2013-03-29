@@ -79,7 +79,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"first screen");  
     
     [self setBackgrounds];
             
@@ -93,7 +92,6 @@
     
     
     buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, ([self screenHeight]-[self buttonsViewHeight])/2, [self buttonsViewWidth], [self buttonsViewHeight])];
-//    buttonsView.backgroundColor=[UIColor yellowColor];
     
     [self.view addSubview:buttonsView];
     
@@ -113,10 +111,6 @@
     [buttonsView addSubview:btnGameSettings];
     [buttonsView addSubview:btnUserStats];
     [buttonsView addSubview:btnGameCenter];
-
-
-
-
     
 }
 
@@ -135,7 +129,6 @@
 
     if(tile.count>1){
         float fontSize=btn.frame.size.width/4.59;
-        NSLog(@"fontSize: %f",fontSize);
         UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-50)/2-fontSize/2.45, btn.frame.size.width, 50)];
         UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize];
         [lblA setText:tile[0]];
@@ -274,8 +267,6 @@
         default:
             break;
     }
-    
-    NSLog(@"DİFF: %d",difficulty);
 }
 - (IBAction)startNewGame:(id)sender {
     [self performSegueWithIdentifier:@"GameStartSegue" sender:self];

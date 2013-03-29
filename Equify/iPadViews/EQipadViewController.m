@@ -17,7 +17,6 @@
 -(float) btnSize{
     
     UIImage *image=[UIImage imageNamed:@"main_btn.png"];
-    NSLog(@"imagesise: %f",image.size.width);
     return image.size.width;
 }
 
