@@ -59,7 +59,9 @@
 -(int) leftAndRightViewSpace{
     return 50;
 }
-
+-(float)menuButtonsPadding{
+    return 1.0;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -483,6 +485,9 @@ static EQGameViewController* __runningInstance;
     [self configureViews];
 }
 
+-(CGSize) menuButtonsSize{
+    return CGSizeMake(200, 40);
+}
 -(void)inGameMenu{
     
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
@@ -501,21 +506,21 @@ static EQGameViewController* __runningInstance;
         menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 
-    
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-30, 200, 2.0)];
-    [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
+    UIImage * imgSeperator=[UIImage imageNamed:@"single_line.png"];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2-30*[self menuButtonsPadding], [self menuButtonsSize].width, 2.0)];
+    [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
-    UIButton * btnResume=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-25, 200, 40) title:NSLocalizedString(@"RESUME", nil)];
+    UIButton * btnResume=[self makeMenuButton:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2-25*[self menuButtonsPadding], [self menuButtonsSize].width, [self menuButtonsSize].height) title:NSLocalizedString(@"RESUME", nil)];
     
     [btnResume addTarget:self action:@selector(btnResumeGame) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+20, 200, 2.0)];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2+20*[self menuButtonsPadding], [self menuButtonsSize].width, 2.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
-    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+25, 200, 40) title:NSLocalizedString(@"MAINMENU", nil)];
+    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2+25*[self menuButtonsPadding], [self menuButtonsSize].width, [self menuButtonsSize].height) title:NSLocalizedString(@"MAINMENU", nil)];
     [btnMainMenu addTarget:self action:@selector(openMainMenu) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+75, 200, 2.0)];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2+70*[self menuButtonsPadding], [self menuButtonsSize].width, 2.0)];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
     [menu addSubview:seperator1];

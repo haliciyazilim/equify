@@ -41,7 +41,12 @@
 -(int) leftAndRightViewSpace{
     return 75;
 }
-
+-(float)menuButtonsPadding{
+    return 1.5;
+}
+-(CGSize) menuButtonsSize{
+    return CGSizeMake(200*1.5, 40*1.5);
+}
 -(float) containerY{
     return 7*1.5;
 }
