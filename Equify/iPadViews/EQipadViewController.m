@@ -22,7 +22,8 @@
 }
 
 -(float) btnGCSize{
-    return [UIImage imageNamed:@"game_center_btn.png"].size.width;
+    UIImage *image =[UIImage imageNamed:@"game_center_btn.png"];
+    return image.size.width;
 }
 
 -(float) btnShadowSize{
@@ -35,6 +36,14 @@
 
 -(float) buttonsViewWidth{
     return 580.0;
+}
+
+-(float) margin{
+    return 85;
+}
+
+-(float)fontSize{
+    return 35.0;
 }
 
 -(float) screenWidth{

@@ -14,6 +14,24 @@
 
 @implementation EQipadGameViewController
 
+
+
+-(CGSize)gameViewSize{
+    
+    return CGSizeMake(480*1.5,320*1.5);
+}
+
+-(CGSize)questionViewSize{
+    
+    UIImage * rightEdgeImage=[UIImage imageNamed:@"container_right.png"];
+    
+    UIImage * equalImage=[UIImage imageNamed:@"conatiner_equal.png"];
+    
+    
+    return CGSizeMake([self boxSize]*9+[self boxSpace]*8, rightEdgeImage.size.height*2+equalImage.size.height);
+
+}
+
 -(int)boxSize{
     return 72;
 }
@@ -22,6 +40,10 @@
 }
 -(int) leftAndRightViewSpace{
     return 75;
+}
+
+-(float) containerY{
+    return 7*1.5;
 }
 
 @end

@@ -15,6 +15,8 @@
 
 @implementation EQGameViewController{
     
+    UIView * gameView;
+    UIView * questionView;
     UIView * questionViewLeftSide;
     UIView * questionViewRightSide;
     UIView * menu;
@@ -32,6 +34,22 @@
     UIImageView* answerFrame;
     BOOL isSolutionCorrect;
 }
+
+-(CGSize)gameViewSize{
+    
+    return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
+}
+
+-(CGSize)questionViewSize{
+    
+    UIImage * rightEdgeImage=[UIImage imageNamed:@"container_right.png"];
+    
+    UIImage * equalImage=[UIImage imageNamed:@"conatiner_equal.png"];
+
+    
+    return CGSizeMake([self boxSize]*9+[self boxSpace]*8, rightEdgeImage.size.height*2+equalImage.size.height);
+}
+
 -(int)boxSize{
     return 48;
 }
@@ -76,6 +94,10 @@ static EQGameViewController* __runningInstance;
     __runningInstance = nil;
 }
 
+-(float) containerY{
+    return 7;
+}
+
 - (void)viewDidLoad
 {
     isSolutionCorrect = NO;
@@ -89,15 +111,23 @@ static EQGameViewController* __runningInstance;
     
     self.stopWatch = [[StopWatch alloc] init];  
     
-    winWidth = [[UIScreen mainScreen] bounds].size.height;
-    winHeight = [[UIScreen mainScreen] bounds].size.width;
+    winWidth = [self gameViewSize].width;
+    winHeight = [self gameViewSize].height;
+    NSLog(@"width: %f, height: %f",winWidth,winHeight);
     
-    btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
+    gameView=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
+//    gameView.backgroundColor=[UIColor cyanColor];
+    gameView.clipsToBounds=YES;
+    
+    questionView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winWidth)];
+
+        
+    btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*1.7/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     UILabel *lblControl = (UILabel *)[btnControl viewWithTag:1];
     [lblControl setFrame:CGRectMake(0,-10, [self buttonSize], [self buttonSize])];
     
-    btnSkip=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, 0-[self buttonSize]*2/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
+    btnSkip=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, 0-[self buttonSize]*1.9/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
     
     UIImage * imgSkip=[UIImage imageNamed:@"skip_btn.png"];
@@ -110,12 +140,33 @@ static EQGameViewController* __runningInstance;
     [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
     [btnMenu addTarget:self action:@selector(pauseGame) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:btnMenu];
     
-    [self.view addSubview:btnControl];
-    [self.view addSubview:btnSkip];
+    UIImage * imgBtnShadow=[UIImage imageNamed:@"btngolge-ipad.png"];
     
-    [self.view setClipsToBounds:YES];
+    UIImageView *shadowAbove=[[UIImageView alloc] initWithImage:imgBtnShadow];
+    [shadowAbove setFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-imgBtnShadow.size.width)/2, gameView.frame.origin.y, imgBtnShadow.size.width, imgBtnShadow.size.height)];
+    shadowAbove.transform = CGAffineTransformMakeRotation(M_PI);
+    
+    UIImageView *shadowBelow=[[UIImageView alloc] initWithImage:imgBtnShadow];
+    [shadowBelow setFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-imgBtnShadow.size.width)/2, gameView.frame.origin.y+gameView.frame.size.height-shadowBelow.frame.size.height, imgBtnShadow.size.width, imgBtnShadow.size.height)];
+    
+    
+    [gameView addSubview:btnMenu];
+    [gameView addSubview:btnControl];
+    [gameView addSubview:btnSkip];
+    
+    
+    
+    
+    [gameView addSubview:questionView];
+    [self.view addSubview:gameView];
+    
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
+        [self.view addSubview:shadowAbove];
+        [self.view addSubview:shadowBelow];
+    }
+
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -146,8 +197,8 @@ static EQGameViewController* __runningInstance;
     
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
 
-        [_QuestionView addSubview:questionViewLeftSide];
-        [_QuestionView addSubview:questionViewRightSide];
+        [questionView addSubview:questionViewLeftSide];
+        [questionView addSubview:questionViewRightSide];
     }
     else{
         [questionViewLeftSide removeFromSuperview];
@@ -159,9 +210,13 @@ static EQGameViewController* __runningInstance;
         
         questionViewRightSide=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, [self boxSize])];
         
-        [_QuestionView addSubview:questionViewLeftSide];
-        [_QuestionView addSubview:questionViewRightSide];
+        [questionView addSubview:questionViewLeftSide];
+        [questionView addSubview:questionViewRightSide];
     }
+//    questionViewLeftSide.backgroundColor=[UIColor yellowColor];
+//    questionViewRightSide.backgroundColor=[UIColor redColor];
+
+    
     [self placingBoxes];
     
     [self placingCounters];
@@ -188,7 +243,7 @@ static EQGameViewController* __runningInstance;
     
     UIImage * equalImage=[UIImage imageNamed:@"conatiner_equal.png"];
     
-    questionViewLeftSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*leftSideLength)+[self boxSpace])/2, 0, ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace], [self boxSize]);
+    questionViewLeftSide.frame=CGRectMake((([self questionViewSize].width-([self boxSize]+[self boxSpace])*leftSideLength)+[self boxSpace])/2, 0, ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace], [self boxSize]);
     
     for (int i=0; i<_currentQuestion.questionArray.count; i++) {
         
@@ -199,16 +254,16 @@ static EQGameViewController* __runningInstance;
         }
         if (!isRightSide) {
             if(i==0){
-                UIImageView * leftEdgeContainerAbove=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, -7, leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
-                UIImageView * innerContainerAbove=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2, -7, ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
-                UIImageView * rightEdgeContainerAbove=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*leftSideLength-leftEdgeImage.size.width/2-[self boxSpace], -7, rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
+                UIImageView * leftEdgeContainerAbove=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, 0-[self containerY], leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
+                UIImageView * innerContainerAbove=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2,0-[self containerY], ([self boxSize]+[self boxSpace])*leftSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
+                UIImageView * rightEdgeContainerAbove=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*leftSideLength-leftEdgeImage.size.width/2-[self boxSpace], 0-[self containerY], rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
                 
-                UIImageView * containerEqual=[self makeContainer:CGRectMake((questionViewLeftSide.frame.size.width-equalImage.size.width)/2, questionViewLeftSide.frame.size.height+7, equalImage.size.width, equalImage.size.height) image:equalImage];
+                UIImageView * containerEqual=[self makeContainer:CGRectMake((questionViewLeftSide.frame.size.width-equalImage.size.width)/2, questionViewLeftSide.frame.size.height+[self containerY], equalImage.size.width, equalImage.size.height) image:equalImage];
                 
                 
-                UIImageView * leftEdgeContainerBelow=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, -7, leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
-                UIImageView * innerContainerBelow=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2, -7, ([self boxSize]+[self boxSpace])*rightSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
-                UIImageView * rightEdgeContainerBelow=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*rightSideLength-leftEdgeImage.size.width/2-[self boxSpace], -7, rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
+                UIImageView * leftEdgeContainerBelow=[self makeContainer:CGRectMake(0-leftEdgeImage.size.width/2, 0-[self containerY], leftEdgeImage.size.width, leftEdgeImage.size.height) image:leftEdgeImage];
+                UIImageView * innerContainerBelow=[self makeContainer:CGRectMake(leftEdgeImage.size.width/2, 0-[self containerY], ([self boxSize]+[self boxSpace])*rightSideLength-[self boxSpace]-leftEdgeImage.size.width, innerImage.size.height) image:innerImage];
+                UIImageView * rightEdgeContainerBelow=[self makeContainer:CGRectMake(([self boxSize]+[self boxSpace])*rightSideLength-leftEdgeImage.size.width/2-[self boxSpace], 0-[self containerY], rightEdgeImage.size.width, rightEdgeImage.size.height) image:rightEdgeImage];
                 
                 [questionViewLeftSide addSubview:leftEdgeContainerAbove];
                 [questionViewLeftSide addSubview:innerContainerAbove];
@@ -229,10 +284,20 @@ static EQGameViewController* __runningInstance;
             [questionViewRightSide addSubview:box.boxButton];
             
             if(_currentQuestion.questionArray.count-1==i){
-                questionViewRightSide.frame=CGRectMake(((self.view.frame.size.width-([self boxSize]+[self boxSpace])*(i-leftSideLength)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+equalImage.size.height+14, ([self boxSize]+[self boxSpace])*(i-leftSideLength)-[self boxSpace], [self boxSize]);
+                questionViewRightSide.frame=CGRectMake((([self questionViewSize].width-([self boxSize]+[self boxSpace])*(i-leftSideLength)+[self boxSpace]))/2, questionViewLeftSide.frame.size.height+equalImage.size.height+[self containerY]*2, ([self boxSize]+[self boxSpace])*(i-leftSideLength)-[self boxSpace], [self boxSize]);
             }
         }
     }
+    
+
+  
+//    NSLog(@"LeftWidth: %f, rightWidth: %f",questionViewLeftSide.frame.size.width, questionViewRightSide.frame.size.width);
+//    float questionViewWidth=questionViewLeftSide.frame.size.width>questionViewRightSide.frame.size.width?questionViewLeftSide.frame.size.width:questionViewRightSide.frame.size.width;
+    
+    questionView.frame=CGRectMake((winWidth-[self questionViewSize].width)/2, (winHeight-[self questionViewSize].height)/2,[self questionViewSize].width , [self questionViewSize].height);
+
+
+//    questionView.backgroundColor=[UIColor magentaColor];
 }
 
 -(void)placingCounters{
@@ -421,6 +486,13 @@ static EQGameViewController* __runningInstance;
 -(void)inGameMenu{
     
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
+
+    float screenWidth=[[UIScreen mainScreen] bounds].size.height;
+    float screenHeight=[[UIScreen mainScreen] bounds].size.width;
+    
+    [self.stopWatch pauseTimer];
+    menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
         menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
@@ -430,20 +502,20 @@ static EQGameViewController* __runningInstance;
     }
 
     
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2-30, 175, 2.0)];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-30, 200, 2.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
 
-    UIButton * btnResume=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2-25, 175, 40) title:NSLocalizedString(@"RESUME", nil)];
+    UIButton * btnResume=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2-25, 200, 40) title:NSLocalizedString(@"RESUME", nil)];
     
     [btnResume addTarget:self action:@selector(btnResumeGame) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+20, 175, 2.0)];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+20, 200, 2.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
-    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((winWidth-175)/2, (winHeight-40)/2+25, 175, 40) title:NSLocalizedString(@"MAINMENU", nil)];
+    UIButton * btnMainMenu=[self makeMenuButton:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+25, 200, 40) title:NSLocalizedString(@"MAINMENU", nil)];
     [btnMainMenu addTarget:self action:@selector(openMainMenu) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-175)/2, (winHeight-40)/2+75, 175, 2.0)];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-175)/2, (screenHeight-40)/2+75, 200, 2.0)];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"single_line.png"]]];
     
     [menu addSubview:seperator1];
@@ -460,8 +532,8 @@ static EQGameViewController* __runningInstance;
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
     UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:25.0];
-    
+    UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:[self boxSize]/1.92];
+    NSLog(@"Font size: %f",[self boxSize]/1.92);
     [lblReset setText:title];
     [lblReset setFont:font];
     [lblReset setBackgroundColor:[UIColor clearColor]];

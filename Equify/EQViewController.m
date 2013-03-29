@@ -50,7 +50,9 @@
 -(float) buttonsViewWidth{
     return 404.0;
 }
-
+-(float) margin{
+    return 25;
+}
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
 }
@@ -70,7 +72,7 @@
 -(UIImageView *) setLogo{
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
-    logoView.frame=CGRectMake(20, 20, logo.size.width, logo.size.height);
+    logoView.frame=CGRectMake([self margin], [self margin], logo.size.width, logo.size.height);
     return logoView;
 
 }
@@ -86,7 +88,7 @@
     
     
     UIView *difficultyButtonsView=[self makeDifficultyButtons];
-    [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-25, 25, difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
+    [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-[self margin], [self margin], difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
     [self.view addSubview:difficultyButtonsView];
     
     
@@ -132,8 +134,10 @@
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
 
     if(tile.count>1){
-        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2-11, btn.frame.size.width, 30)];
-        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        float fontSize=btn.frame.size.width/4.59;
+        NSLog(@"fontSize: %f",fontSize);
+        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-50)/2-fontSize/2.45, btn.frame.size.width, 50)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize];
         [lblA setText:tile[0]];
         [lblA setFont:font];
         [lblA setBackgroundColor:[UIColor clearColor]];
@@ -143,7 +147,7 @@
         [lblA setTextAlignment:NSTextAlignmentCenter];
     
     
-        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 40)];
+        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-50)/2+fontSize/2.45, btn.frame.size.width, 50)];
         [lblB setText:tile[1]];
         [lblB setFont:font];
         [lblB setBackgroundColor:[UIColor clearColor]];
@@ -156,9 +160,9 @@
         [btn addSubview:lblB];
     }
     else if(tile.count==1){
-        NSLog(@"tile==1: %i",tile.count);
+        
         UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:btn.frame.size.width/4.59];
         [lbl setText:tile[0]];
         [lbl setFont:font];
         [lbl setBackgroundColor:[UIColor clearColor]];
