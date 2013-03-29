@@ -7,6 +7,7 @@
 //
 
 #import "EQGameViewController.h"
+#import "TypeDefs.h"
 
 @interface EQGameViewController ()
 
@@ -81,9 +82,22 @@
     return [UIImage imageNamed:@"main_btn.png"].size.width;
 }
 
+static EQGameViewController* __runningInstance;
+
++(EQGameViewController*)runningInstance
+{
+    return __runningInstance;
+}
+
++(void)cleanRunningInstance
+{
+    __runningInstance = nil;
+}
+
 -(float) containerY{
     return 7;
 }
+
 - (void)viewDidLoad
 {
     isSolutionCorrect = NO;
@@ -124,7 +138,7 @@
     UIImage * imgMenu=[UIImage imageNamed:@"menu_btn.png"];
     btnMenu=[[UIButton alloc] initWithFrame:CGRectMake(winWidth-imgMenu.size.width-25, 25, imgMenu.size.width, imgMenu.size.height)];
     [btnMenu setBackgroundImage:imgMenu forState:UIControlStateNormal];
-    [btnMenu addTarget:self action:@selector(inGameMenu) forControlEvents:UIControlEventTouchUpInside];
+    [btnMenu addTarget:self action:@selector(pauseGame) forControlEvents:UIControlEventTouchUpInside];
     
     
     UIImage * imgBtnShadow=[UIImage imageNamed:@"btngolge-ipad.png"];
@@ -161,6 +175,9 @@
         [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
         [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
     }];
+    
+    __runningInstance = self;
+    setCurrentGameState(GAME_STATE_PLAYING);
     
     }
 - (void)didReceiveMemoryWarning
@@ -425,12 +442,13 @@
     }
 }
 -(void)pauseGame{
+    setCurrentGameState(GAME_STATE_PAUSED);
     [self.stopWatch pauseTimer];
-    [self.view setUserInteractionEnabled:NO];
+    [self inGameMenu];
 }
 -(void)resumeGame{
+    setCurrentGameState(GAME_STATE_PLAYING);
     [self.stopWatch resumeTimer];
-    [self.view setUserInteractionEnabled:YES];
 }
 -(void)onCorrectAnswer{
     
@@ -467,11 +485,14 @@
 
 -(void)inGameMenu{
     
+    menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
+
     float screenWidth=[[UIScreen mainScreen] bounds].size.height;
     float screenHeight=[[UIScreen mainScreen] bounds].size.width;
     
     [self.stopWatch pauseTimer];
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+
     
     if([[UIScreen mainScreen] bounds].size.height == 568){
         menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
@@ -527,6 +548,8 @@
 }
 
 - (void) openMainMenu {
+    setCurrentGameState(GAME_STATE_STOPPED);
+    [EQGameViewController cleanRunningInstance];
     [self.navigationController popViewControllerAnimated:YES];
     [self.stopWatch stopTimer];
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
@@ -534,7 +557,7 @@
 
 - (void) btnResumeGame {
     [menu removeFromSuperview];
-    [self.stopWatch resumeTimer];
+    [self resumeGame];
 }
 
 - (void)viewDidUnload {

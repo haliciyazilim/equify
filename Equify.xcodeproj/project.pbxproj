@@ -50,6 +50,7 @@
 		05C05B1B16F1CB0300913437 /* HelveticaNeueLTPro-Md.otf in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B1916F1CB0300913437 /* HelveticaNeueLTPro-Md.otf */; };
 		05C05B1C16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B1A16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf */; };
 		05C05B1F16F1CD2000913437 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05C05B2116F1CD2000913437 /* Localizable.strings */; };
+		05CE69C41705886D00353F3C /* TypeDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CE69C31705886D00353F3C /* TypeDefs.m */; };
 		05CF051716FC508800309FC3 /* standard-3000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05CF051616FC508800309FC3 /* standard-3000-3.questionpack */; };
 		05D0DA9316F70617000159DF /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D0DA9216F70617000159DF /* EQQuestion.m */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
@@ -248,6 +249,7 @@
 		05C05B1A16F1CB0300913437 /* HelveticaNeueLTPro-Th.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HelveticaNeueLTPro-Th.otf"; sourceTree = "<group>"; };
 		05C05B2016F1CD2000913437 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C05B2216F1CD8A00913437 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05CE69C31705886D00353F3C /* TypeDefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeDefs.m; sourceTree = "<group>"; };
 		05CF051616FC508800309FC3 /* standard-3000-3.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-3.questionpack"; sourceTree = "<group>"; };
 		05D0DA9116F70617000159DF /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
 		05D0DA9216F70617000159DF /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				AECBA45216F073D0008D36D0 /* StopWatch.h */,
 				AECBA45316F073D0008D36D0 /* StopWatch.m */,
 				AECBA45516F073FA008D36D0 /* TypeDefs.h */,
+				05CE69C31705886D00353F3C /* TypeDefs.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
 				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
 				AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */,
+				05CE69C41705886D00353F3C /* TypeDefs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
