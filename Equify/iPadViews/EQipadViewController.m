@@ -38,6 +38,14 @@
     return 580.0;
 }
 
+-(float) margin{
+    return 85;
+}
+
+-(float)fontSize{
+    return 35.0;
+}
+
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
 }
