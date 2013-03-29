@@ -20,7 +20,15 @@
     
     return CGSizeMake(480*1.5,320*1.5);
 }
-
+-(CGFloat)checkMarkMargin {
+    return 50.0;
+}
+-(CGFloat)dotsMargin {
+    return 90.0;
+}
+-(CGFloat)dotsPadding {
+    return 50.0;
+}
 -(CGSize)questionViewSize{
     
     UIImage * rightEdgeImage=[UIImage imageNamed:@"container_right.png"];

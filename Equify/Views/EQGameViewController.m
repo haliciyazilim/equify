@@ -31,15 +31,29 @@
     CGFloat winWidth;
     CGFloat winHeight;
     
-    UIImageView* answerFrame;
-    BOOL isSolutionCorrect;
+    UIView *correctAnswerView;
+    NSMutableArray *dotsArray;
+    
+    UIView *counterView;
 }
 
 -(CGSize)gameViewSize{
     
     return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
 }
-
+-(CGSize)correctViewSize{
+    
+    return CGSizeMake([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
+}
+-(CGFloat)checkMarkMargin {
+    return 20.0;
+}
+-(CGFloat)dotsMargin {
+    return 50.0;
+}
+-(CGFloat)dotsPadding {
+    return 30.0;
+}
 -(CGSize)questionViewSize{
     
     UIImage * rightEdgeImage=[UIImage imageNamed:@"container_right.png"];
@@ -100,7 +114,6 @@ static EQGameViewController* __runningInstance;
 
 - (void)viewDidLoad
 {
-    isSolutionCorrect = NO;
     [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
@@ -113,7 +126,6 @@ static EQGameViewController* __runningInstance;
     
     winWidth = [self gameViewSize].width;
     winHeight = [self gameViewSize].height;
-    NSLog(@"width: %f, height: %f",winWidth,winHeight);
     
     gameView=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
 //    gameView.backgroundColor=[UIColor cyanColor];
@@ -213,9 +225,6 @@ static EQGameViewController* __runningInstance;
         [questionView addSubview:questionViewLeftSide];
         [questionView addSubview:questionViewRightSide];
     }
-//    questionViewLeftSide.backgroundColor=[UIColor yellowColor];
-//    questionViewRightSide.backgroundColor=[UIColor redColor];
-
     
     [self placingBoxes];
     
@@ -289,15 +298,7 @@ static EQGameViewController* __runningInstance;
         }
     }
     
-
-  
-//    NSLog(@"LeftWidth: %f, rightWidth: %f",questionViewLeftSide.frame.size.width, questionViewRightSide.frame.size.width);
-//    float questionViewWidth=questionViewLeftSide.frame.size.width>questionViewRightSide.frame.size.width?questionViewLeftSide.frame.size.width:questionViewRightSide.frame.size.width;
-    
     questionView.frame=CGRectMake((winWidth-[self questionViewSize].width)/2, (winHeight-[self questionViewSize].height)/2,[self questionViewSize].width , [self questionViewSize].height);
-
-
-//    questionView.backgroundColor=[UIColor magentaColor];
 }
 
 -(void)placingCounters{
@@ -306,7 +307,7 @@ static EQGameViewController* __runningInstance;
     moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
     
     UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
-    UIView * counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-6.0*moveCount)/2, 20, 6.0*moveCount, image.size.height)];
+    counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-6.0*moveCount)/2, 20, 6.0*moveCount, image.size.height)];
     
     if (!counterImages) {
         counterImages = [[NSMutableArray alloc] initWithCapacity:3];
@@ -341,11 +342,6 @@ static EQGameViewController* __runningInstance;
 
 -(void)control{
     
-    if (answerFrame) {
-        [answerFrame removeFromSuperview];
-        answerFrame = nil;
-    }
-    
     NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerLeftSide=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerRightSide=[[NSMutableString alloc] initWithString:@""];
@@ -372,34 +368,97 @@ static EQGameViewController* __runningInstance;
     [answer appendString:answerRightSide];
     
     if([self.currentQuestion isCorrect:answer]){
-        UIImage *frameImage;
-        if([[UIScreen mainScreen] bounds].size.height == 568){
-            frameImage = [UIImage imageNamed:@"frame_correct-568h.png"];
-        }
-        else{
-            frameImage = [UIImage imageNamed:@"frame_correct.png"];
-        }
-
-        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
-        [self.view addSubview:answerFrame];
-        isSolutionCorrect = YES;
-        [self fadeOutAnswerFrames];
-    }
-    else{
+        [self.view setUserInteractionEnabled:NO];
+        [self.stopWatch stopTimer];
+        setCurrentGameState(GAME_STATE_PAUSED);
+        // get check mark
+        // fade out
+        // on completion call onCorrectAnswer
         
-//        UIImage *frameImage;
-//        if([[UIScreen mainScreen] bounds].size.height == 568){
-//            frameImage = [UIImage imageNamed:@"frame_false-568h.png"];
-//        }
-//        else{
-//            frameImage = [UIImage imageNamed:@"frame_false.png"];
+        CGSize gameViewSize = [self correctViewSize];
+//
+//        correctAnswerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, gameViewSize.width, gameViewSize.height)];
+//        [correctAnswerView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.70]];
+//        
+//        
+        UIImage *checkmark = [UIImage imageNamed:@"check_mark.png"];
+        UIImageView *checkmarkView = [[UIImageView alloc] initWithImage:checkmark];
+        [checkmarkView setFrame:CGRectMake((gameViewSize.width-checkmark.size.width)*0.5, (gameViewSize.height-checkmark.size.height)*0.5, checkmark.size.width, checkmark.size.height)];
+        
+        checkmarkView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        checkmarkView.alpha = 0.0;
+//
+//        dotsArray = [NSMutableArray arrayWithCapacity:3];
+//        
+//        for (int i = 0; i < 3; i++) {
+//            UIImage *dot = [UIImage imageNamed:@"check_point.png"];
+//            UIImageView *dotView = [[UIImageView alloc] initWithImage:dot];
+//            [dotView setFrame:CGRectMake((gameViewSize.width-dot.size.width)*0.5+(i-1)*[self dotsPadding], (gameViewSize.height-dot.size.height)*0.5+[self dotsMargin], dot.size.width, dot.size.height)];
+//            [dotsArray addObject:dotView];
+//            [correctAnswerView addSubview:dotView];
 //        }
 //        
-//        answerFrame = [[UIImageView alloc] initWithImage:frameImage];
-//        [self.view addSubview:answerFrame];
-//        isSolutionCorrect = NO;
-//        [self fadeOutAnswerFrames];
+//        [correctAnswerView addSubview:checkmarkView];
+//        [self.view addSubview:correctAnswerView];
+//        
+//        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+//            checkmarkView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+//            checkmarkView.alpha = 1.0;
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//                checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+//            } completion:^(BOOL finished) {
+//                ;
+//            }];
+//        }];
+//        
+//        for (int i = 0; i < [dotsArray count]; i++) {
+//            [UIView animateWithDuration:0.5 delay:1.5+i*0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                ((UIView*)[dotsArray objectAtIndex:i]).alpha = 0.0;
+//            } completion:^(BOOL finished) {
+//                if (i == [dotsArray count]-1) {
+//                    [correctAnswerView removeFromSuperview];
+//                    [self onCorrectAnswer];
+//                }
+//            }];
+//        }
         
+        [self.view addSubview:checkmarkView];
+        
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGRect frame = questionView.frame;
+            CGFloat offset = frame.size.width + frame.origin.x;
+            frame.origin.x -= offset;
+            questionView.frame = frame;
+            checkmarkView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+            checkmarkView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            } completion:^(BOOL finished) {
+                [self onCorrectAnswer];
+                CGRect frame = questionView.frame;
+                CGRect restoreFrame = frame;
+                CGFloat offset = frame.size.width + frame.origin.x;
+                frame.origin.x += offset;
+                questionView.frame = frame;
+                [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    checkmarkView.alpha = 0.0;
+                    questionView.frame = restoreFrame;
+                } completion:^(BOOL finished) {
+                    [checkmarkView removeFromSuperview];
+                    [self.stopWatch resetTimer];
+                    [self.view setUserInteractionEnabled:YES];
+                    [counterView removeFromSuperview];
+                    counterImages = nil;
+                    counterView = nil;
+                    [self placingCounters];
+                }];
+            }];
+        }];
+        
+    }
+    else{
         [self shakeView:self.view];
         
     }
@@ -425,22 +484,6 @@ static EQGameViewController* __runningInstance;
     }];
 }
 
--(void)fadeOutAnswerFrames {
-//    [self pauseGame];
-    if (answerFrame) {
-        [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            answerFrame.alpha = 0.0;
-        } completion:^(BOOL finished) {
-            [answerFrame removeFromSuperview];
-            answerFrame = nil;
-            if (isSolutionCorrect) {
-                [self onCorrectAnswer];
-            } else {
-                [self resumeGame];
-            }
-        }];
-    }
-}
 -(void)pauseGame{
     setCurrentGameState(GAME_STATE_PAUSED);
     [self.stopWatch pauseTimer];
@@ -471,8 +514,9 @@ static EQGameViewController* __runningInstance;
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self configureViews];
-    [self.stopWatch resetTimer];
-    [self.view setUserInteractionEnabled:YES];
+//    [self.stopWatch resetTimer];
+//    [self.view setUserInteractionEnabled:YES];
+    setCurrentGameState(GAME_STATE_PLAYING);
     
 }
 
@@ -533,7 +577,6 @@ static EQGameViewController* __runningInstance;
     [btn setFrame:frame];
     UILabel * lblReset=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
     UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:[self boxSize]/1.92];
-    NSLog(@"Font size: %f",[self boxSize]/1.92);
     [lblReset setText:title];
     [lblReset setFont:font];
     [lblReset setBackgroundColor:[UIColor clearColor]];
