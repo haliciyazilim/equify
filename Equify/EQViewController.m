@@ -60,6 +60,10 @@
     return [[UIScreen mainScreen] bounds].size.width;
 }
 
+-(float) buttonsViewPaddingTop{
+    return 30.0;
+}
+
 -(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
@@ -90,8 +94,7 @@
     [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-[self margin], [self margin], difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
     [self.view addSubview:difficultyButtonsView];
     
-    
-    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, ([self screenHeight]-[self buttonsViewHeight])/2, [self buttonsViewWidth], [self buttonsViewHeight])];
+    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, ([self screenHeight]-[self buttonsViewHeight])/2+[self buttonsViewPaddingTop], [self buttonsViewWidth], [self buttonsViewHeight])];
     
     [self.view addSubview:buttonsView];
     
