@@ -21,7 +21,7 @@
 "USERSTATS"="user\nstats";
 
 // game screen
-"CONTROL"="control";
+"CONTROL"="check";
 "SKIP"="skip";
 
 // ingame menu
