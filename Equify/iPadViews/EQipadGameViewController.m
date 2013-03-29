@@ -18,7 +18,7 @@
 
 -(CGSize)gameViewSize{
     
-    return CGSizeMake(480*1.5,320*1.5);
+    return CGSizeMake(480*1.5,320*1.7);
 }
 
 -(CGSize)questionViewSize{

@@ -116,7 +116,7 @@
                         <constraints>
                             <constraint firstItem="skx-MG-0Bd" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="170" id="923-fx-NkE"/>
                             <constraint firstItem="pIO-Ez-INC" firstAttribute="leading" secondItem="EOQ-kP-0MO" secondAttribute="leading" constant="286" id="HXh-er-Ol3"/>
-                            <constraint firstItem="skx-MG-0Bd" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="172" id="rGF-PG-BkR"/>
+                            <constraint firstItem="skx-MG-0Bd" firstAttribute="top" secondItem="EOQ-kP-0MO" secondAttribute="top" constant="138" id="JwE-bR-yXU"/>
                             <constraint firstItem="pIO-Ez-INC" firstAttribute="baseline" secondItem="skx-MG-0Bd" secondAttribute="baseline" type="default" id="xV1-4v-wAs"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
