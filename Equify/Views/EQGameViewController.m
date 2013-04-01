@@ -139,7 +139,7 @@ static EQGameViewController* __runningInstance;
     btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*1.7/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
     UILabel *lblControl = (UILabel *)[btnControl viewWithTag:1];
-    [lblControl setFrame:CGRectMake(0,-10, [self buttonSize], [self buttonSize])];
+    [lblControl setFrame:CGRectMake(0,0-[self buttonSize]/9, [self buttonSize], [self buttonSize])];
     
     btnSkip=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, 0-[self buttonSize]*1.9/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"SKIP", nil)];
     [btnSkip addTarget:self action:@selector(skipQuestion) forControlEvents:UIControlEventTouchUpInside];
@@ -309,14 +309,14 @@ static EQGameViewController* __runningInstance;
     moveCount = [[self.currentQuestion wholeQuestion] length] - [[self.currentQuestion answer] length];
     
     UIImage * image=[UIImage imageNamed:@"delete_counter.png"];
-    counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-6.0*moveCount)/2, 20, 6.0*moveCount, image.size.height)];
+    counterView=[[UIView alloc] initWithFrame:CGRectMake((btnControl.frame.size.width-image.size.width*moveCount)/2, 20, image.size.width*moveCount, image.size.height)];
     
     if (!counterImages) {
         counterImages = [[NSMutableArray alloc] initWithCapacity:3];
         for (int i = 0; i < moveCount; i++) {
             
             UIImageView *count = [[UIImageView alloc] initWithImage:image];
-            count.frame = CGRectMake(6.0*i, 0, image.size.width, image.size.height);
+            count.frame = CGRectMake(image.size.width*i, 0, image.size.width, image.size.height);
             [counterImages addObject:count];
             [counterView addSubview:count];
         }
