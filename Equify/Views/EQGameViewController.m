@@ -370,60 +370,21 @@ static EQGameViewController* __runningInstance;
     [answer appendString:answerRightSide];
     
     if([self.currentQuestion isCorrect:answer]){
+        [counterView removeFromSuperview];
+        counterImages = nil;
+        counterView = nil;
         [self.view setUserInteractionEnabled:NO];
         [self.stopWatch stopTimer];
         setCurrentGameState(GAME_STATE_PAUSED);
-        // get check mark
-        // fade out
-        // on completion call onCorrectAnswer
         
         CGSize gameViewSize = [self correctViewSize];
-//
-//        correctAnswerView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, gameViewSize.width, gameViewSize.height)];
-//        [correctAnswerView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.70]];
-//        
-//        
+        
         UIImage *checkmark = [UIImage imageNamed:@"check_mark.png"];
         UIImageView *checkmarkView = [[UIImageView alloc] initWithImage:checkmark];
         [checkmarkView setFrame:CGRectMake((gameViewSize.width-checkmark.size.width)*0.5, (gameViewSize.height-checkmark.size.height)*0.5, checkmark.size.width, checkmark.size.height)];
         
         checkmarkView.transform = CGAffineTransformMakeScale(0.0, 0.0);
         checkmarkView.alpha = 0.0;
-//
-//        dotsArray = [NSMutableArray arrayWithCapacity:3];
-//        
-//        for (int i = 0; i < 3; i++) {
-//            UIImage *dot = [UIImage imageNamed:@"check_point.png"];
-//            UIImageView *dotView = [[UIImageView alloc] initWithImage:dot];
-//            [dotView setFrame:CGRectMake((gameViewSize.width-dot.size.width)*0.5+(i-1)*[self dotsPadding], (gameViewSize.height-dot.size.height)*0.5+[self dotsMargin], dot.size.width, dot.size.height)];
-//            [dotsArray addObject:dotView];
-//            [correctAnswerView addSubview:dotView];
-//        }
-//        
-//        [correctAnswerView addSubview:checkmarkView];
-//        [self.view addSubview:correctAnswerView];
-//        
-//        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-//            checkmarkView.transform = CGAffineTransformMakeScale(1.5, 1.5);
-//            checkmarkView.alpha = 1.0;
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-//                checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
-//            } completion:^(BOOL finished) {
-//                ;
-//            }];
-//        }];
-//        
-//        for (int i = 0; i < [dotsArray count]; i++) {
-//            [UIView animateWithDuration:0.5 delay:1.5+i*0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//                ((UIView*)[dotsArray objectAtIndex:i]).alpha = 0.0;
-//            } completion:^(BOOL finished) {
-//                if (i == [dotsArray count]-1) {
-//                    [correctAnswerView removeFromSuperview];
-//                    [self onCorrectAnswer];
-//                }
-//            }];
-//        }
         
         [self.view addSubview:checkmarkView];
         
@@ -451,10 +412,10 @@ static EQGameViewController* __runningInstance;
                     [checkmarkView removeFromSuperview];
                     [self.stopWatch resetTimer];
                     [self.view setUserInteractionEnabled:YES];
-                    [counterView removeFromSuperview];
-                    counterImages = nil;
-                    counterView = nil;
-                    [self placingCounters];
+//                    [counterView removeFromSuperview];
+//                    counterImages = nil;
+//                    counterView = nil;
+//                    [self placingCounters];
                 }];
             }];
         }];
@@ -516,17 +477,42 @@ static EQGameViewController* __runningInstance;
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self configureViews];
-//    [self.stopWatch resetTimer];
-//    [self.view setUserInteractionEnabled:YES];
     setCurrentGameState(GAME_STATE_PLAYING);
     
 }
 
 -(void)skipQuestion{
+    [self.view setUserInteractionEnabled:NO];
+    [self.stopWatch stopTimer];
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
-    [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
-    [self.stopWatch resetTimer];
-    [self configureViews];
+    [counterView removeFromSuperview];
+    counterImages = nil;
+    counterView = nil;
+    
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect frame = questionView.frame;
+        CGFloat offset = frame.size.width + frame.origin.x;
+        frame.origin.x -= offset;
+        questionView.frame = frame;
+    } completion:^(BOOL finished) {
+        [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+        [self configureViews];
+        CGRect frame = questionView.frame;
+        CGRect restoreFrame = frame;
+        CGFloat offset = frame.size.width + frame.origin.x;
+        frame.origin.x += offset;
+        questionView.frame = frame;
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            questionView.frame = restoreFrame;
+        } completion:^(BOOL finished) {
+            [self.stopWatch resetTimer];
+            [self.view setUserInteractionEnabled:YES];
+//            [counterView removeFromSuperview];
+//            counterImages = nil;
+//            counterView = nil;
+//            [self placingCounters];
+        }];
+    }];
 }
 
 -(CGSize) menuButtonsSize{
