@@ -10,6 +10,8 @@
 #import "EQBundleInitializer.h"
 #import "EQDatabaseManager.h"
 #import "GameCenterManager.h"
+#import "EQGameViewController.h"
+#import "TypeDefs.h"
 
 @implementation EQAppDelegate
 
@@ -21,7 +23,7 @@
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
 //    [self generateJson];
-    
+//    sleep(10);
     
 //    [self.window makeKeyAndVisible];
     return YES;
@@ -91,6 +93,9 @@
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    if (getCurrentGameState() == GAME_STATE_PLAYING) {
+        [[EQGameViewController runningInstance] pauseGame];
+    }
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }

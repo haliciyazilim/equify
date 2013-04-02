@@ -50,32 +50,39 @@
 -(float) buttonsViewWidth{
     return 404.0;
 }
-
+-(float) margin{
+    return 25;
+}
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
 }
+-(float) screenHeight{
+    return [[UIScreen mainScreen] bounds].size.width;
+}
 
+-(float) buttonsViewPaddingTop{
+    return 30.0;
+}
 
 -(void) setBackgrounds{
     if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
     }
     else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
     }
 }
 
 -(UIImageView *) setLogo{
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
-    logoView.frame=CGRectMake(20, 20, logo.size.width, logo.size.height);
+    logoView.frame=CGRectMake([self margin], [self margin], logo.size.width, logo.size.height);
     return logoView;
 
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"first screen");  
     
     [self setBackgrounds];
             
@@ -84,22 +91,20 @@
     
     
     UIView *difficultyButtonsView=[self makeDifficultyButtons];
-    [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-25, 25, difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
+    [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-[self margin], [self margin], difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
     [self.view addSubview:difficultyButtonsView];
     
-    
-    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, 100, [self buttonsViewWidth], [self buttonsViewHeight])];
-//    buttonsView.backgroundColor=[UIColor yellowColor];
+    buttonsView=[[UIView alloc] initWithFrame:CGRectMake(([self screenWidth]-[self buttonsViewWidth])/2, ([self screenHeight]-[self buttonsViewHeight])/2+[self buttonsViewPaddingTop], [self buttonsViewWidth], [self buttonsViewHeight])];
     
     [self.view addSubview:buttonsView];
     
-    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
+    UIButton * btnGameSettings=[EQViewController makeButton:CGRectMake(0, [self btnSize]/2, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESETTINGS", nil)];
     [btnGameSettings addTarget:self action:@selector(openSettings) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnStartGame=[EQViewController makeButton:CGRectMake(([self buttonsViewWidth]-[self btnSize])/2, 0, [self btnSize], [self btnSize]) title:NSLocalizedString(@"GAMESTART", nil) ];
     [btnStartGame addTarget:self action:@selector(startNewGame:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton * btnUserStats=[EQViewController makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], 50, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
+    UIButton * btnUserStats=[EQViewController makeButton:CGRectMake([self buttonsViewWidth]-[self btnSize], [self btnSize]/2, [self btnSize], [self btnSize]) title:NSLocalizedString(@"USERSTATS", nil)];
     [btnUserStats addTarget:self action:@selector(openStats) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * btnGameCenter=[self makeGameCenterButton:CGRectMake(([self buttonsViewWidth]-[self btnGCSize])/2, [self buttonsViewHeight]-[self btnGCSize], [self btnGCSize], [self btnGCSize])];
@@ -109,10 +114,6 @@
     [buttonsView addSubview:btnGameSettings];
     [buttonsView addSubview:btnUserStats];
     [buttonsView addSubview:btnGameCenter];
-
-
-
-
     
 }
 
@@ -130,8 +131,9 @@
     [btn addTarget:self action:@selector(makeUnhighlighted:) forControlEvents:UIControlEventTouchUpInside];
 
     if(tile.count>1){
-        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2-11, btn.frame.size.width, 30)];
-        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        float fontSize=btn.frame.size.width/4.59;
+        UILabel * lblA=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-50)/2-fontSize/2.45, btn.frame.size.width, 50)];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:fontSize];
         [lblA setText:tile[0]];
         [lblA setFont:font];
         [lblA setBackgroundColor:[UIColor clearColor]];
@@ -141,7 +143,7 @@
         [lblA setTextAlignment:NSTextAlignmentCenter];
     
     
-        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-30)/2+11, btn.frame.size.width, 30)];
+        UILabel * lblB=[[UILabel alloc]initWithFrame:CGRectMake(0, (btn.frame.size.height-50)/2+fontSize/2.45, btn.frame.size.width, 50)];
         [lblB setText:tile[1]];
         [lblB setFont:font];
         [lblB setBackgroundColor:[UIColor clearColor]];
@@ -154,9 +156,9 @@
         [btn addSubview:lblB];
     }
     else if(tile.count==1){
-        NSLog(@"tile==1: %i",tile.count);
+        
         UILabel * lbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, btn.frame.size.width, btn.frame.size.height)];
-        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:27.0];
+        UIFont * font=[UIFont fontWithName:@"HelveticaNeue-Light" size:btn.frame.size.width/4.59];
         [lbl setText:tile[0]];
         [lbl setFont:font];
         [lbl setBackgroundColor:[UIColor clearColor]];
@@ -268,8 +270,6 @@
         default:
             break;
     }
-    
-    NSLog(@"DİFF: %d",difficulty);
 }
 - (IBAction)startNewGame:(id)sender {
     [self performSegueWithIdentifier:@"GameStartSegue" sender:self];

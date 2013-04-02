@@ -15,11 +15,14 @@
 @implementation EQipadViewController
 
 -(float) btnSize{
-    return [UIImage imageNamed:@"main_btn.png"].size.width;
+    
+    UIImage *image=[UIImage imageNamed:@"main_btn.png"];
+    return image.size.width;
 }
 
 -(float) btnGCSize{
-    return [UIImage imageNamed:@"game_center_btn.png"].size.width;
+    UIImage *image =[UIImage imageNamed:@"game_center_btn.png"];
+    return image.size.width;
 }
 
 -(float) btnShadowSize{
@@ -27,12 +30,25 @@
 }
 
 -(float) buttonsViewHeight{
-    return 204.0;
+    return 293.0+90;
 }
 
 -(float) buttonsViewWidth{
-    return 404.0;
+    return 580.0+90;
 }
+
+-(float) margin{
+    return 85;
+}
+
+-(float)fontSize{
+    return 35.0;
+}
+
+-(float) buttonsViewPaddingTop{
+    return 45.0;
+}
+
 
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
@@ -40,7 +56,7 @@
 
 
 -(void) setBackgrounds{
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
 }
 
 -(UIImageView *) setLogo{
