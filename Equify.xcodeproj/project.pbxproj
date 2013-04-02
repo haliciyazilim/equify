@@ -21,6 +21,27 @@
 		05192B8A16CB8410002F9529 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8916CB8410002F9529 /* GameKit.framework */; };
 		05192B8C16CB8415002F9529 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8B16CB8415002F9529 /* QuartzCore.framework */; };
 		05192B8E16CB8427002F9529 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05192B8D16CB8427002F9529 /* StoreKit.framework */; };
+		051C4CE7170B05B3001EB833 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051C4CE6170B05B3001EB833 /* CFNetwork.framework */; };
+		051C4CE9170B05C6001EB833 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051C4CE8170B05C6001EB833 /* Security.framework */; };
+		051C4D13170B064E001EB833 /* mg_brainquire.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D07170B064E001EB833 /* mg_brainquire.png */; };
+		051C4D14170B064E001EB833 /* mg_brainquire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D08170B064E001EB833 /* mg_brainquire@2x.png */; };
+		051C4D15170B064E001EB833 /* mg_brainquire~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D09170B064E001EB833 /* mg_brainquire~ipad.png */; };
+		051C4D16170B064E001EB833 /* mg_brainquire~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0A170B064E001EB833 /* mg_brainquire~ipad@2x.png */; };
+		051C4D17170B064E001EB833 /* mg_close_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0B170B064E001EB833 /* mg_close_btn.png */; };
+		051C4D18170B064E001EB833 /* mg_close_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0C170B064E001EB833 /* mg_close_btn@2x.png */; };
+		051C4D19170B064E001EB833 /* mg_close_btn~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0D170B064E001EB833 /* mg_close_btn~ipad.png */; };
+		051C4D1A170B064E001EB833 /* mg_close_btn~ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0E170B064E001EB833 /* mg_close_btn~ipad@2x.png */; };
+		051C4D1B170B064E001EB833 /* mg_shadow_.png in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D0F170B064E001EB833 /* mg_shadow_.png */; };
+		051C4D1C170B064E001EB833 /* moregames_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 051C4D10170B064E001EB833 /* moregames_bg.jpg */; };
+		051C4D1D170B064E001EB833 /* MoreGamesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D12170B064E001EB833 /* MoreGamesView.m */; };
+		051C4D32170B0705001EB833 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D21170B0705001EB833 /* NSData+Base64.m */; };
+		051C4D33170B0705001EB833 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D23170B0705001EB833 /* NSDate+RFC1123.m */; };
+		051C4D34170B0705001EB833 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D25170B0705001EB833 /* NSDictionary+RequestEncoding.m */; };
+		051C4D35170B0705001EB833 /* NSString+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D27170B0705001EB833 /* NSString+MKNetworkKitAdditions.m */; };
+		051C4D36170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D29170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.m */; };
+		051C4D37170B0705001EB833 /* MKNetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D2B170B0705001EB833 /* MKNetworkEngine.m */; };
+		051C4D38170B0705001EB833 /* MKNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D2E170B0705001EB833 /* MKNetworkOperation.m */; };
+		051C4D39170B0705001EB833 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 051C4D31170B0705001EB833 /* Reachability.m */; };
 		055C905C16EF1E8C002BD042 /* EQGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C905B16EF1E8C002BD042 /* EQGameViewController.m */; };
 		055C906B16EF2303002BD042 /* EQModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 055C906916EF2303002BD042 /* EQModel.xcdatamodeld */; };
 		055C908F16EF79B7002BD042 /* EQStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C908E16EF79B7002BD042 /* EQStatistic.m */; };
@@ -70,7 +91,6 @@
 		05CF051716FC508800309FC3 /* standard-3000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05CF051616FC508800309FC3 /* standard-3000-3.questionpack */; };
 		05D0DA9316F70617000159DF /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D0DA9216F70617000159DF /* EQQuestion.m */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
-		AE8C0ADD16F1D4C90084A808 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0ADC16F1D4C90084A808 /* Reachability.m */; };
 		AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */; };
 		AE8C0AE316F1F7770084A808 /* EQipadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE216F1F7770084A808 /* EQipadViewController.m */; };
 		AE8C0AE616F1F7D10084A808 /* EQipadGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE516F1F7D10084A808 /* EQipadGameViewController.m */; };
@@ -216,6 +236,37 @@
 		05192B8916CB8410002F9529 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		05192B8B16CB8415002F9529 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		05192B8D16CB8427002F9529 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		051C4CE6170B05B3001EB833 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		051C4CE8170B05C6001EB833 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		051C4D07170B064E001EB833 /* mg_brainquire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mg_brainquire.png; sourceTree = "<group>"; };
+		051C4D08170B064E001EB833 /* mg_brainquire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_brainquire@2x.png"; sourceTree = "<group>"; };
+		051C4D09170B064E001EB833 /* mg_brainquire~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_brainquire~ipad.png"; sourceTree = "<group>"; };
+		051C4D0A170B064E001EB833 /* mg_brainquire~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_brainquire~ipad@2x.png"; sourceTree = "<group>"; };
+		051C4D0B170B064E001EB833 /* mg_close_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mg_close_btn.png; sourceTree = "<group>"; };
+		051C4D0C170B064E001EB833 /* mg_close_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_close_btn@2x.png"; sourceTree = "<group>"; };
+		051C4D0D170B064E001EB833 /* mg_close_btn~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_close_btn~ipad.png"; sourceTree = "<group>"; };
+		051C4D0E170B064E001EB833 /* mg_close_btn~ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mg_close_btn~ipad@2x.png"; sourceTree = "<group>"; };
+		051C4D0F170B064E001EB833 /* mg_shadow_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mg_shadow_.png; sourceTree = "<group>"; };
+		051C4D10170B064E001EB833 /* moregames_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moregames_bg.jpg; sourceTree = "<group>"; };
+		051C4D11170B064E001EB833 /* MoreGamesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreGamesView.h; sourceTree = "<group>"; };
+		051C4D12170B064E001EB833 /* MoreGamesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreGamesView.m; sourceTree = "<group>"; };
+		051C4D20170B0705001EB833 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		051C4D21170B0705001EB833 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		051C4D22170B0705001EB833 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
+		051C4D23170B0705001EB833 /* NSDate+RFC1123.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+RFC1123.m"; sourceTree = "<group>"; };
+		051C4D24170B0705001EB833 /* NSDictionary+RequestEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RequestEncoding.h"; sourceTree = "<group>"; };
+		051C4D25170B0705001EB833 /* NSDictionary+RequestEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RequestEncoding.m"; sourceTree = "<group>"; };
+		051C4D26170B0705001EB833 /* NSString+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		051C4D27170B0705001EB833 /* NSString+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		051C4D28170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+MKNetworkKitAdditions.h"; sourceTree = "<group>"; };
+		051C4D29170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+MKNetworkKitAdditions.m"; sourceTree = "<group>"; };
+		051C4D2A170B0705001EB833 /* MKNetworkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkEngine.h; sourceTree = "<group>"; };
+		051C4D2B170B0705001EB833 /* MKNetworkEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkEngine.m; sourceTree = "<group>"; };
+		051C4D2C170B0705001EB833 /* MKNetworkKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkKit.h; sourceTree = "<group>"; };
+		051C4D2D170B0705001EB833 /* MKNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNetworkOperation.h; sourceTree = "<group>"; };
+		051C4D2E170B0705001EB833 /* MKNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNetworkOperation.m; sourceTree = "<group>"; };
+		051C4D30170B0705001EB833 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		051C4D31170B0705001EB833 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		055C905A16EF1E8C002BD042 /* EQGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQGameViewController.h; sourceTree = "<group>"; };
 		055C905B16EF1E8C002BD042 /* EQGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQGameViewController.m; sourceTree = "<group>"; };
 		055C906A16EF2303002BD042 /* EQModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EQModel.xcdatamodel; sourceTree = "<group>"; };
@@ -289,8 +340,6 @@
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
 		AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSettingsViewController.h; sourceTree = "<group>"; };
 		AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSettingsViewController.m; sourceTree = "<group>"; };
-		AE8C0ADB16F1D4C90084A808 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		AE8C0ADC16F1D4C90084A808 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AE8C0AE116F1F7770084A808 /* EQipadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQipadViewController.h; sourceTree = "<group>"; };
 		AE8C0AE216F1F7770084A808 /* EQipadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQipadViewController.m; sourceTree = "<group>"; };
@@ -422,6 +471,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051C4CE9170B05C6001EB833 /* Security.framework in Frameworks */,
+				051C4CE7170B05B3001EB833 /* CFNetwork.framework in Frameworks */,
 				AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */,
 				0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */,
 				05192B8E16CB8427002F9529 /* StoreKit.framework in Frameworks */,
@@ -467,6 +518,8 @@
 		05192B6216CB83F5002F9529 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				051C4CE8170B05C6001EB833 /* Security.framework */,
+				051C4CE6170B05B3001EB833 /* CFNetwork.framework */,
 				AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */,
 				0591869B16EE1F3A00FF9881 /* CoreData.framework */,
 				05192B8D16CB8427002F9529 /* StoreKit.framework */,
@@ -482,6 +535,8 @@
 		05192B6916CB83F5002F9529 /* Equify */ = {
 			isa = PBXGroup;
 			children = (
+				051C4D1E170B0705001EB833 /* MKNetworkKit */,
+				051C4D06170B064E001EB833 /* more games */,
 				AE8C0AE016F1F6FA0084A808 /* iPadViews */,
 				05060C7516F0BC8A00EBBD84 /* GameCenter */,
 				AECBA45116F07382008D36D0 /* Common */,
@@ -513,6 +568,65 @@
 				05C05B2116F1CD2000913437 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		051C4D06170B064E001EB833 /* more games */ = {
+			isa = PBXGroup;
+			children = (
+				051C4D07170B064E001EB833 /* mg_brainquire.png */,
+				051C4D08170B064E001EB833 /* mg_brainquire@2x.png */,
+				051C4D09170B064E001EB833 /* mg_brainquire~ipad.png */,
+				051C4D0A170B064E001EB833 /* mg_brainquire~ipad@2x.png */,
+				051C4D0B170B064E001EB833 /* mg_close_btn.png */,
+				051C4D0C170B064E001EB833 /* mg_close_btn@2x.png */,
+				051C4D0D170B064E001EB833 /* mg_close_btn~ipad.png */,
+				051C4D0E170B064E001EB833 /* mg_close_btn~ipad@2x.png */,
+				051C4D0F170B064E001EB833 /* mg_shadow_.png */,
+				051C4D10170B064E001EB833 /* moregames_bg.jpg */,
+				051C4D11170B064E001EB833 /* MoreGamesView.h */,
+				051C4D12170B064E001EB833 /* MoreGamesView.m */,
+			);
+			path = "more games";
+			sourceTree = "<group>";
+		};
+		051C4D1E170B0705001EB833 /* MKNetworkKit */ = {
+			isa = PBXGroup;
+			children = (
+				051C4D1F170B0705001EB833 /* Categories */,
+				051C4D2A170B0705001EB833 /* MKNetworkEngine.h */,
+				051C4D2B170B0705001EB833 /* MKNetworkEngine.m */,
+				051C4D2C170B0705001EB833 /* MKNetworkKit.h */,
+				051C4D2D170B0705001EB833 /* MKNetworkOperation.h */,
+				051C4D2E170B0705001EB833 /* MKNetworkOperation.m */,
+				051C4D2F170B0705001EB833 /* Reachability */,
+			);
+			path = MKNetworkKit;
+			sourceTree = SOURCE_ROOT;
+		};
+		051C4D1F170B0705001EB833 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				051C4D20170B0705001EB833 /* NSData+Base64.h */,
+				051C4D21170B0705001EB833 /* NSData+Base64.m */,
+				051C4D22170B0705001EB833 /* NSDate+RFC1123.h */,
+				051C4D23170B0705001EB833 /* NSDate+RFC1123.m */,
+				051C4D24170B0705001EB833 /* NSDictionary+RequestEncoding.h */,
+				051C4D25170B0705001EB833 /* NSDictionary+RequestEncoding.m */,
+				051C4D26170B0705001EB833 /* NSString+MKNetworkKitAdditions.h */,
+				051C4D27170B0705001EB833 /* NSString+MKNetworkKitAdditions.m */,
+				051C4D28170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.h */,
+				051C4D29170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		051C4D2F170B0705001EB833 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				051C4D30170B0705001EB833 /* Reachability.h */,
+				051C4D31170B0705001EB833 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		055C906C16EF2B64002BD042 /* Resources */ = {
@@ -799,8 +913,6 @@
 		AECBA45116F07382008D36D0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				AE8C0ADB16F1D4C90084A808 /* Reachability.h */,
-				AE8C0ADC16F1D4C90084A808 /* Reachability.m */,
 				AECBA45216F073D0008D36D0 /* StopWatch.h */,
 				AECBA45316F073D0008D36D0 /* StopWatch.m */,
 				AECBA45516F073FA008D36D0 /* TypeDefs.h */,
@@ -1002,6 +1114,16 @@
 				05CE6A001705D1AE00353F3C /* check_mark@2x.png in Resources */,
 				05CE6A091705E35A00353F3C /* check_mark@2x~ipad.png in Resources */,
 				05CE6A0A1705E35A00353F3C /* check_mark~ipad.png in Resources */,
+				051C4D13170B064E001EB833 /* mg_brainquire.png in Resources */,
+				051C4D14170B064E001EB833 /* mg_brainquire@2x.png in Resources */,
+				051C4D15170B064E001EB833 /* mg_brainquire~ipad.png in Resources */,
+				051C4D16170B064E001EB833 /* mg_brainquire~ipad@2x.png in Resources */,
+				051C4D17170B064E001EB833 /* mg_close_btn.png in Resources */,
+				051C4D18170B064E001EB833 /* mg_close_btn@2x.png in Resources */,
+				051C4D19170B064E001EB833 /* mg_close_btn~ipad.png in Resources */,
+				051C4D1A170B064E001EB833 /* mg_close_btn~ipad@2x.png in Resources */,
+				051C4D1B170B064E001EB833 /* mg_shadow_.png in Resources */,
+				051C4D1C170B064E001EB833 /* moregames_bg.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,7 +1160,6 @@
 				05060C7416F0A4A800EBBD84 /* EQMetadata.m in Sources */,
 				05060C7B16F0C63000EBBD84 /* GameCenterManager.m in Sources */,
 				05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */,
-				AE8C0ADD16F1D4C90084A808 /* Reachability.m in Sources */,
 				AE8C0AE316F1F7770084A808 /* EQipadViewController.m in Sources */,
 				AE8C0AE616F1F7D10084A808 /* EQipadGameViewController.m in Sources */,
 				AE8C0AE916F1F8110084A808 /* EQipadStatsViewController.m in Sources */,
@@ -1046,6 +1167,15 @@
 				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
 				AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */,
 				05CE69C41705886D00353F3C /* TypeDefs.m in Sources */,
+				051C4D1D170B064E001EB833 /* MoreGamesView.m in Sources */,
+				051C4D32170B0705001EB833 /* NSData+Base64.m in Sources */,
+				051C4D33170B0705001EB833 /* NSDate+RFC1123.m in Sources */,
+				051C4D34170B0705001EB833 /* NSDictionary+RequestEncoding.m in Sources */,
+				051C4D35170B0705001EB833 /* NSString+MKNetworkKitAdditions.m in Sources */,
+				051C4D36170B0705001EB833 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
+				051C4D37170B0705001EB833 /* MKNetworkEngine.m in Sources */,
+				051C4D38170B0705001EB833 /* MKNetworkOperation.m in Sources */,
+				051C4D39170B0705001EB833 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
