@@ -12,6 +12,7 @@
 #import "EQStatistic.h"
 #import "EQScore.h"
 #import "StopWatch.h"
+#import "MoreGamesView.h"
 
 @interface EQSettingsViewController ()
 
@@ -71,8 +72,6 @@
     closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
     UIImage * imgSeperator=[UIImage imageNamed:@"single_line.png"];
-    NSLog(@"button witdh: %f",buttonWidth);
-    NSLog(@"button height: %f",buttonHeight);
     UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2-buttonHeight/0.72, buttonWidth, 1.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
     
@@ -90,6 +89,8 @@
 
     UIButton * btnMoreGames=[self makeButton:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2+buttonHeight/0.8, buttonWidth, buttonWidth) title:NSLocalizedString(@"MOREGAMES", nil)];
     
+    [btnMoreGames addTarget:self action:@selector(showMoreGames) forControlEvents:UIControlEventTouchUpInside];
+    
     UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2+buttonHeight/0.42, buttonWidth, 1.0)];
     [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
@@ -105,6 +106,9 @@
     [self.view addSubview:settingView];
     [self setBackgrounds];
     
+}
+- (void) showMoreGames {
+    [self.view addSubview:[[MoreGamesView alloc] init]];
 }
 -(void)resetStatsApprove {
     UIAlertView *resetStatsApprove = [[UIAlertView alloc] initWithTitle:@""
@@ -334,29 +338,6 @@
     [aboutScreenBackground addSubview:aboutScreen];
     [self.view addSubview:aboutScreenBackground];
     
-    /*
-     [credits setContentOffset:CGPointMake(0, 0)];
-     [UIScrollView animateWithDuration:10.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-     [credits setUserInteractionEnabled:YES];
-     [credits setContentOffset:CGPointMake(0, 700-credits.frame.size.height) animated:NO];
-     [UIScrollView setAnimationDidStopSelector:@selector(scrollViewTap)];
-     } completion:^(BOOL finished) {
-     NSLog(@"scrollView animate Completion");
-     
-     }];
-     */
-    
-    
-    /*
-     [UIScrollView beginAnimations:@"scrollAnimation" context:nil];
-     [UIScrollView setAnimationDuration:10.0];
-     [credits setContentOffset:CGPointMake(0, 700-credits.frame.size.height)];
-     [UIScrollView commitAnimations];
-     */
-    
-    //    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTap)];
-    //    [credits addGestureRecognizer:singleTap];
-    
     stopWatch = [[StopWatch alloc] init];
     [stopWatch startTimerWithRepeatBlock:^{
         
@@ -373,7 +354,6 @@
     
     
 }- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"DEBUG: scrollViewDidScroll" );
     didScrolled++;
     
     if(didScrolled==2)
@@ -385,7 +365,6 @@
     [credits.layer removeAllAnimations];
     [stopWatch pauseTimer];
     float timer=[stopWatch getElapsedMiliseconds]/1000.0;
-//    NSLog(@"Touch detected - scrollViewTap: %f",timer);
     [credits.layer removeAllAnimations];
     [credits setContentOffset:CGPointMake(0, (700.0-credits.frame.size.height)*timer/30.0)];
 

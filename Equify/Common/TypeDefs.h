@@ -9,6 +9,8 @@
 #ifndef Equify_TypeDefs_h
 #define Equify_TypeDefs_h
 
+#define APP_NAME @"Equify"
+
 typedef void (^ IteratorBlock)();
 
 typedef enum GAME_STATE {
