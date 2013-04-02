@@ -353,6 +353,8 @@
             [answerFrame removeFromSuperview];
             answerFrame = nil;
             if (isSolutionCorrect) {
+                
+                
                 [self onCorrectAnswer];
             } else {
                 [self resumeGame];

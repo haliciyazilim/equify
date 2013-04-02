@@ -68,6 +68,7 @@
 		05E4A63816F31A8E0072BBDB /* double_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63416F31A8E0072BBDB /* double_line@2x.png */; };
 		05E4A63916F31A8E0072BBDB /* single_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63516F31A8E0072BBDB /* single_line.png */; };
 		05E4A63A16F31A8E0072BBDB /* single_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05E4A63616F31A8E0072BBDB /* single_line@2x.png */; };
+		4162FC9317034D2800D94A78 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4162FC9217034D2800D94A78 /* AdManager.m */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
 		AE10C58316F341DC009D61A6 /* menu_btn_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */; };
 		AE10C58416F341DC009D61A6 /* menu_btn_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE10C58016F341DC009D61A6 /* menu_btn_hover@2x.png */; };
@@ -217,6 +218,8 @@
 		05E4A63516F31A8E0072BBDB /* single_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = single_line.png; sourceTree = "<group>"; };
 		05E4A63616F31A8E0072BBDB /* single_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "single_line@2x.png"; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
+		4162FC9117034D2800D94A78 /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
+		4162FC9217034D2800D94A78 /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
 		AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSettingsViewController.h; sourceTree = "<group>"; };
 		AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSettingsViewController.m; sourceTree = "<group>"; };
 		AE10C57F16F341DC009D61A6 /* menu_btn_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_btn_hover.png; sourceTree = "<group>"; };
@@ -425,6 +428,8 @@
 				059186A416EE210800FF9881 /* EQBundleInitializer.h */,
 				059186A516EE210800FF9881 /* EQBundleInitializer.m */,
 				05060C6F16F0A1DE00EBBD84 /* EQAppConfigValues.h */,
+				4162FC9117034D2800D94A78 /* AdManager.h */,
+				4162FC9217034D2800D94A78 /* AdManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -772,6 +777,7 @@
 				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
 				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
 				AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */,
+				4162FC9317034D2800D94A78 /* AdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
