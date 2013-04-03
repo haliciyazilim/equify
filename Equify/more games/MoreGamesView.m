@@ -12,7 +12,9 @@
 #define logo1x @"logo1x"
 #define logo2x @"logo2x"
 #define logo4x @"logo4x"
+#define APP_NAME_PARAM @"for_app_name"
 #define APP_NAME_KEY @"app_name"
+#define LANG_PARAM @"lang"
 
 @implementation MGGameView
 {
@@ -25,12 +27,12 @@
         wScaleFactor = 59.0 / 1568.0;
         hScaleFactor = 59.0 / 1120.0;
         self.imageView = [[UIImageView alloc] init];
-//        self.imageView.contentScaleFactor = [UIScreen mainScreen].scale;
+        //        self.imageView.contentScaleFactor = [UIScreen mainScreen].scale;
         [self.imageView setContentMode:UIViewContentModeScaleAspectFill];
         [self.imageView setClipsToBounds:YES];
         [self addSubview:self.imageView];
         [self initializeLayerAndShadow];
-
+        
     }
     return self;
 }
@@ -77,7 +79,7 @@ static MKNetworkEngine* networkEngine;
     BOOL isAnimating;
     CGSize gameViewSize, gameViewShadowSize;
     int currentIndex,horizontalMargin, x, xConstant, y, movementAmount, startingXLocation;
-    CGFloat animationDuration;  
+    CGFloat animationDuration;
     BOOL isTouchDown;
     UIView* hittedView;
     CGSize closeButtonSize;
@@ -127,7 +129,10 @@ static MKNetworkEngine* networkEngine;
         }
         MKNetworkOperation* operation = [[MKNetworkOperation alloc]
                                          initWithURLString:@"http://brainquire.herokuapp.com/games.json"
-                                         params:@{APP_NAME_KEY:APP_NAME}
+                                         params:@{
+                                         APP_NAME_PARAM:APP_NAME,
+                                         LANG_PARAM:(NSString*)[[NSLocale preferredLanguages] objectAtIndex:0]
+                                         }
                                          httpMethod:@"GET"];
         [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             NSData *responseJSON = [[completedOperation responseString] dataUsingEncoding:NSUTF8StringEncoding];
@@ -172,9 +177,9 @@ static MKNetworkEngine* networkEngine;
         index++;
         
         MKNetworkOperation *op = [[MKNetworkOperation alloc]
-                                   initWithURLString:[game objectForKey:logoKey]
-                                   params:nil
-                                   httpMethod:@"GET"];
+                                  initWithURLString:[game objectForKey:logoKey]
+                                  params:nil
+                                  httpMethod:@"GET"];
         [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             UIImage* resultImage = [completedOperation responseImage];
             
@@ -208,13 +213,13 @@ static MKNetworkEngine* networkEngine;
 - (void) configureView
 {
     [self setUserInteractionEnabled:YES];
-//    }
+    //    }
     centerView      = [[MGGameView alloc] init];
-
+    
     if([games count] >= 2) {
         rightView       = [[MGGameView alloc] init];
     }
-
+    
     if([games count] >= 3){
         leftLeftView    = [[MGGameView alloc] init];
         leftView        = [[MGGameView alloc] init];
@@ -226,7 +231,7 @@ static MKNetworkEngine* networkEngine;
     [self addSubview:rightRightView];
     [self addSubview:leftView];
     [self addSubview:leftLeftView];
-
+    
     [self setPositions];
     [self fillButtons];
     
@@ -256,10 +261,10 @@ static MKNetworkEngine* networkEngine;
 {
     UIImageView* brainquireView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mg_brainquire.png"]];
     brainquireView.frame = CGRectMake(
-                                    self.frame.size.width - brainquireView.image.size.width - 10,
-                                    self.frame.size.height - brainquireView.image.size.height - 10,
-                                    brainquireView.image.size.width,
-                                    brainquireView.image.size.height
+                                      self.frame.size.width - brainquireView.image.size.width - 10,
+                                      self.frame.size.height - brainquireView.image.size.height - 10,
+                                      brainquireView.image.size.width,
+                                      brainquireView.image.size.height
                                       );
     [self addSubview:brainquireView];
 }
@@ -434,7 +439,7 @@ static MKNetworkEngine* networkEngine;
         return;
     isAnimating = YES;
     movementAmount = 0;
-
+    
     [UIView animateWithDuration:animationDuration animations:^{
         [leftLeftView   setFrame:[self frameForIndex:-2]];
         [leftView       setFrame:[self frameForIndex:-1]];
@@ -485,14 +490,14 @@ static MKNetworkEngine* networkEngine;
         return;
     isAnimating = YES;
     movementAmount = 0;
-
+    
     [UIView animateWithDuration:animationDuration animations:^{
         [leftLeftView   setFrame:[self frameForIndex:-3]];
         [leftView       setFrame:[self frameForIndex:-2]];
         [centerView     setFrame:[self frameForIndex:-1]];
         [rightView      setFrame:[self frameForIndex: 0]];
         [rightRightView setFrame:[self frameForIndex:+1]];
-
+        
     } completion:^(BOOL finished) {
         [self movePointersRight];
     }];
@@ -504,14 +509,14 @@ static MKNetworkEngine* networkEngine;
         return;
     isAnimating = YES;
     movementAmount = 0;
-
+    
     [UIView animateWithDuration:animationDuration animations:^{
         [leftLeftView   setFrame:[self frameForIndex:-1]];
         [leftView       setFrame:[self frameForIndex: 0]];
         [centerView     setFrame:[self frameForIndex:+1]];
         [rightView      setFrame:[self frameForIndex:+2]];
         [rightRightView setFrame:[self frameForIndex:+3]];
-
+        
     } completion:^(BOOL finished) {
         
         [self movePointersLeft];
