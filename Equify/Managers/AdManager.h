@@ -10,6 +10,10 @@
 
 @interface AdManager : NSObject
 
+typedef void (^CallbackBlock) (void);
 
++ (AdManager *)sharedInstance;
+
+- (void)showAdOnView:(UIView*)view WithBlock:(CallbackBlock)callbackBlock;
 
 @end

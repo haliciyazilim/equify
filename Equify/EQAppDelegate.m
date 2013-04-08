@@ -13,10 +13,17 @@
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
 
+#import "Flurry.h"
+#import "FlurryAds.h"
+
 @implementation EQAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry setDebugLogEnabled:NO];
+    [Flurry setShowErrorInLogEnabled:NO];
+    [Flurry startSession:@"6MG7535QST48WHJ22TS4"];
+    [FlurryAds initialize:self.window.rootViewController];
     
     [EQBundleInitializer initializeBundle];
     

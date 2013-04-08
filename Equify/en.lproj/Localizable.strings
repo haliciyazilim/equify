@@ -7,18 +7,18 @@
 */
 
 // stats screen
-"STATS" = "user statistics";
+"STATS" = "statistics";
 "BEST_TIME" = "best time";
 "WORST_TIME"  = "worst time";
-"TOTAL_SOLVED_COUNT" = "total solved question";
-"TOTAL_SKIP_COUNT" = "total skipped question";
+"TOTAL_SOLVED_COUNT" = "number of questions solved";
+"TOTAL_SKIP_COUNT" = "number of questions skipped";
 "AVERAGE" = "last fifteen average";
 "ALLTIME_AVERAGE" = "all time average";
 
 // main screen
-"GAMESTART"="game\nstart";
-"GAMESETTINGS"="game\nsettings";
-"USERSTATS"="user\nstats";
+"GAMESTART"="start";
+"GAMESETTINGS"="settings";
+"USERSTATS"="stats";
 
 // game screen
 "CONTROL"="check";

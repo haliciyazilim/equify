@@ -8,6 +8,7 @@
 
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
+#import "AdManager.h"
 
 @interface EQGameViewController ()
 
@@ -485,6 +486,7 @@ static EQGameViewController* __runningInstance;
     [self.view setUserInteractionEnabled:NO];
     [self.stopWatch stopTimer];
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
+
     [counterView removeFromSuperview];
     counterImages = nil;
     counterView = nil;
@@ -495,23 +497,27 @@ static EQGameViewController* __runningInstance;
         frame.origin.x -= offset;
         questionView.frame = frame;
     } completion:^(BOOL finished) {
-        [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
-        [self configureViews];
-        CGRect frame = questionView.frame;
-        CGRect restoreFrame = frame;
-        CGFloat offset = frame.size.width + frame.origin.x;
-        frame.origin.x += offset;
-        questionView.frame = frame;
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            questionView.frame = restoreFrame;
-        } completion:^(BOOL finished) {
-            [self.stopWatch resetTimer];
-            [self.view setUserInteractionEnabled:YES];
-//            [counterView removeFromSuperview];
-//            counterImages = nil;
-//            counterView = nil;
-//            [self placingCounters];
-        }];
+        [[AdManager sharedInstance] showAdOnView:self.view
+                                       WithBlock:^{
+                                           [self.stopWatch resetTimer];
+                                           [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+                                           [self configureViews];
+                                           CGRect frame = questionView.frame;
+                                           CGRect restoreFrame = frame;
+                                           CGFloat offset = frame.size.width + frame.origin.x;
+                                           frame.origin.x += offset;
+                                           questionView.frame = frame;
+                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                               questionView.frame = restoreFrame;
+                                           } completion:^(BOOL finished) {
+                                               [self.stopWatch resetTimer];
+                                               [self.view setUserInteractionEnabled:YES];
+                                               //            [counterView removeFromSuperview];
+                                               //            counterImages = nil;
+                                               //            counterView = nil;
+                                               //            [self placingCounters];
+                                           }];
+                                       }];
     }];
 }
 
