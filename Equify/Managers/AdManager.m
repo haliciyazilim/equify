@@ -43,15 +43,15 @@ static AdManager *sharedInstance = nil;
     
     
     if ([FlurryAds adReadyForSpace:@"Equify"]) {
-//        adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
         if (probability*1000 > arc4random() % 1000) {
             [FlurryAds displayAdForSpace:@"Equify"
                               onView:view];
             [FlurryAds setAdDelegate:self];
+        } else {
+            callbackBlock();
+            self.callbackBlock = nil;
         }
-        
     } else {
-//        adCountDown = 0;
         [self fetch];
         callbackBlock();
         self.callbackBlock = nil;
