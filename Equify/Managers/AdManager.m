@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
+#define kAdRepeatMin 3
+#define kAdRepeatMax 5
+
 #import "AdManager.h"
 #import "FlurryAds.h"
 
@@ -14,6 +17,7 @@ static AdManager *sharedInstance = nil;
 @interface AdManager ()
 
 @property (copy) CallbackBlock callbackBlock;
+@property int adCountDown;
 
 @end
 
@@ -36,26 +40,45 @@ static AdManager *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (void)showAdWithProbability:(float)probability
-                       onView:(UIView*)view
-                    withBlock:(CallbackBlock)callbackBlock {
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
+        
+        [self fetch];
+    }
+    return self;
+}
+
+- (void)showAdOnView:(UIView*)view
+           withBlock:(CallbackBlock)callbackBlock {
     self.callbackBlock = callbackBlock;
-    
-    
-    if ([FlurryAds adReadyForSpace:@"Equify"]) {
-        if (probability*1000 > arc4random() % 1000) {
-            [FlurryAds displayAdForSpace:@"Equify"
-                              onView:view];
-            [FlurryAds setAdDelegate:self];
+
+//    if ([[EquifyIAPHelper sharedInstance] isPro]){
+//        callbackBlock();
+//        self.callbackBlock = nil;
+//    } else {
+        if (self.adCountDown == 0) {
+            if ([FlurryAds adReadyForSpace:@"Equify"]) {
+                self.adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
+                [FlurryAds displayAdForSpace:@"Equify"
+                                      onView:view];
+                [FlurryAds setAdDelegate:self];
+                
+            } else {
+                self.adCountDown = 0;
+                [self fetch];
+                callbackBlock();
+                self.callbackBlock = nil;
+            }
+            
         } else {
+            self.adCountDown--;
             callbackBlock();
             self.callbackBlock = nil;
         }
-    } else {
-        [self fetch];
-        callbackBlock();
-        self.callbackBlock = nil;
-    }
+//    }
 }
 
 - (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)

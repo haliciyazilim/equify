@@ -400,28 +400,23 @@ static EQGameViewController* __runningInstance;
             [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
             } completion:^(BOOL finished) {
-                [[AdManager sharedInstance] showAdWithProbability:0.33
-                                                           onView:self.view
-                                                        withBlock:^{
-                                                            [self onCorrectAnswer];
-                                                            CGRect frame = questionView.frame;
-                                                            CGRect restoreFrame = frame;
-                                                            CGFloat offset = frame.size.width + frame.origin.x;
-                                                            frame.origin.x += offset;
-                                                            questionView.frame = frame;
-                                                            [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                                                                checkmarkView.alpha = 0.0;
-                                                                questionView.frame = restoreFrame;
-                                                            } completion:^(BOOL finished) {
-                                                                [checkmarkView removeFromSuperview];
-                                                                [self.stopWatch resetTimer];
-                                                                [self.view setUserInteractionEnabled:YES];
-                                                                //                    [counterView removeFromSuperview];
-                                                                //                    counterImages = nil;
-                                                                //                    counterView = nil;
-                                                                //                    [self placingCounters];
-                                                            }];
-                                                        }];
+                [[AdManager sharedInstance] showAdOnView:self.view
+                                               withBlock:^{
+                                                   [self onCorrectAnswer];
+                                                   CGRect frame = questionView.frame;
+                                                   CGRect restoreFrame = frame;
+                                                   CGFloat offset = frame.size.width + frame.origin.x;
+                                                   frame.origin.x += offset;
+                                                   questionView.frame = frame;
+                                                   [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                       checkmarkView.alpha = 0.0;
+                                                       questionView.frame = restoreFrame;
+                                                   } completion:^(BOOL finished) {
+                                                       [checkmarkView removeFromSuperview];
+                                                       [self.stopWatch resetTimer];
+                                                       [self.view setUserInteractionEnabled:YES];
+                                                   }];
+                }];
                 
             }];
         }];
@@ -502,23 +497,22 @@ static EQGameViewController* __runningInstance;
         frame.origin.x -= offset;
         questionView.frame = frame;
     } completion:^(BOOL finished) {
-        [[AdManager sharedInstance] showAdWithProbability:0.33
-                                                   onView:self.view
-                                                withBlock:^{
-                                                    [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
-                                                    [self configureViews];
-                                                    CGRect frame = questionView.frame;
-                                                    CGRect restoreFrame = frame;
-                                                    CGFloat offset = frame.size.width + frame.origin.x;
-                                                    frame.origin.x += offset;
-                                                    questionView.frame = frame;
-                                                    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                                                        questionView.frame = restoreFrame;
-                                                    } completion:^(BOOL finished) {
-                                                        [self.stopWatch resetTimer];
-                                                        [self.view setUserInteractionEnabled:YES];
-                                                   }];
-                                               }];
+        [[AdManager sharedInstance] showAdOnView:self.view
+                                       withBlock:^{
+                                           [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+                                           [self configureViews];
+                                           CGRect frame = questionView.frame;
+                                           CGRect restoreFrame = frame;
+                                           CGFloat offset = frame.size.width + frame.origin.x;
+                                           frame.origin.x += offset;
+                                           questionView.frame = frame;
+                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                               questionView.frame = restoreFrame;
+                                           } completion:^(BOOL finished) {
+                                               [self.stopWatch resetTimer];
+                                               [self.view setUserInteractionEnabled:YES];
+                                           }];
+                                       }];
     }];
 }
 
