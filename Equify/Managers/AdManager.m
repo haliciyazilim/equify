@@ -36,15 +36,19 @@ static AdManager *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (void)showAdOnView:(UIView*)view WithBlock:(CallbackBlock)callbackBlock {
+- (void)showAdWithProbability:(float)probability
+                       onView:(UIView*)view
+                    withBlock:(CallbackBlock)callbackBlock {
     self.callbackBlock = callbackBlock;
     
     
     if ([FlurryAds adReadyForSpace:@"Equify"]) {
 //        adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
-        [FlurryAds displayAdForSpace:@"Equify"
+        if (probability*1000 > arc4random() % 1000) {
+            [FlurryAds displayAdForSpace:@"Equify"
                               onView:view];
-        [FlurryAds setAdDelegate:self];
+            [FlurryAds setAdDelegate:self];
+        }
         
     } else {
 //        adCountDown = 0;

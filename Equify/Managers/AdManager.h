@@ -14,6 +14,8 @@ typedef void (^CallbackBlock) (void);
 
 + (AdManager *)sharedInstance;
 
-- (void)showAdOnView:(UIView*)view WithBlock:(CallbackBlock)callbackBlock;
+- (void)showAdWithProbability:(float)probability
+                       onView:(UIView*)view
+                    withBlock:(CallbackBlock)callbackBlock;
 
 @end

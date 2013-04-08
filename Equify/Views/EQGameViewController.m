@@ -497,27 +497,28 @@ static EQGameViewController* __runningInstance;
         frame.origin.x -= offset;
         questionView.frame = frame;
     } completion:^(BOOL finished) {
-        [[AdManager sharedInstance] showAdOnView:self.view
-                                       WithBlock:^{
-                                           [self.stopWatch resetTimer];
-                                           [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
-                                           [self configureViews];
-                                           CGRect frame = questionView.frame;
-                                           CGRect restoreFrame = frame;
-                                           CGFloat offset = frame.size.width + frame.origin.x;
-                                           frame.origin.x += offset;
-                                           questionView.frame = frame;
-                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                                               questionView.frame = restoreFrame;
-                                           } completion:^(BOOL finished) {
-                                               [self.stopWatch resetTimer];
-                                               [self.view setUserInteractionEnabled:YES];
-                                               //            [counterView removeFromSuperview];
-                                               //            counterImages = nil;
-                                               //            counterView = nil;
-                                               //            [self placingCounters];
-                                           }];
-                                       }];
+        [[AdManager sharedInstance] showAdWithProbability:1
+                                                   onView:self.view
+                                                withBlock:^{
+                                                    [self.stopWatch resetTimer];
+                                                    [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+                                                    [self configureViews];
+                                                    CGRect frame = questionView.frame;
+                                                    CGRect restoreFrame = frame;
+                                                    CGFloat offset = frame.size.width + frame.origin.x;
+                                                    frame.origin.x += offset;
+                                                    questionView.frame = frame;
+                                                    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                        questionView.frame = restoreFrame;
+                                                    } completion:^(BOOL finished) {
+                                                        [self.stopWatch resetTimer];
+                                                        [self.view setUserInteractionEnabled:YES];
+                                                        //            [counterView removeFromSuperview];
+                                                        //            counterImages = nil;
+                                                        //            counterView = nil;
+                                                        //            [self placingCounters];
+                                                   }];
+                                               }];
     }];
 }
 
