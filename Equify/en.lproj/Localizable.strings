@@ -12,12 +12,12 @@
 "WORST_TIME"  = "worst time";
 "TOTAL_SOLVED_COUNT" = "# of questions solved";
 "TOTAL_SKIP_COUNT" = "# of questions skipped";
-"AVERAGE" = "last fifteen average";
-"ALLTIME_AVERAGE" = "all time average";
+"AVERAGE" = "average time (last 15 questions)";
+"ALLTIME_AVERAGE" = "average time (all questions)";
 
 // main screen
 "GAMESTART"="start";
-"GAMESETTINGS"="settings";
+"GAMESETTINGS"="more";
 "USERSTATS"="stats";
 
 // game screen
@@ -32,7 +32,7 @@
 "RESET"="reset stats";
 "ABOUT"="about us";
 "MOREGAMES"="more games";
-"RESET_STATS_APPROVE" = "Are you sure want to reset game stats?";
-"OK" = "OK";
+"RESET_STATS_APPROVE" = "Are you sure you want to reset your statistics?";
+"OK" = "Reset";
 "CANCEL" = "Cancel";
 
