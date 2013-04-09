@@ -9,6 +9,7 @@
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
 #import "AdManager.h"
+#import "Flurry.h"
 
 @interface EQGameViewController ()
 
@@ -424,7 +425,6 @@ static EQGameViewController* __runningInstance;
     }
     else{
         [self shakeView:self.view];
-        
     }
 }
 
@@ -458,12 +458,17 @@ static EQGameViewController* __runningInstance;
     [self.stopWatch resumeTimer];
 }
 -(void)onCorrectAnswer{
-    
     [_stopWatch stopTimer];
     [EQScore addScore:[_stopWatch getElapsedMiliseconds] withDifficulty:_difficulty];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
     EQStatistic *currentStats = [EQStatistic getStatisticsWithDifficulty:_difficulty];
+    
+    [Flurry logEvent:kFlurryEventQuestionSolved
+      withParameters:@{
+        @"difficulty" : [NSNumber numberWithInt:_difficulty],
+        @"time" : [NSNumber numberWithFloat:([_stopWatch getElapsedMiliseconds]/1000.0)]
+     }];
     
     if ([currentStats minTime] < INT32_MAX) {
         [[GameCenterManager sharedInstance] submitScore:[currentStats minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
@@ -487,6 +492,12 @@ static EQGameViewController* __runningInstance;
     [self.stopWatch stopTimer];
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
 
+    [Flurry logEvent:kFlurryEventQuestionSkipped
+      withParameters:@{
+        @"difficulty" : [NSNumber numberWithInt:_difficulty],
+        @"time" : [NSNumber numberWithFloat:([_stopWatch getElapsedMiliseconds]/1000.0)]
+     }];
+    
     [counterView removeFromSuperview];
     counterImages = nil;
     counterView = nil;

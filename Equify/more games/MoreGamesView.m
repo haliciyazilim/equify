@@ -7,6 +7,8 @@
 //
 
 #import "MoreGamesView.h"
+#import "Flurry.h"
+#import "EQGameCenterSpecificValues.h"
 
 #define DI @"downloaded_image"
 #define logo1x @"logo1x"
@@ -329,7 +331,10 @@ static MKNetworkEngine* networkEngine;
     if([centerView image] == nil)
         return;
     NSString* appName = [[games objectAtIndex:currentIndex] objectForKey:APP_NAME_KEY];
+    
     if([appName compare:@""] != 0 && appName != nil){
+        [Flurry logEvent:kFlurryEventMoreGameSelected
+          withParameters:@{@"App Name": appName}];
         NSString* url = [@"itms-apps://itunes.com/apps/" stringByAppendingString:appName];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }

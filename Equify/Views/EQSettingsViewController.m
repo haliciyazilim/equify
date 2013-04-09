@@ -8,11 +8,13 @@
 
 #define RESET_STATS_APPROVE_ALERT_TAG 35
 
+#import "EQGameCenterSpecificValues.h"
 #import "EQSettingsViewController.h"
 #import "EQStatistic.h"
 #import "EQScore.h"
 #import "StopWatch.h"
 #import "MoreGamesView.h"
+#import "Flurry.h"
 
 @interface EQSettingsViewController ()
 
@@ -108,6 +110,7 @@
     
 }
 - (void) showMoreGames {
+    [Flurry logEvent:kFlurryEventMoreGamesPressed];
     [self.view addSubview:[[MoreGamesView alloc] init]];
 }
 -(void)resetStatsApprove {
@@ -127,6 +130,7 @@
     }
 }
 - (void) resetStats {
+    [Flurry logEvent:kFlurryEventStatsReset];
     [EQStatistic resetStatistics];
     [EQScore cleanAllScores];
 }
@@ -187,7 +191,7 @@
 }
 
 -(void) showAboutScreen{
-    
+    [Flurry logEvent:kFlurryEventAboutUsPressed];
     aboutScreenBackground=[[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)];
     
     UIView *aboutScreen=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
