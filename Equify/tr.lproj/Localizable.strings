@@ -5,7 +5,7 @@
   Created by Alperen Kavun on 14.03.2013.
   Copyright (c) 2013 Halıcı. All rights reserved.
 */
-
+"IMAGE_FILENAME_SUFFIX" = "tr";
 // stats screen
 "STATS" = "veriler";
 "BEST_TIME" = "en iyi süre";
@@ -32,6 +32,7 @@
 "RESET"="verileri sil";
 "ABOUT"="hakkımızda";
 "MOREGAMES"="diğer oyunlar";
+"HOWTOPLAY"="nasıl oynanır";
 "RESET_STATS_APPROVE" = "Oyun verilerini silmek istediğinize emin misiniz?";
 "OK" = "Sil";
 "CANCEL" = "İptal";
