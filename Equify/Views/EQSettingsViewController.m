@@ -15,6 +15,7 @@
 #import "StopWatch.h"
 #import "MoreGamesView.h"
 #import "Flurry.h"
+#import "Util.h"
 
 @interface EQSettingsViewController ()
 
@@ -29,6 +30,8 @@
     UIScrollView * credits;
     StopWatch * stopWatch;
     int didScrolled;
+    BOOL ishowtoPlayOpen;
+    UIView * howtoPlayView;
     
 }
 
@@ -64,7 +67,7 @@
     
     
     UIView *settingView=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
-
+//    [settingView setBackgroundColor:[UIColor yellowColor]];
     
     UIImage * imgClose=[UIImage imageNamed:@"close_btn.png"];
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -73,42 +76,86 @@
     [closeButton addTarget:self action:@selector(closeSettings) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
+    float buttonsViewHeight=buttonHeight*0.4+buttonHeight*4;
+    UIView * buttonsView=[[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonsViewHeight)/2, buttonWidth, buttonsViewHeight)];
+//    [buttonsView setBackgroundColor:[UIColor redColor]];
+    
     UIImage * imgSeperator=[UIImage imageNamed:@"single_line.png"];
-    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2-buttonHeight/0.72, buttonWidth, 1.0)];
+    UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonWidth, 1.0)];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
     
-    UIButton * btnReset=[self makeButton:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2-buttonHeight/0.8, buttonWidth, buttonHeight) title:NSLocalizedString(@"RESET", nil)];
+    UIButton * btnReset=[self makeButton:CGRectMake(0, buttonHeight*0.1, buttonWidth, buttonHeight) title:NSLocalizedString(@"RESET", nil)];
     [btnReset addTarget:self action:@selector(resetStatsApprove) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2-buttonHeight/8., buttonWidth, 1.0)];
+    UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.1+buttonHeight, buttonWidth, 1.0)];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
-    UIButton * btnAbout=[self makeButton:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2, buttonWidth, buttonHeight) title:NSLocalizedString(@"ABOUT", nil)];
+    UIButton * btnAbout=[self makeButton:CGRectMake(0, buttonHeight*0.2+buttonHeight, buttonWidth, buttonHeight) title:NSLocalizedString(@"ABOUT", nil)];
     [btnAbout addTarget:self action:@selector(showAboutScreen) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2+buttonHeight/0.9, buttonWidth, 1.0)];
+    UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.2+buttonHeight*2, buttonWidth, 1.0)];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
-    UIButton * btnMoreGames=[self makeButton:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2+buttonHeight/0.8, buttonWidth, buttonWidth) title:NSLocalizedString(@"MOREGAMES", nil)];
+    UIButton * btnMoreGames=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*2, buttonWidth, buttonWidth) title:NSLocalizedString(@"MOREGAMES", nil)];
     
     [btnMoreGames addTarget:self action:@selector(showMoreGames) forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonHeight)/2+buttonHeight/0.42, buttonWidth, 1.0)];
+    UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*3, buttonWidth, 1.0)];
     [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
+    
+    UIButton * btnHowtoPlay=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*3, buttonWidth, buttonWidth) title:NSLocalizedString(@"HOWTOPLAY", nil)];
+    
+    [btnHowtoPlay addTarget:self action:@selector(howtoPlay) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, 1.0)];
+    [seperator5 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
     [settingView addSubview:closeButton];
-    [settingView addSubview:seperator1];
-    [settingView addSubview:btnReset];
-    [settingView addSubview:seperator2];
-    [settingView addSubview:btnAbout];
-    [settingView addSubview:seperator3];
-    [settingView addSubview:btnMoreGames];
-    [settingView addSubview:seperator4];
-    
+    [buttonsView addSubview:seperator1];
+    [buttonsView addSubview:btnReset];
+    [buttonsView addSubview:seperator2];
+    [buttonsView addSubview:btnAbout];
+    [buttonsView addSubview:seperator3];
+    [buttonsView addSubview:btnMoreGames];
+    [buttonsView addSubview:seperator4];
+    [buttonsView addSubview:btnHowtoPlay];
+    [buttonsView addSubview:seperator5];
+
+    [settingView addSubview:buttonsView];
     [self.view addSubview:settingView];
     [self setBackgrounds];
+    ishowtoPlayOpen=NO;
     
 }
+
+-(void) howtoPlay{
+
+    NSLog(@"Width: %f, height: %f",[self winSize].width,[self winSize].height);
+    NSLog(@"Width: %f, height: %f",[[UIScreen mainScreen]bounds].size.width,[[UIScreen mainScreen]bounds].size.height);
+
+    UIImage * image=[UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
+//    UIImage * image=[UIImage imageNamed:@"how_to_play-tr.jpg"];
+    NSLog(@"image Widht: %f, heigth:%f", image.size.width, image.size.height);
+
+    
+    howtoPlayView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.width)];
+       UIImageView * htp=[[UIImageView alloc] initWithImage:image];
+    [htp setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    
+    [howtoPlayView addSubview:htp];
+    [self.view addSubview:howtoPlayView];
+    ishowtoPlayOpen=YES;
+    
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if(ishowtoPlayOpen==YES){
+        ishowtoPlayOpen=NO;
+        [howtoPlayView  removeFromSuperview];
+        
+    }
+}
+
 - (void) showMoreGames {
     [Flurry logEvent:kFlurryEventMoreGamesPressed];
     [self.view addSubview:[[MoreGamesView alloc] init]];

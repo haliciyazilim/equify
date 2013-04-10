@@ -10,6 +10,7 @@
 #import "TypeDefs.h"
 #import "AdManager.h"
 #import "Flurry.h"
+#import "Util.h"
 
 @interface EQGameViewController ()
 
@@ -37,6 +38,9 @@
     NSMutableArray *dotsArray;
     
     UIView *counterView;
+    
+    UIView * howtoPlayView;
+    BOOL ishowtoPlayOpen;
 }
 
 -(CGSize)gameViewSize{
@@ -118,6 +122,13 @@ static EQGameViewController* __runningInstance;
 
 - (void)viewDidLoad
 {
+    
+           
+        
+    
+    
+
+    
     [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
@@ -183,15 +194,29 @@ static EQGameViewController* __runningInstance;
         [self.view addSubview:shadowAbove];
         [self.view addSubview:shadowBelow];
     }
+    
+    
+
+
 
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [self configureViews];
-    [self.stopWatch startTimerWithRepeatBlock:^{
-        [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
-        [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
-    }];
+    
+    if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==Nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"] isEqualToString:@"YES"]){
+        NSLog(@"NO; It is not exist");
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isFirstTime"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        ishowtoPlayOpen=YES;
+        [self howtoPlay];
+    }
+    else{
+        [self.stopWatch startTimerWithRepeatBlock:^{
+            [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+            [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
+        }];
+    }
     
     __runningInstance = self;
     setCurrentGameState(GAME_STATE_PLAYING);
@@ -201,6 +226,38 @@ static EQGameViewController* __runningInstance;
 {
     [super didReceiveMemoryWarning];
 }
+
+
+-(void) howtoPlay{
+    NSLog(@"Width: %f, height: %f",[[UIScreen mainScreen]bounds].size.width,[[UIScreen mainScreen]bounds].size.height);
+    
+    UIImage * image=[UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
+//    UIImage * image=[UIImage imageNamed:@"how_to_play-tr.jpg"];
+    NSLog(@"image Widht: %f, heigth:%f", image.size.width, image.size.height);
+    
+    
+    howtoPlayView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.width)];
+    UIImageView * htp=[[UIImageView alloc] initWithImage:image];
+    [htp setFrame:CGRectMake(0, 0, image.size.width, image.size.height)];
+    
+    [howtoPlayView addSubview:htp];
+    [self.view addSubview:howtoPlayView];
+    ishowtoPlayOpen=YES;
+    
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if(ishowtoPlayOpen==YES){
+        ishowtoPlayOpen=NO;
+        [howtoPlayView  removeFromSuperview];
+        [self.stopWatch startTimerWithRepeatBlock:^{
+            [self.stopWatchLabel setText:[self.stopWatch toStringWithoutMiliseconds]];
+            [self.stopWatchLabelMS setText:[self.stopWatch toStringMiliseconds]];
+        }];
+    }
+}
+
+
 
 -(void) setCurrentQuestion:(EQQuestion *)currentQuestion{
     _currentQuestion=currentQuestion;
