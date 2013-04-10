@@ -18,7 +18,7 @@
 
 -(CGSize)gameViewSize{
     
-    return CGSizeMake(480*1.5,320*1.7);
+    return CGSizeMake(480*1.8,320*1.7);
 }
 -(CGFloat)checkMarkMargin {
     return 50.0;
