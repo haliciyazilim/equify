@@ -140,7 +140,7 @@ static EQGameViewController* __runningInstance;
         
     btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*1.7/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
-    [btnControl setEnabled:NO];
+    [self disableButton];
     UILabel *lblControl = (UILabel *)[btnControl viewWithTag:1];
     [lblControl setFrame:CGRectMake(0,0-[self buttonSize]/9, [self buttonSize], [self buttonSize])];
     
@@ -345,10 +345,24 @@ static EQGameViewController* __runningInstance;
     
     
     if ((deleteCount-moveCount)==0)
-        [btnControl setEnabled:YES];
-    
+        [self enableButton];
     else
-        [btnControl setEnabled:NO];
+        [self disableButton];
+}
+
+
+-(void) disableButton{
+    [btnControl setEnabled:NO];
+    UILabel * lbl=(UILabel *)[btnControl viewWithTag:1];
+    [lbl setAlpha:0.55f];
+
+}
+
+-(void)enableButton{
+    [btnControl setEnabled:YES];
+    UILabel * lbl=(UILabel *)[btnControl viewWithTag:1];
+    [lbl setAlpha:1.0f];
+
 }
 
 -(void)control{
