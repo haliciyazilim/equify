@@ -419,7 +419,7 @@ static EQGameViewController* __runningInstance;
             checkmarkView.transform = CGAffineTransformMakeScale(1.5, 1.5);
             checkmarkView.alpha = 1.0;
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
             } completion:^(BOOL finished) {
                 [[AdManager sharedInstance] showAdOnView:self.view
@@ -430,7 +430,7 @@ static EQGameViewController* __runningInstance;
                                                    CGFloat offset = frame.size.width + frame.origin.x;
                                                    frame.origin.x += offset;
                                                    questionView.frame = frame;
-                                                   [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                   [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^{
                                                        checkmarkView.alpha = 0.0;
                                                        questionView.frame = restoreFrame;
                                                    } completion:^(BOOL finished) {
@@ -523,7 +523,7 @@ static EQGameViewController* __runningInstance;
     counterImages = nil;
     counterView = nil;
     
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         CGRect frame = questionView.frame;
         CGFloat offset = frame.size.width + frame.origin.x;
         frame.origin.x -= offset;
@@ -538,7 +538,7 @@ static EQGameViewController* __runningInstance;
                                            CGFloat offset = frame.size.width + frame.origin.x;
                                            frame.origin.x += offset;
                                            questionView.frame = frame;
-                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                                                questionView.frame = restoreFrame;
                                            } completion:^(BOOL finished) {
                                                [self.stopWatch resetTimer];
