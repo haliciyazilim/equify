@@ -77,9 +77,7 @@
 		05CE69CE1705B62B00353F3C /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C81705B62B00353F3C /* Icon-Small-50@2x.png */; };
 		05CE69CF1705B62B00353F3C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69C91705B62B00353F3C /* Icon.png */; };
 		05CE69D01705B62B00353F3C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69CA1705B62B00353F3C /* Icon@2x.png */; };
-		05CE69EC1705BC6B00353F3C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69E91705BC6B00353F3C /* Default-568h@2x.png */; };
 		05CE69ED1705BC6B00353F3C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EA1705BC6B00353F3C /* Default.png */; };
-		05CE69EE1705BC6B00353F3C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EB1705BC6B00353F3C /* Default@2x.png */; };
 		05CE69F11705BE9F00353F3C /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69EF1705BE9F00353F3C /* Default-Landscape.png */; };
 		05CE69F21705BE9F00353F3C /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69F01705BE9F00353F3C /* Default-Landscape@2x.png */; };
 		05CE69F51705C14800353F3C /* equify_logo@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE69F31705C14800353F3C /* equify_logo@2x~ipad.png */; };
@@ -90,6 +88,10 @@
 		05CE6A0A1705E35A00353F3C /* check_mark~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CE6A081705E35A00353F3C /* check_mark~ipad.png */; };
 		05CF051716FC508800309FC3 /* standard-3000-3.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05CF051616FC508800309FC3 /* standard-3000-3.questionpack */; };
 		05D0DA9316F70617000159DF /* EQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D0DA9216F70617000159DF /* EQQuestion.m */; };
+		4162FC9317034D2800D94A78 /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4162FC9217034D2800D94A78 /* AdManager.m */; };
+		4172A9CD1712EF9D0024AEBD /* libFlurryAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4172A9CC1712EF9D0024AEBD /* libFlurryAds.a */; };
+		4172A9D11712F0070024AEBD /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4172A9D01712F0070024AEBD /* libFlurry.a */; };
+		4172A9D31712F17A0024AEBD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4172A9D21712F17A0024AEBD /* MediaPlayer.framework */; };
 		AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */; };
 		AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */; };
 		AE8C0AE316F1F7770084A808 /* EQipadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE216F1F7770084A808 /* EQipadViewController.m */; };
@@ -338,6 +340,14 @@
 		05D0DA9116F70617000159DF /* EQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQQuestion.h; sourceTree = "<group>"; };
 		05D0DA9216F70617000159DF /* EQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQQuestion.m; sourceTree = "<group>"; };
 		05F0CA4116CB98090063E0A8 /* EQAppSpecificViewSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQAppSpecificViewSizes.h; sourceTree = "<group>"; };
+		4162FC9117034D2800D94A78 /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
+		4162FC9217034D2800D94A78 /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
+		4172A9CA1712EF9D0024AEBD /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		4172A9CB1712EF9D0024AEBD /* FlurryAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAds.h; sourceTree = "<group>"; };
+		4172A9CC1712EF9D0024AEBD /* libFlurryAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAds.a; sourceTree = "<group>"; };
+		4172A9CF1712F0070024AEBD /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		4172A9D01712F0070024AEBD /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		4172A9D21712F17A0024AEBD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		AE10C57C16F34134009D61A6 /* EQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQSettingsViewController.h; sourceTree = "<group>"; };
 		AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQSettingsViewController.m; sourceTree = "<group>"; };
 		AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -471,6 +481,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4172A9D31712F17A0024AEBD /* MediaPlayer.framework in Frameworks */,
 				051C4CE9170B05C6001EB833 /* Security.framework in Frameworks */,
 				051C4CE7170B05B3001EB833 /* CFNetwork.framework in Frameworks */,
 				AE8C0ADF16F1D7900084A808 /* SystemConfiguration.framework in Frameworks */,
@@ -481,6 +492,8 @@
 				05192B6416CB83F5002F9529 /* UIKit.framework in Frameworks */,
 				05192B6616CB83F5002F9529 /* Foundation.framework in Frameworks */,
 				05192B6816CB83F5002F9529 /* CoreGraphics.framework in Frameworks */,
+				4172A9CD1712EF9D0024AEBD /* libFlurryAds.a in Frameworks */,
+				4172A9D11712F0070024AEBD /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +531,7 @@
 		05192B6216CB83F5002F9529 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4172A9D21712F17A0024AEBD /* MediaPlayer.framework */,
 				051C4CE8170B05C6001EB833 /* Security.framework */,
 				051C4CE6170B05B3001EB833 /* CFNetwork.framework */,
 				AE8C0ADE16F1D7900084A808 /* SystemConfiguration.framework */,
@@ -535,6 +549,8 @@
 		05192B6916CB83F5002F9529 /* Equify */ = {
 			isa = PBXGroup;
 			children = (
+				4172A9CE1712F0070024AEBD /* Flurry */,
+				4172A9C91712EF9D0024AEBD /* FlurryAds */,
 				051C4D1E170B0705001EB833 /* MKNetworkKit */,
 				051C4D06170B064E001EB833 /* more games */,
 				AE8C0AE016F1F6FA0084A808 /* iPadViews */,
@@ -676,6 +692,8 @@
 				059186A416EE210800FF9881 /* EQBundleInitializer.h */,
 				059186A516EE210800FF9881 /* EQBundleInitializer.m */,
 				05060C6F16F0A1DE00EBBD84 /* EQAppConfigValues.h */,
+				4162FC9117034D2800D94A78 /* AdManager.h */,
+				4162FC9217034D2800D94A78 /* AdManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -733,6 +751,25 @@
 				AE10C57D16F34135009D61A6 /* EQSettingsViewController.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4172A9C91712EF9D0024AEBD /* FlurryAds */ = {
+			isa = PBXGroup;
+			children = (
+				4172A9CA1712EF9D0024AEBD /* FlurryAdDelegate.h */,
+				4172A9CB1712EF9D0024AEBD /* FlurryAds.h */,
+				4172A9CC1712EF9D0024AEBD /* libFlurryAds.a */,
+			);
+			path = FlurryAds;
+			sourceTree = "<group>";
+		};
+		4172A9CE1712F0070024AEBD /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				4172A9CF1712F0070024AEBD /* Flurry.h */,
+				4172A9D01712F0070024AEBD /* libFlurry.a */,
+			);
+			path = Flurry;
 			sourceTree = "<group>";
 		};
 		AE8C0AE016F1F6FA0084A808 /* iPadViews */ = {
@@ -1103,9 +1140,7 @@
 				05CE69CE1705B62B00353F3C /* Icon-Small-50@2x.png in Resources */,
 				05CE69CF1705B62B00353F3C /* Icon.png in Resources */,
 				05CE69D01705B62B00353F3C /* Icon@2x.png in Resources */,
-				05CE69EC1705BC6B00353F3C /* Default-568h@2x.png in Resources */,
 				05CE69ED1705BC6B00353F3C /* Default.png in Resources */,
-				05CE69EE1705BC6B00353F3C /* Default@2x.png in Resources */,
 				05CE69F11705BE9F00353F3C /* Default-Landscape.png in Resources */,
 				05CE69F21705BE9F00353F3C /* Default-Landscape@2x.png in Resources */,
 				05CE69F51705C14800353F3C /* equify_logo@2x~ipad.png in Resources */,
@@ -1166,6 +1201,7 @@
 				AE10C57E16F34135009D61A6 /* EQSettingsViewController.m in Sources */,
 				05D0DA9316F70617000159DF /* EQQuestion.m in Sources */,
 				AEE233E4170310480096DEC0 /* EQipadSettingsViewController.m in Sources */,
+				4162FC9317034D2800D94A78 /* AdManager.m in Sources */,
 				05CE69C41705886D00353F3C /* TypeDefs.m in Sources */,
 				051C4D1D170B064E001EB833 /* MoreGamesView.m in Sources */,
 				051C4D32170B0705001EB833 /* NSData+Base64.m in Sources */,
@@ -1267,6 +1303,11 @@
 				GCC_PREFIX_HEADER = "Equify/Equify-Prefix.pch";
 				INFOPLIST_FILE = "Equify/Equify-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Equify/FlurryAds\"",
+					"\"$(SRCROOT)/Equify/Flurry\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1279,6 +1320,11 @@
 				GCC_PREFIX_HEADER = "Equify/Equify-Prefix.pch";
 				INFOPLIST_FILE = "Equify/Equify-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Equify/FlurryAds\"",
+					"\"$(SRCROOT)/Equify/Flurry\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

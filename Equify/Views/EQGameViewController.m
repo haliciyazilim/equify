@@ -8,6 +8,8 @@
 
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
+#import "AdManager.h"
+#import "Flurry.h"
 
 @interface EQGameViewController ()
 
@@ -406,31 +408,30 @@ static EQGameViewController* __runningInstance;
             [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
                 checkmarkView.transform = CGAffineTransformMakeScale(1.0, 1.0);
             } completion:^(BOOL finished) {
-                [self onCorrectAnswer];
-                CGRect frame = questionView.frame;
-                CGRect restoreFrame = frame;
-                CGFloat offset = frame.size.width + frame.origin.x;
-                frame.origin.x += offset;
-                questionView.frame = frame;
-                [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                    checkmarkView.alpha = 0.0;
-                    questionView.frame = restoreFrame;
-                } completion:^(BOOL finished) {
-                    [checkmarkView removeFromSuperview];
-                    [self.stopWatch resetTimer];
-                    [self.view setUserInteractionEnabled:YES];
-//                    [counterView removeFromSuperview];
-//                    counterImages = nil;
-//                    counterView = nil;
-//                    [self placingCounters];
+                [[AdManager sharedInstance] showAdOnView:self.view
+                                               withBlock:^{
+                                                   [self onCorrectAnswer];
+                                                   CGRect frame = questionView.frame;
+                                                   CGRect restoreFrame = frame;
+                                                   CGFloat offset = frame.size.width + frame.origin.x;
+                                                   frame.origin.x += offset;
+                                                   questionView.frame = frame;
+                                                   [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                       checkmarkView.alpha = 0.0;
+                                                       questionView.frame = restoreFrame;
+                                                   } completion:^(BOOL finished) {
+                                                       [checkmarkView removeFromSuperview];
+                                                       [self.stopWatch resetTimer];
+                                                       [self.view setUserInteractionEnabled:YES];
+                                                   }];
                 }];
+                
             }];
         }];
         
     }
     else{
         [self shakeView:self.view];
-        
     }
 }
 
@@ -464,12 +465,17 @@ static EQGameViewController* __runningInstance;
     [self.stopWatch resumeTimer];
 }
 -(void)onCorrectAnswer{
-    
     [_stopWatch stopTimer];
     [EQScore addScore:[_stopWatch getElapsedMiliseconds] withDifficulty:_difficulty];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
     EQStatistic *currentStats = [EQStatistic getStatisticsWithDifficulty:_difficulty];
+    
+    [Flurry logEvent:kFlurryEventQuestionSolved
+      withParameters:@{
+        @"difficulty" : [NSNumber numberWithInt:_difficulty],
+        @"time" : [NSNumber numberWithFloat:([_stopWatch getElapsedMiliseconds]/1000.0)]
+     }];
     
     if ([currentStats minTime] < INT32_MAX) {
         [[GameCenterManager sharedInstance] submitScore:[currentStats minTime]*0.1 category:[NSString stringWithFormat:@"com.halici.Equify.leaderboards.bestTime%d", _difficulty]];
@@ -492,6 +498,13 @@ static EQGameViewController* __runningInstance;
     [self.view setUserInteractionEnabled:NO];
     [self.stopWatch stopTimer];
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
+
+    [Flurry logEvent:kFlurryEventQuestionSkipped
+      withParameters:@{
+        @"difficulty" : [NSNumber numberWithInt:_difficulty],
+        @"time" : [NSNumber numberWithFloat:([_stopWatch getElapsedMiliseconds]/1000.0)]
+     }];
+    
     [counterView removeFromSuperview];
     counterImages = nil;
     counterView = nil;
@@ -502,23 +515,22 @@ static EQGameViewController* __runningInstance;
         frame.origin.x -= offset;
         questionView.frame = frame;
     } completion:^(BOOL finished) {
-        [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
-        [self configureViews];
-        CGRect frame = questionView.frame;
-        CGRect restoreFrame = frame;
-        CGFloat offset = frame.size.width + frame.origin.x;
-        frame.origin.x += offset;
-        questionView.frame = frame;
-        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            questionView.frame = restoreFrame;
-        } completion:^(BOOL finished) {
-            [self.stopWatch resetTimer];
-            [self.view setUserInteractionEnabled:YES];
-//            [counterView removeFromSuperview];
-//            counterImages = nil;
-//            counterView = nil;
-//            [self placingCounters];
-        }];
+        [[AdManager sharedInstance] showAdOnView:self.view
+                                       withBlock:^{
+                                           [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
+                                           [self configureViews];
+                                           CGRect frame = questionView.frame;
+                                           CGRect restoreFrame = frame;
+                                           CGFloat offset = frame.size.width + frame.origin.x;
+                                           frame.origin.x += offset;
+                                           questionView.frame = frame;
+                                           [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                               questionView.frame = restoreFrame;
+                                           } completion:^(BOOL finished) {
+                                               [self.stopWatch resetTimer];
+                                               [self.view setUserInteractionEnabled:YES];
+                                           }];
+                                       }];
     }];
 }
 

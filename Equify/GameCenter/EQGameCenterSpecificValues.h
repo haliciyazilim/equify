@@ -21,3 +21,17 @@
 
 // GameCenter Notifications
 #define kAuthenticationChangedNotification @"AuthenticedChanged"
+
+// Flurry events
+#define kFlurryEventGameStarted @"Game Started"
+#define kFlurryEventQuestionSkipped @"Question Skipped"
+#define kFlurryEventQuestionSolved @"Question Solved"
+#define kFlurryEventStatsPressed @"Stats Pressed"
+#define kFlurryEventSettingsPressed @"Settings Pressed"
+#define kFlurryEventGameCenterPressed @"Game Center Pressed"
+
+#define kFlurryEventMoreGamesPressed @"More Games Pressed"
+#define kFlurryEventAboutUsPressed @"About Us Pressed"
+#define kFlurryEventStatsReset @"Stats Reset"
+
+#define kFlurryEventMoreGameSelected @"More Game Selected"

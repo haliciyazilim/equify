@@ -7,18 +7,18 @@
 */
 
 // stats screen
-"STATS" = "kullanıcı verileri";
+"STATS" = "veriler";
 "BEST_TIME" = "en iyi süre";
 "WORST_TIME"  = "en kötü süre";
 "TOTAL_SOLVED_COUNT" = "çözülen toplam soru";
 "TOTAL_SKIP_COUNT" = "geçilen toplam soru";
-"AVERAGE" = "son onbeş ortalama";
-"ALLTIME_AVERAGE" = "genel ortalama";
+"AVERAGE" = "ortalama süre (son 15 soru)";
+"ALLTIME_AVERAGE" = "ortalama süre (bütün sorular)";
 
 // main screen
-"GAMESTART"="oyunu\nbaşlat";
-"GAMESETTINGS"="oyun\nayarları";
-"USERSTATS"="kullanıcı\nverileri";
+"GAMESTART"="başlat";
+"GAMESETTINGS"="diğer";
+"USERSTATS"="veriler";
 
 // game screen
 "CONTROL"="kontrol";
@@ -33,5 +33,5 @@
 "ABOUT"="hakkımızda";
 "MOREGAMES"="diğer oyunlar";
 "RESET_STATS_APPROVE" = "Oyun verilerini silmek istediğinize emin misiniz?";
-"OK" = "Tamam";
+"OK" = "Sil";
 "CANCEL" = "İptal";

@@ -12,6 +12,7 @@
 #import "EQQuestion.h"
 #import "EQAppSpecificViewSizes.h"
 #import "EQStatsViewController.h"
+#import "Flurry.h"
 
 @interface EQViewController ()
 
@@ -272,19 +273,28 @@
     }
 }
 - (IBAction)startNewGame:(id)sender {
+    [Flurry logEvent:kFlurryEventGameStarted
+      withParameters:@{
+     @"Difficulty" : [NSNumber numberWithInt:difficulty]
+     }];
+    
     [self performSegueWithIdentifier:@"GameStartSegue" sender:self];
 }
 
 -(void)openStats{
+    [Flurry logEvent:kFlurryEventStatsPressed];
     [self performSegueWithIdentifier:@"StatsSegue" sender:self];
 }
 
 -(void)openSettings{
+    [Flurry logEvent:kFlurryEventSettingsPressed];
     [self performSegueWithIdentifier:@"SettingsSegue" sender:self];
 }
 
 - (void) showGameCenter
 {
+    [Flurry logEvent:kFlurryEventGameCenterPressed];
+    
     if(!self.reachability)
         self.reachability = [Reachability reachabilityForInternetConnection];
     

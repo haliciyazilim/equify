@@ -13,10 +13,18 @@
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
 
+#import "Flurry.h"
+#import "FlurryAds.h"
+
 @implementation EQAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Flurry setDebugLogEnabled:NO];
+    [Flurry setShowErrorInLogEnabled:NO];
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [Flurry startSession:@"6MG7535QST48WHJ22TS4"];
+    [FlurryAds initialize:self.window.rootViewController];
     
     [EQBundleInitializer initializeBundle];
     
@@ -28,6 +36,11 @@
 //    [self.window makeKeyAndVisible];
     return YES;
 }
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [Flurry logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 -(void)generateJson {
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"standard-10000-3" ofType:@"questionpack"]
                                                   encoding:NSUTF8StringEncoding
