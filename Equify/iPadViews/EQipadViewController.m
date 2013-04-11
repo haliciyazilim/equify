@@ -54,11 +54,6 @@
     return [[UIScreen mainScreen] bounds].size.height;
 }
 
-
--(void) setBackgrounds{
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-}
-
 -(UIImageView *) setLogo{
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];

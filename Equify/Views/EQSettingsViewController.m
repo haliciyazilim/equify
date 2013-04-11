@@ -52,9 +52,6 @@
     return CGSizeMake(175.0, 40.0);
 }
 
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -123,20 +120,19 @@
 
     [settingView addSubview:buttonsView];
     [self.view addSubview:settingView];
-    [self setBackgrounds];
     ishowtoPlayOpen=NO;
-    
 }
 
 -(void) howtoPlay{
 
-    NSLog(@"Width: %f, height: %f",[self winSize].width,[self winSize].height);
-    NSLog(@"Width: %f, height: %f",[[UIScreen mainScreen]bounds].size.width,[[UIScreen mainScreen]bounds].size.height);
-
-    UIImage * image=[UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
-//    UIImage * image=[UIImage imageNamed:@"how_to_play-tr.jpg"];
-    NSLog(@"image Widht: %f, heigth:%f", image.size.width, image.size.height);
-
+    UIImage *image;
+    
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        image = [UIImage imageNamed:LocalizedImageName(@"how_to_play-568h", @"jpg")];
+    }
+    else{
+        image = [UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
+    }
     
     howtoPlayView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.width)];
        UIImageView * htp=[[UIImageView alloc] initWithImage:image];
@@ -181,15 +177,17 @@
     [EQStatistic resetStatistics];
     [EQScore cleanAllScores];
 }
--(void) setBackgrounds{
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
+
+- (void) fadeOutAllSubviews {
+    for (UIView* view in [self.view subviews]) {
+        view.alpha = 0.0;
     }
 }
-
+- (void) fadeInAllSubviews {
+    for (UIView* view in [self.view subviews]) {
+        view.alpha = 1.0;
+    }
+}
 -(UIButton *) makeButton:(CGRect)frame title:(NSString *) title{
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
@@ -206,7 +204,6 @@
     [btn addSubview:lblReset];
     
     return btn;
-    
 }
 
 - (void) closeSettings {
@@ -215,6 +212,7 @@
 
 - (void) closeAbout {
     [aboutScreenBackground removeFromSuperview];
+    [self fadeInAllSubviews];
 }
 
 -(float)buttonFontSize{
@@ -238,17 +236,13 @@
 }
 
 -(void) showAboutScreen{
+    [self fadeOutAllSubviews];
     [Flurry logEvent:kFlurryEventAboutUsPressed];
     aboutScreenBackground=[[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width)];
     
     UIView *aboutScreen=[[UIView alloc] initWithFrame:CGRectMake(([[UIScreen mainScreen] bounds].size.height-winWidth)/2, ([[UIScreen mainScreen] bounds].size.width-winHeight)/2, winWidth, winHeight)];
     
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        aboutScreenBackground.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        aboutScreenBackground.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-    }
+    aboutScreen.backgroundColor = [UIColor clearColor];
     
     
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake((winWidth-(winWidth-35.0))/2, 0.0, winWidth-35.0, 45.0)];
@@ -321,7 +315,6 @@
     [cProgramming setBackgroundColor:[UIColor clearColor]];
     [cProgramming setText:NSLocalizedString(@"PROGRAMMING",nil)];
     
-    
     // Names
     NSArray * names=[[NSArray alloc] initWithObjects:@"Eren HALICI",@"Yunus Eren GÜZEL", @"Abdullah KARACABEY",@"Alperen KAVUN", nil];
     for(int i=0; i<names.count;i++){
@@ -334,7 +327,6 @@
         [cName setText:names[i]];
         [credits addSubview:cName];
     }
-    
     
     // Art
     UILabel * cArt=[[UILabel alloc] initWithFrame:CGRectMake(0.0, fontSizeL/0.059+[self creditsPaddingTop], mask.frame.size.width, fontSizeL/0.55)];
@@ -352,7 +344,6 @@
     [cArtName setNumberOfLines:2];
     [cArtName setText:@"Ebuzer Egemen DURSUN"];
     
-    
     // Copyright
     UILabel * cCRight=[[UILabel alloc] initWithFrame:CGRectMake(0.0, fontSizeL/0.037+[self creditsPaddingTop], mask.frame.size.width, fontSizeL/0.55)];
     [cCRight setFont:[UIFont fontWithName:font size:fontSizeL]];
@@ -367,10 +358,7 @@
     [cBrainQuire setTextColor:color];
     [cBrainQuire setTextAlignment:NSTextAlignmentCenter];
     [cBrainQuire setBackgroundColor:[UIColor clearColor]];
-    [cBrainQuire setText:@"www.brainquire.com"];
-    
-    
-    
+    [cBrainQuire setText:@"www.brainquire.com"];    
     
     [credits addSubview:cName];
     [credits addSubview:cAdress];
@@ -401,10 +389,8 @@
     [credits setContentOffset:CGPointMake(0, [self creditsContentSize].height-credits.frame.size.height)];
     [UIScrollView commitAnimations];
     didScrolled=0;
-    
-    
-    
-}- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     didScrolled++;
     
     if(didScrolled==2)
@@ -421,11 +407,9 @@
 
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

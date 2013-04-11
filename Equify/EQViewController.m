@@ -65,15 +65,6 @@
     return 30.0;
 }
 
--(void) setBackgrounds{
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-    }
-}
-
 -(UIImageView *) setLogo{
     UIImage * logo=[UIImage imageNamed:@"equify_logo.png"];
     UIImageView * logoView=[[UIImageView alloc] initWithImage:logo];
@@ -84,12 +75,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self setBackgrounds];
             
     [self.view addSubview:[self setLogo]];
-    
-    
     
     UIView *difficultyButtonsView=[self makeDifficultyButtons];
     [difficultyButtonsView setFrame:CGRectMake([self screenWidth]-difficultyButtonsView.frame.size.width-[self margin], [self margin], difficultyButtonsView.frame.size.width, difficultyButtonsView.frame.size.height)];
@@ -184,7 +171,6 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"game_center_btn_pressed.png"] forState:UIControlStateHighlighted];
     
     return btn;
-    
 }
 
 + (void) makeUnhighlighted:(UIButton *)button {
@@ -200,7 +186,6 @@
 +(void)unhighlight:(UIButton *)button {
     button.titleLabel.textColor=[UIColor colorWithRed:0.462 green:0.364 blue:0.227 alpha:1.0];
 }
-
 
 -(UIView *) makeDifficultyButtons{
     
@@ -242,7 +227,6 @@
     [view addSubview:btnLevel3];
     
     return view;
-    
 }
 
 -(void) selectDifficulty:(UIButton *)button{
@@ -266,8 +250,6 @@
             btnLevel3.selected=YES;
             difficulty=3;
             break;
-            
-            
         default:
             break;
     }
@@ -334,16 +316,15 @@
         EQStatsViewController *eqStatsViewController = [segue destinationViewController];
         [eqStatsViewController setDifficulty:difficulty];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+
 @end

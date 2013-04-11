@@ -79,22 +79,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     CGSize mainSize = [self getMainViewSize];
     CGSize windowSize = [[UIScreen mainScreen] bounds].size;
     
     mainView = [[UIView alloc] initWithFrame:CGRectMake((windowSize.width-mainSize.height)*0.5, (windowSize.height-mainSize.width)*0.5, mainSize.width, mainSize.height)];
     [mainView setBackgroundColor:[UIColor clearColor]];
-    
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-    }
-    
-    
     
     CGSize mainViewSize = [self getInnerSize];
     UIView *statsMainView = [[UIView alloc] initWithFrame:CGRectMake(25.0, 25.0, mainViewSize.height, mainViewSize.width)];
@@ -242,7 +232,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) setCurrentStatistics:(EQStatistic *)currentStatistics {
@@ -320,8 +309,6 @@
             btnLevel3.selected=YES;
             _difficulty=3;
             break;
-            
-            
         default:
             break;
     }

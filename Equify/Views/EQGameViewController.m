@@ -90,16 +90,6 @@
     return self;
 }
 
-
--(void) setBackground{
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-    }
-}
-
 -(float) buttonSize{
     return [UIImage imageNamed:@"main_btn.png"].size.width;
 }
@@ -122,7 +112,6 @@ static EQGameViewController* __runningInstance;
 
 - (void)viewDidLoad
 {
-    [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
     [self.stopWatchLabel setTextColor:[UIColor colorWithRed:0.403 green:0.403 blue:0.403 alpha:1.0]];
@@ -190,7 +179,6 @@ static EQGameViewController* __runningInstance;
     [self configureViews];
     
     if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==nil){
-        NSLog(@"NO; It is not exist");
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isFirstTime"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         ishowtoPlayOpen=YES;
@@ -212,14 +200,16 @@ static EQGameViewController* __runningInstance;
     [super didReceiveMemoryWarning];
 }
 
-
 -(void) howtoPlay{
-    NSLog(@"Width: %f, height: %f",[[UIScreen mainScreen]bounds].size.width,[[UIScreen mainScreen]bounds].size.height);
     
-    UIImage * image=[UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
-//    UIImage * image=[UIImage imageNamed:@"how_to_play-tr.jpg"];
-    NSLog(@"image Widht: %f, heigth:%f", image.size.width, image.size.height);
+    UIImage *image;
     
+    if([[UIScreen mainScreen] bounds].size.height == 568){
+        image = [UIImage imageNamed:LocalizedImageName(@"how_to_play-568h", @"jpg")];
+    }
+    else{
+        image = [UIImage imageNamed:LocalizedImageName(@"how_to_play", @"jpg")];
+    }
     
     howtoPlayView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width, image.size.width)];
     UIImageView * htp=[[UIImageView alloc] initWithImage:image];
@@ -384,7 +374,6 @@ static EQGameViewController* __runningInstance;
         deleteCount--;
     }
     
-    
     if ((deleteCount-moveCount)==0)
         [self enableButton];
     else
@@ -396,14 +385,12 @@ static EQGameViewController* __runningInstance;
     [btnControl setEnabled:NO];
     UILabel * lbl=(UILabel *)[btnControl viewWithTag:1];
     [lbl setAlpha:0.55f];
-
 }
 
 -(void)enableButton{
     [btnControl setEnabled:YES];
     UILabel * lbl=(UILabel *)[btnControl viewWithTag:1];
     [lbl setAlpha:1.0f];
-
 }
 
 -(void)control{
@@ -593,7 +580,7 @@ static EQGameViewController* __runningInstance;
     return CGSizeMake(200, 40);
 }
 -(void)inGameMenu{
-    
+    [self fadeOutAllSubviews];
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, winWidth, winHeight)];
 
     float screenWidth=[[UIScreen mainScreen] bounds].size.height;
@@ -601,14 +588,7 @@ static EQGameViewController* __runningInstance;
     
     [self.stopWatch pauseTimer];
     menu=[[UIView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-
-    
-    if([[UIScreen mainScreen] bounds].size.height == 568){
-        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg-568h.jpg"]];
-    }
-    else{
-        menu.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.jpg"]];
-    }
+    menu.backgroundColor = [UIColor clearColor];
 
     UIImage * imgSeperator=[UIImage imageNamed:@"single_line.png"];
     UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake((screenWidth-[self menuButtonsSize].width)/2, (screenHeight-[self menuButtonsSize].height)/2-30*[self menuButtonsPadding], [self menuButtonsSize].width, 2.0)];
@@ -636,7 +616,16 @@ static EQGameViewController* __runningInstance;
     [self.view addSubview:menu];
 
 }
-
+- (void) fadeOutAllSubviews {
+    for (UIView* view in [self.view subviews]) {
+        view.alpha = 0.0;
+    }
+}
+- (void) fadeInAllSubviews {
+    for (UIView* view in [self.view subviews]) {
+        view.alpha = 1.0;
+    }
+}
 -(UIButton *) makeMenuButton:(CGRect)frame title:(NSString *) title{
     UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:frame];
@@ -652,7 +641,6 @@ static EQGameViewController* __runningInstance;
     [btn addSubview:lblReset];
     
     return btn;
-    
 }
 
 - (void) openMainMenu {
@@ -665,6 +653,7 @@ static EQGameViewController* __runningInstance;
 
 - (void) btnResumeGame {
     [menu removeFromSuperview];
+    [self fadeInAllSubviews];
     [self resumeGame];
 }
 
