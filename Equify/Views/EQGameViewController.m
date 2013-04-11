@@ -426,7 +426,7 @@ static EQGameViewController* __runningInstance;
         counterView = nil;
         [self.view setUserInteractionEnabled:NO];
         [self.stopWatch stopTimer];
-        setCurrentGameState(GAME_STATE_PAUSED);
+        setCurrentGameState(GAME_STATE_TRANSITION);
         
         CGSize gameViewSize = [self correctViewSize];
         
@@ -463,8 +463,13 @@ static EQGameViewController* __runningInstance;
                                                        questionView.frame = restoreFrame;
                                                    } completion:^(BOOL finished) {
                                                        [checkmarkView removeFromSuperview];
+                                                       NSLog(@"****stopwatch is reset****");
                                                        [self.stopWatch resetTimer];
                                                        [self.view setUserInteractionEnabled:YES];
+                                                       if (getCurrentGameState() != GAME_STATE_TRANSITION2) {
+                                                           setCurrentGameState(GAME_STATE_PLAYING);
+                                                       }
+                                                    
                                                    }];
                 }];
                 
@@ -503,11 +508,17 @@ static EQGameViewController* __runningInstance;
     [self inGameMenu];
 }
 -(void)resumeGame{
-    setCurrentGameState(GAME_STATE_PLAYING);
-    [self.stopWatch resumeTimer];
+    if (getCurrentGameState() == GAME_STATE_PAUSED) {
+        setCurrentGameState(GAME_STATE_PLAYING);
+        [self.stopWatch resumeTimer];
+    } else if (getCurrentGameState() == GAME_STATE_TRANSITION2) {
+        setCurrentGameState(GAME_STATE_PLAYING);
+        [self.stopWatch stopTimer];
+        [self.stopWatch resetTimer];
+    }
+
 }
 -(void)onCorrectAnswer{
-    [_stopWatch stopTimer];
     [EQScore addScore:[_stopWatch getElapsedMiliseconds] withDifficulty:_difficulty];
     [EQStatistic updateStatisticsWithTime:[_stopWatch getElapsedMiliseconds] andDifficulty:_difficulty];
     
@@ -532,13 +543,14 @@ static EQGameViewController* __runningInstance;
     
     [self setCurrentQuestion:[EQQuestion getNextQuestionWithDifficulty:_difficulty]];
     [self configureViews];
-    setCurrentGameState(GAME_STATE_PLAYING);
+//    setCurrentGameState(GAME_STATE_PLAYING);
     
 }
 
 -(void)skipQuestion{
     [self.view setUserInteractionEnabled:NO];
     [self.stopWatch stopTimer];
+    setCurrentGameState(GAME_STATE_TRANSITION);
     [EQStatistic updateStatisticsWithSkippedGameAndDifficulty:_difficulty];
 
     [Flurry logEvent:kFlurryEventQuestionSkipped
@@ -571,6 +583,9 @@ static EQGameViewController* __runningInstance;
                                            } completion:^(BOOL finished) {
                                                [self.stopWatch resetTimer];
                                                [self.view setUserInteractionEnabled:YES];
+                                               if (getCurrentGameState() != GAME_STATE_TRANSITION2) {
+                                                   setCurrentGameState(GAME_STATE_PLAYING);
+                                               }
                                            }];
                                        }];
     }];

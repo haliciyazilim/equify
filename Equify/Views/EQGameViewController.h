@@ -32,6 +32,7 @@
 
 -(void)pauseGame;
 -(void)resumeGame;
+-(void)inGameMenu;
 
 +(EQGameViewController*)runningInstance;
 +(void)cleanRunningInstance;

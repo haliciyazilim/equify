@@ -16,7 +16,9 @@ typedef void (^ IteratorBlock)();
 typedef enum GAME_STATE {
     GAME_STATE_STOPPED,
     GAME_STATE_PLAYING,
-    GAME_STATE_PAUSED
+    GAME_STATE_PAUSED,
+    GAME_STATE_TRANSITION,
+    GAME_STATE_TRANSITION2
 } GAME_STATE;
 
 GAME_STATE getCurrentGameState();
