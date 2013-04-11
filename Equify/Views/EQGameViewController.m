@@ -122,13 +122,6 @@ static EQGameViewController* __runningInstance;
 
 - (void)viewDidLoad
 {
-    
-           
-        
-    
-    
-
-    
     [self setBackground];
     
     [self.stopWatchLabel setText:@"00:00"];
@@ -151,7 +144,7 @@ static EQGameViewController* __runningInstance;
         
     btnControl=[EQViewController makeButton:CGRectMake((winWidth-[self buttonSize])/2, winHeight-[self buttonSize]*1.7/3, [self buttonSize], [self buttonSize]) title:NSLocalizedString(@"CONTROL", nil)];
     [btnControl addTarget:self action:@selector(control) forControlEvents:UIControlEventTouchUpInside];
-    [self disableButton];
+    
     UILabel *lblControl = (UILabel *)[btnControl viewWithTag:1];
     [lblControl setFrame:CGRectMake(0,0-[self buttonSize]/9, [self buttonSize], [self buttonSize])];
     
@@ -183,9 +176,6 @@ static EQGameViewController* __runningInstance;
     [gameView addSubview:btnControl];
     [gameView addSubview:btnSkip];
     
-    
-    
-    
     [gameView addSubview:questionView];
     [self.view addSubview:gameView];
     
@@ -194,17 +184,12 @@ static EQGameViewController* __runningInstance;
         [self.view addSubview:shadowAbove];
         [self.view addSubview:shadowBelow];
     }
-    
-    
-
-
-
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [self configureViews];
     
-    if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==Nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"] isEqualToString:@"YES"]){
+    if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==Nil){
         NSLog(@"NO; It is not exist");
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isFirstTime"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -256,8 +241,6 @@ static EQGameViewController* __runningInstance;
         }];
     }
 }
-
-
 
 -(void) setCurrentQuestion:(EQQuestion *)currentQuestion{
     _currentQuestion=currentQuestion;
@@ -361,6 +344,7 @@ static EQGameViewController* __runningInstance;
     }
     
     questionView.frame=CGRectMake((winWidth-[self questionViewSize].width)/2, (winHeight-[self questionViewSize].height)/2,[self questionViewSize].width , [self questionViewSize].height);
+    [self disableButton];
 }
 
 -(void)placingCounters{
