@@ -64,6 +64,9 @@
 		059186CD16EE215300FF9881 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186C116EE215300FF9881 /* SBJsonWriter.m */; };
 		059186CF16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */; };
 		059186D116EE290500FF9881 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */; };
+		059DE5D51716A432003391F3 /* how_to_play-568h-en@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 059DE5D31716A432003391F3 /* how_to_play-568h-en@2x.jpg */; };
+		059DE5D61716A432003391F3 /* how_to_play-568h-tr@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 059DE5D41716A432003391F3 /* how_to_play-568h-tr@2x.jpg */; };
+		05A5A29B1716C89F0032CCA0 /* game_bg-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05A5A29A1716C89F0032CCA0 /* game_bg-568h@2x.jpg */; };
 		05A6F9D816F8A5C10026C977 /* standard-3000-1.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05A6F9D616F8A5C10026C977 /* standard-3000-1.questionpack */; };
 		05A6F9D916F8A5C10026C977 /* standard-3000-2.questionpack in Resources */ = {isa = PBXBuildFile; fileRef = 05A6F9D716F8A5C10026C977 /* standard-3000-2.questionpack */; };
 		05C05B1816F1C02A00913437 /* EQStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C05B1716F1C02A00913437 /* EQStatsViewController.m */; };
@@ -97,7 +100,6 @@
 		AE8C0AE316F1F7770084A808 /* EQipadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE216F1F7770084A808 /* EQipadViewController.m */; };
 		AE8C0AE616F1F7D10084A808 /* EQipadGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE516F1F7D10084A808 /* EQipadGameViewController.m */; };
 		AE8C0AE916F1F8110084A808 /* EQipadStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C0AE816F1F8100084A808 /* EQipadStatsViewController.m */; };
-		AEAD845A170434AF00055E7E /* game_bg-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEAD83D4170434AE00055E7E /* game_bg-568h@2x.jpg */; };
 		AEAD845B170434AF00055E7E /* game_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEAD83D5170434AE00055E7E /* game_bg.jpg */; };
 		AEAD845C170434AF00055E7E /* game_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEAD83D6170434AE00055E7E /* game_bg@2x.jpg */; };
 		AEAD845D170434AF00055E7E /* game_bg@2x~ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AEAD83D7170434AE00055E7E /* game_bg@2x~ipad.jpg */; };
@@ -216,10 +218,8 @@
 		B8B052AD1715947000AE94A4 /* how_to_play-tr@2x~ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052A91715947000AE94A4 /* how_to_play-tr@2x~ipad.jpg */; };
 		B8B052AE1715947000AE94A4 /* how_to_play-tr~ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052AA1715947000AE94A4 /* how_to_play-tr~ipad.jpg */; };
 		B8B052B6171596BD00AE94A4 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B052B5171596BD00AE94A4 /* Util.m */; };
-		B8B052BD17159FB600AE94A4 /* how_to_play-en-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052B717159FB600AE94A4 /* how_to_play-en-568h@2x.jpg */; };
 		B8B052BE17159FB600AE94A4 /* how_to_play-en.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052B817159FB600AE94A4 /* how_to_play-en.jpg */; };
 		B8B052BF17159FB600AE94A4 /* how_to_play-en@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052B917159FB600AE94A4 /* how_to_play-en@2x.jpg */; };
-		B8B052C017159FB600AE94A4 /* how_to_play-tr-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052BA17159FB600AE94A4 /* how_to_play-tr-568h@2x.jpg */; };
 		B8B052C117159FB600AE94A4 /* how_to_play-tr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052BB17159FB600AE94A4 /* how_to_play-tr.jpg */; };
 		B8B052C217159FB600AE94A4 /* how_to_play-tr@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B052BC17159FB600AE94A4 /* how_to_play-tr@2x.jpg */; };
 /* End PBXBuildFile section */
@@ -321,6 +321,9 @@
 		059186C116EE215300FF9881 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		059186CE16EE28F000FF9881 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		059186D016EE290500FF9881 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard_iPad.storyboard; path = ../MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		059DE5D31716A432003391F3 /* how_to_play-568h-en@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-568h-en@2x.jpg"; sourceTree = "<group>"; };
+		059DE5D41716A432003391F3 /* how_to_play-568h-tr@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-568h-tr@2x.jpg"; sourceTree = "<group>"; };
+		05A5A29A1716C89F0032CCA0 /* game_bg-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg-568h@2x.jpg"; sourceTree = "<group>"; };
 		05A6F9D616F8A5C10026C977 /* standard-3000-1.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-1.questionpack"; sourceTree = "<group>"; };
 		05A6F9D716F8A5C10026C977 /* standard-3000-2.questionpack */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "standard-3000-2.questionpack"; sourceTree = "<group>"; };
 		05C05B1616F1C02A00913437 /* EQStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQStatsViewController.h; sourceTree = "<group>"; };
@@ -368,7 +371,6 @@
 		AE8C0AE516F1F7D10084A808 /* EQipadGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQipadGameViewController.m; sourceTree = "<group>"; };
 		AE8C0AE716F1F8100084A808 /* EQipadStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQipadStatsViewController.h; sourceTree = "<group>"; };
 		AE8C0AE816F1F8100084A808 /* EQipadStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQipadStatsViewController.m; sourceTree = "<group>"; };
-		AEAD83D4170434AE00055E7E /* game_bg-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg-568h@2x.jpg"; sourceTree = "<group>"; };
 		AEAD83D5170434AE00055E7E /* game_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = game_bg.jpg; sourceTree = "<group>"; };
 		AEAD83D6170434AE00055E7E /* game_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg@2x.jpg"; sourceTree = "<group>"; };
 		AEAD83D7170434AE00055E7E /* game_bg@2x~ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "game_bg@2x~ipad.jpg"; sourceTree = "<group>"; };
@@ -491,10 +493,8 @@
 		B8B052AA1715947000AE94A4 /* how_to_play-tr~ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-tr~ipad.jpg"; sourceTree = "<group>"; };
 		B8B052B4171596BD00AE94A4 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		B8B052B5171596BD00AE94A4 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		B8B052B717159FB600AE94A4 /* how_to_play-en-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-en-568h@2x.jpg"; sourceTree = "<group>"; };
 		B8B052B817159FB600AE94A4 /* how_to_play-en.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-en.jpg"; sourceTree = "<group>"; };
 		B8B052B917159FB600AE94A4 /* how_to_play-en@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-en@2x.jpg"; sourceTree = "<group>"; };
-		B8B052BA17159FB600AE94A4 /* how_to_play-tr-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-tr-568h@2x.jpg"; sourceTree = "<group>"; };
 		B8B052BB17159FB600AE94A4 /* how_to_play-tr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-tr.jpg"; sourceTree = "<group>"; };
 		B8B052BC17159FB600AE94A4 /* how_to_play-tr@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "how_to_play-tr@2x.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -825,9 +825,9 @@
 				05CE69C81705B62B00353F3C /* Icon-Small-50@2x.png */,
 				05CE69C91705B62B00353F3C /* Icon.png */,
 				05CE69CA1705B62B00353F3C /* Icon@2x.png */,
-				AEAD83D4170434AE00055E7E /* game_bg-568h@2x.jpg */,
 				AEAD83D5170434AE00055E7E /* game_bg.jpg */,
 				AEAD83D6170434AE00055E7E /* game_bg@2x.jpg */,
+				05A5A29A1716C89F0032CCA0 /* game_bg-568h@2x.jpg */,
 				AEAD83D7170434AE00055E7E /* game_bg@2x~ipad.jpg */,
 				AEAD83D8170434AE00055E7E /* game_bg~ipad.jpg */,
 				AEAD83D9170434AE00055E7E /* game_screen */,
@@ -987,10 +987,10 @@
 		B8B052A61715947000AE94A4 /* how_to_play */ = {
 			isa = PBXGroup;
 			children = (
-				B8B052B717159FB600AE94A4 /* how_to_play-en-568h@2x.jpg */,
+				059DE5D31716A432003391F3 /* how_to_play-568h-en@2x.jpg */,
+				059DE5D41716A432003391F3 /* how_to_play-568h-tr@2x.jpg */,
 				B8B052B817159FB600AE94A4 /* how_to_play-en.jpg */,
 				B8B052B917159FB600AE94A4 /* how_to_play-en@2x.jpg */,
-				B8B052BA17159FB600AE94A4 /* how_to_play-tr-568h@2x.jpg */,
 				B8B052BB17159FB600AE94A4 /* how_to_play-tr.jpg */,
 				B8B052BC17159FB600AE94A4 /* how_to_play-tr@2x.jpg */,
 				B8B052A71715947000AE94A4 /* how_to_play-en@2x~ipad.jpg */,
@@ -1065,7 +1065,6 @@
 				05A6F9D816F8A5C10026C977 /* standard-3000-1.questionpack in Resources */,
 				05A6F9D916F8A5C10026C977 /* standard-3000-2.questionpack in Resources */,
 				05CF051716FC508800309FC3 /* standard-3000-3.questionpack in Resources */,
-				AEAD845A170434AF00055E7E /* game_bg-568h@2x.jpg in Resources */,
 				AEAD845B170434AF00055E7E /* game_bg.jpg in Resources */,
 				AEAD845C170434AF00055E7E /* game_bg@2x.jpg in Resources */,
 				AEAD845D170434AF00055E7E /* game_bg@2x~ipad.jpg in Resources */,
@@ -1206,12 +1205,13 @@
 				B8B052AC1715947000AE94A4 /* how_to_play-en~ipad.jpg in Resources */,
 				B8B052AD1715947000AE94A4 /* how_to_play-tr@2x~ipad.jpg in Resources */,
 				B8B052AE1715947000AE94A4 /* how_to_play-tr~ipad.jpg in Resources */,
-				B8B052BD17159FB600AE94A4 /* how_to_play-en-568h@2x.jpg in Resources */,
 				B8B052BE17159FB600AE94A4 /* how_to_play-en.jpg in Resources */,
 				B8B052BF17159FB600AE94A4 /* how_to_play-en@2x.jpg in Resources */,
-				B8B052C017159FB600AE94A4 /* how_to_play-tr-568h@2x.jpg in Resources */,
 				B8B052C117159FB600AE94A4 /* how_to_play-tr.jpg in Resources */,
 				B8B052C217159FB600AE94A4 /* how_to_play-tr@2x.jpg in Resources */,
+				059DE5D51716A432003391F3 /* how_to_play-568h-en@2x.jpg in Resources */,
+				059DE5D61716A432003391F3 /* how_to_play-568h-tr@2x.jpg in Resources */,
+				05A5A29B1716C89F0032CCA0 /* game_bg-568h@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
