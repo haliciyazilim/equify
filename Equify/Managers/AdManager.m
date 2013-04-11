@@ -94,7 +94,7 @@ interstitial {
 - (void)spaceDidDismiss:(NSString *)adSpace interstitial:(BOOL)interstitial {
     if (interstitial) {
         // Resume app state here
-        
+        NSLog(@"calling back");
         [self fetch];
         
         self.callbackBlock();
