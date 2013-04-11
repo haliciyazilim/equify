@@ -59,7 +59,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"application willresignactive and game state is: %d",getCurrentGameState());
     if (getCurrentGameState() == GAME_STATE_PLAYING) {
         [[EQGameViewController runningInstance] pauseGame];
     } else if (getCurrentGameState() == GAME_STATE_TRANSITION) {

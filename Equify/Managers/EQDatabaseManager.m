@@ -166,8 +166,6 @@ static EQDatabaseManager *sharedInstance = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
-        
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     

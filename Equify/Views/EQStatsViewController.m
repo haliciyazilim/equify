@@ -76,6 +76,9 @@
 -(CGFloat) fontSize {
     return 20.0;
 }
+-(CGFloat) labelWidth {
+    return 300.0;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -113,7 +116,7 @@
     [closeButton addTarget:self action:@selector(closeStats) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(mainViewSize.height-45.0, [self closeButtonsTop], [self closeButtonHeight], [self closeButtonHeight]);
     
-    UILabel *bestTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight], 300.0, [self lineHeight])];
+    UILabel *bestTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight], [self labelWidth], [self lineHeight])];
     [bestTimeLabel setBackgroundColor:[UIColor clearColor]];
     [bestTimeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [bestTimeLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
@@ -122,7 +125,7 @@
     UIView *seperator1 = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self headerHeight]+[self lineHeight], mainViewSize.height, [self seperatorHeight])];
     [seperator1 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *worstTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+[self lineHeight], 300.0, [self lineHeight])];
+    UILabel *worstTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+[self lineHeight], [self labelWidth], [self lineHeight])];
     [worstTimeLabel setBackgroundColor:[UIColor clearColor]];
     [worstTimeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [worstTimeLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
@@ -130,7 +133,7 @@
     
     UIView *seperator2 = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self headerHeight]+2*[self lineHeight], mainViewSize.height, [self seperatorHeight])];
     [seperator2 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
-    UILabel *totalSolvedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+2*[self lineHeight], 300.0, [self lineHeight])];
+    UILabel *totalSolvedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+2*[self lineHeight], [self labelWidth], [self lineHeight])];
     [totalSolvedLabel setBackgroundColor:[UIColor clearColor]];
     [totalSolvedLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [totalSolvedLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
@@ -139,7 +142,7 @@
     UIView *seperator3 = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self headerHeight]+3*[self lineHeight], mainViewSize.height, [self seperatorHeight])];
     [seperator3 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *totalSkippedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+3*[self lineHeight], 300.0, [self lineHeight])];
+    UILabel *totalSkippedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+3*[self lineHeight], [self labelWidth], [self lineHeight])];
     [totalSkippedLabel setBackgroundColor:[UIColor clearColor]];
     [totalSkippedLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [totalSkippedLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
@@ -148,7 +151,7 @@
     UIView *seperator4 = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self headerHeight]+4*[self lineHeight], mainViewSize.height, [self seperatorHeight])];
     [seperator4 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *averageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+4*[self lineHeight], 300.0, [self lineHeight])];
+    UILabel *averageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+4*[self lineHeight], [self labelWidth], [self lineHeight])];
     [averageLabel setBackgroundColor:[UIColor clearColor]];
     [averageLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [averageLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];
@@ -157,7 +160,7 @@
     UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0.0, [self headerHeight]+5*[self lineHeight], mainViewSize.height, [self seperatorHeight])];
     [seperator5 setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"dashed_border.png"]]];
     
-    UILabel *allTimeAverageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+5*[self lineHeight], 300.0, [self lineHeight])];
+    UILabel *allTimeAverageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, [self headerHeight]+5*[self lineHeight], [self labelWidth], [self lineHeight])];
     [allTimeAverageLabel setBackgroundColor:[UIColor clearColor]];
     [allTimeAverageLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[self fontSize]]];
     [allTimeAverageLabel setTextColor:[UIColor colorWithRed:0.298 green:0.298 blue:0.298 alpha:1.0]];

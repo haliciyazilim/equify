@@ -7,8 +7,6 @@
 //
 
 #import "MoreGamesView.h"
-#import "Flurry.h"
-#import "EQGameCenterSpecificValues.h"
 
 #define DI @"downloaded_image"
 #define logo1x @"logo1x"
@@ -331,10 +329,7 @@ static MKNetworkEngine* networkEngine;
     if([centerView image] == nil)
         return;
     NSString* appName = [[games objectAtIndex:currentIndex] objectForKey:APP_NAME_KEY];
-    
     if([appName compare:@""] != 0 && appName != nil){
-        [Flurry logEvent:kFlurryEventMoreGameSelected
-          withParameters:@{@"App Name": appName}];
         NSString* url = [@"itms-apps://itunes.com/apps/" stringByAppendingString:appName];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
@@ -426,14 +421,15 @@ static MKNetworkEngine* networkEngine;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if([centerView hitTest:[[touches anyObject] locationInView:centerView] withEvent:event] == centerView && abs(movementAmount) <= 1 ){
-        [self redirectToGamePage];
-        return;
-    }
     if([closeButton hitTest:[[touches anyObject] locationInView:closeButton] withEvent:event] == closeButton && abs(movementAmount) <= 1 ){
         [self closeView];
         return;
     }
+    if([centerView hitTest:[[touches anyObject] locationInView:centerView] withEvent:event] == centerView && abs(movementAmount) <= 1 ){
+        [self redirectToGamePage];
+        return;
+    }
+    
     [self touchesCancelled:touches withEvent:event];
     
 }

@@ -59,6 +59,9 @@
 -(CGFloat) fontSize {
     return 30.0;
 }
+-(CGFloat) labelWidth {
+    return 450.0;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

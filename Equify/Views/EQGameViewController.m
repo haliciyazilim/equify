@@ -463,7 +463,6 @@ static EQGameViewController* __runningInstance;
                                                        questionView.frame = restoreFrame;
                                                    } completion:^(BOOL finished) {
                                                        [checkmarkView removeFromSuperview];
-                                                       NSLog(@"****stopwatch is reset****");
                                                        [self.stopWatch resetTimer];
                                                        [self.view setUserInteractionEnabled:YES];
                                                        if (getCurrentGameState() != GAME_STATE_TRANSITION2) {
