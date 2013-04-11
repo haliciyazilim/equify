@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="LKR-CC-R5N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="LKR-CC-R5N">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -88,23 +88,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="md3-8q-egU">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="XEF-sw-TIq"/>
-                                    <constraint firstAttribute="width" constant="78" id="ioS-nt-zje"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="md3-8q-egU">
+                                <rect key="frame" x="31" y="27" width="78" height="23"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxR-cX-TL5"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=".00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJy-hb-a5q">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="ETc-bc-uMl"/>
-                                    <constraint firstAttribute="width" constant="42" id="kRi-0m-3lc"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" id="FxR-cX-TL5">
+                                <rect key="frame" x="0.0" y="80" width="568" height="160"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=".00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tJy-hb-a5q">
+                                <rect key="frame" x="106" y="31" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34901960780000002" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -113,16 +109,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="FxR-cX-TL5" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" type="default" id="1yR-bK-gYj"/>
-                            <constraint firstItem="tJy-hb-a5q" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="31" id="JSN-Vt-BST"/>
-                            <constraint firstItem="FxR-cX-TL5" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="80" id="NBH-4w-C0E"/>
-                            <constraint firstItem="md3-8q-egU" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="31" id="Old-5k-QP1"/>
-                            <constraint firstItem="md3-8q-egU" firstAttribute="top" secondItem="Huw-rq-Gxc" secondAttribute="top" constant="27" id="dXm-ZJ-6RX"/>
-                            <constraint firstItem="tJy-hb-a5q" firstAttribute="leading" secondItem="Huw-rq-Gxc" secondAttribute="leading" constant="106" id="eqq-1b-A62"/>
-                            <constraint firstItem="FxR-cX-TL5" firstAttribute="trailing" secondItem="Huw-rq-Gxc" secondAttribute="trailing" type="default" id="tXK-8k-mzC"/>
-                            <constraint firstItem="FxR-cX-TL5" firstAttribute="centerY" secondItem="Huw-rq-Gxc" secondAttribute="centerY" type="default" id="wl9-8M-Ln5"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="mph-OH-Lu3"/>
@@ -159,9 +145,6 @@
             <relationships>
                 <relationship kind="action" name="startNewGame:"/>
             </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

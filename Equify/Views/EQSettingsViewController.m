@@ -122,7 +122,10 @@
     [self.view addSubview:settingView];
     ishowtoPlayOpen=NO;
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 -(void) howtoPlay{
 
     UIImage *image;

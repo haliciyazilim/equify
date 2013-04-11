@@ -241,7 +241,10 @@
     _currentStatistics = currentStatistics;
     [self configureViews];
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 -(float) screenWidth{
     return [[UIScreen mainScreen] bounds].size.height;
 }

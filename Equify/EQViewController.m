@@ -31,7 +31,10 @@
     int difficulty;
 
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 -(float) btnSize{
     return [UIImage imageNamed:@"main_btn.png"].size.width;
 }

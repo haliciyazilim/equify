@@ -434,7 +434,7 @@ static EQGameViewController* __runningInstance;
         UIImageView *checkmarkView = [[UIImageView alloc] initWithImage:checkmark];
         [checkmarkView setFrame:CGRectMake((gameViewSize.width-checkmark.size.width)*0.5, (gameViewSize.height-checkmark.size.height)*0.5, checkmark.size.width, checkmark.size.height)];
         
-        checkmarkView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        checkmarkView.transform = CGAffineTransformMakeScale(0.01, 0.01);
         checkmarkView.alpha = 0.0;
         
         [self.view addSubview:checkmarkView];
@@ -480,7 +480,10 @@ static EQGameViewController* __runningInstance;
         [self shakeView:self.view];
     }
 }
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
 - (void)shakeView:(UIView *)viewToShake
 {
     CGFloat t = 10.0;
