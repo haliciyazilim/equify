@@ -189,7 +189,7 @@ static EQGameViewController* __runningInstance;
 -(void) viewWillAppear:(BOOL)animated{
     [self configureViews];
     
-    if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==Nil){
+    if([[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstTime"]==nil){
         NSLog(@"NO; It is not exist");
         [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"isFirstTime"];
         [[NSUserDefaults standardUserDefaults] synchronize];
