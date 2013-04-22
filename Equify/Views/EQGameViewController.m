@@ -395,7 +395,7 @@ static EQGameViewController* __runningInstance;
 
 -(void)control{
     
-    NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
+//    NSMutableString * answer=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerLeftSide=[[NSMutableString alloc] initWithString:@""];
     NSMutableString * answerRightSide=[[NSMutableString alloc] initWithString:@""];
     BOOL isLeftSide=YES;
@@ -416,11 +416,11 @@ static EQGameViewController* __runningInstance;
         }
     }
     
-    [answer appendString:answerLeftSide];
-    [answer appendString:@"="];
-    [answer appendString:answerRightSide];
+//    [answer appendString:answerLeftSide];
+//    [answer appendString:@"="];
+//    [answer appendString:answerRightSide];
     
-    if([self.currentQuestion isCorrect:answer]){
+    if([EQQuestion isLeftHandsideEqual:answerLeftSide toRightHandside:answerRightSide]){
         [counterView removeFromSuperview];
         counterImages = nil;
         counterView = nil;
@@ -679,11 +679,5 @@ static EQGameViewController* __runningInstance;
     [self setQuestionView:nil];
     [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
-}
-- (void) myControl {
-    NSString *eqString = @"50/1+584";
-    
-    NSExpression *myExp = [NSExpression expressionWithFormat:eqString];
-    double result = [[myExp expressionValueWithObject:nil context:nil] floatValue];
 }
 @end
