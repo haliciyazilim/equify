@@ -46,6 +46,8 @@
 		055C906B16EF2303002BD042 /* EQModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 055C906916EF2303002BD042 /* EQModel.xcdatamodeld */; };
 		055C908F16EF79B7002BD042 /* EQStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C908E16EF79B7002BD042 /* EQStatistic.m */; };
 		055C909216EF7A2D002BD042 /* EQScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 055C909116EF7A2D002BD042 /* EQScore.m */; };
+		0581DFA41725159100AFC82C /* EquifyIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0581DFA11725159100AFC82C /* EquifyIAPHelper.m */; };
+		0581DFA51725159100AFC82C /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0581DFA31725159100AFC82C /* IAPHelper.m */; };
 		0591869716EE1CF600FF9881 /* EQBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 0591869616EE1CF600FF9881 /* EQBox.m */; };
 		0591869C16EE1F3A00FF9881 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0591869B16EE1F3A00FF9881 /* CoreData.framework */; };
 		059186A316EE200D00FF9881 /* EQDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 059186A216EE200D00FF9881 /* EQDatabaseManager.m */; };
@@ -287,6 +289,10 @@
 		055C908E16EF79B7002BD042 /* EQStatistic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQStatistic.m; sourceTree = "<group>"; };
 		055C909016EF7A2D002BD042 /* EQScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQScore.h; sourceTree = "<group>"; };
 		055C909116EF7A2D002BD042 /* EQScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQScore.m; sourceTree = "<group>"; };
+		0581DFA01725159100AFC82C /* EquifyIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquifyIAPHelper.h; sourceTree = "<group>"; };
+		0581DFA11725159100AFC82C /* EquifyIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquifyIAPHelper.m; sourceTree = "<group>"; };
+		0581DFA21725159100AFC82C /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		0581DFA31725159100AFC82C /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		0591869516EE1CF600FF9881 /* EQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBox.h; sourceTree = "<group>"; };
 		0591869616EE1CF600FF9881 /* EQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBox.m; sourceTree = "<group>"; };
 		0591869B16EE1F3A00FF9881 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -572,6 +578,7 @@
 		05192B6916CB83F5002F9529 /* Equify */ = {
 			isa = PBXGroup;
 			children = (
+				0581DF9F1725159100AFC82C /* inAppPurchase */,
 				4172A9CE1712F0070024AEBD /* Flurry */,
 				4172A9C91712EF9D0024AEBD /* FlurryAds */,
 				051C4D1E170B0705001EB833 /* MKNetworkKit */,
@@ -688,6 +695,17 @@
 				05CF051616FC508800309FC3 /* standard-3000-3.questionpack */,
 			);
 			path = questions;
+			sourceTree = "<group>";
+		};
+		0581DF9F1725159100AFC82C /* inAppPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				0581DFA01725159100AFC82C /* EquifyIAPHelper.h */,
+				0581DFA11725159100AFC82C /* EquifyIAPHelper.m */,
+				0581DFA21725159100AFC82C /* IAPHelper.h */,
+				0581DFA31725159100AFC82C /* IAPHelper.m */,
+			);
+			path = inAppPurchase;
 			sourceTree = "<group>";
 		};
 		0591869416EE1CDB00FF9881 /* Models */ = {
@@ -1266,6 +1284,8 @@
 				051C4D38170B0705001EB833 /* MKNetworkOperation.m in Sources */,
 				051C4D39170B0705001EB833 /* Reachability.m in Sources */,
 				B8B052B6171596BD00AE94A4 /* Util.m in Sources */,
+				0581DFA41725159100AFC82C /* EquifyIAPHelper.m in Sources */,
+				0581DFA51725159100AFC82C /* IAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
