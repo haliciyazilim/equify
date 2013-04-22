@@ -39,5 +39,7 @@
 -(CGSize)creditsContentSize{
     return CGSizeMake([self winSize].width-40*1.5, 800*1.5);
 }
-
+- (CGRect) buyActivityFrame {
+    return CGRectMake(([[UIScreen mainScreen] bounds].size.height-60.0)*0.30, ([[UIScreen mainScreen] bounds].size.width-60.0)*0.5, 60.0, 60.0);
+}
 @end

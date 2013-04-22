@@ -43,9 +43,6 @@
                              otherButtonTitles:nil,nil];
     [productPurchased show];
 }
-- (void) provideContentForProductIdentifier:(NSString *)productIdentifier {
-    [super provideContentForProductIdentifier:productIdentifier];
-}
 
 - (SKProduct *) getProductWithProductIdentifier:(NSString *)productIdentifier {
     for (SKProduct* product in self.products) {

@@ -35,3 +35,4 @@
 #define kFlurryEventStatsReset @"Stats Reset"
 
 #define kFlurryEventMoreGameSelected @"More Game Selected"
+#define kFlurryEventAdsRemoved @"Ads Removed"

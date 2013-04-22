@@ -10,6 +10,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "EquifyIAPSpecificValues.h"
 #import "Flurry.h"
+#import "EQGameCenterSpecificValues.h"
 
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -103,12 +104,12 @@
 }
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
 //    [self removeActivity];
-    [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
+    [self provideContentForProductIdentifier:transaction.payment.productIdentifier andRestore:NO];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
 //    [self removeActivity];
-    [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
+    [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier andRestore:YES];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
@@ -127,7 +128,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
-- (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
+- (void)provideContentForProductIdentifier:(NSString *)productIdentifier andRestore:(BOOL)isRestore {
     [_purchasedProductIdentifiers addObject:productIdentifier];
     NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
     
@@ -135,6 +136,10 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
+    
+    if (!isRestore) {
+        [Flurry logEvent:kFlurryEventAdsRemoved];
+    }
 }
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     _productsRequest = nil;

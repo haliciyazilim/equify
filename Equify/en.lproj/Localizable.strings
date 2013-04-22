@@ -36,7 +36,7 @@
 "RESET_STATS_APPROVE" = "Are you sure you want to reset your statistics?";
 "OK" = "Reset";
 "CANCEL" = "Cancel";
-"PURCHASE"="unlock";
+"PURCHASE"="remove ads";
 "RESTORE"="restore purchases";
 
 // in app
@@ -48,4 +48,5 @@
 "SERVER_ERROR" = "There seems to be an error with the iTunes Store. Please try again later.";
 "PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
 "PRODUCT_PURCHASE_FAILED" = "Error: ";
+"BUY" = "Buy!";
 
