@@ -25,5 +25,5 @@
 + (EQQuestion *) getNextQuestionWithDifficulty:(int)difficulty;
 
 - (void) createQuestionArray;
-- (BOOL) isCorrect:(NSString *)checkedAnswer;
++ (BOOL) isLeftHandsideEqual:(NSString *)leftHandside toRightHandside:(NSString *)rightHandside;
 @end

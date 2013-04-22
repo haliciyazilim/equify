@@ -53,8 +53,27 @@ static NSMutableDictionary* allQuestions = nil;
         [self.questionArray addObject:[NSString stringWithFormat:@"%c",[self.wholeQuestion characterAtIndex:i]]];
     }
 }
-- (BOOL) isCorrect:(NSString *)checkedAnswer {
-    return [self.answer isEqualToString:checkedAnswer];
+
++ (BOOL) isLeftHandsideEqual:(NSString *)leftHandside toRightHandside:(NSString *)rightHandside {
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^-?\\d+([+-\\/x]\\d+)*$" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    if ([regex numberOfMatchesInString:leftHandside options:NSMatchingReportCompletion range:NSMakeRange(0, [leftHandside length])] && [regex numberOfMatchesInString:rightHandside options:NSMatchingReportCompletion range:NSMakeRange(0, [rightHandside length])]) {
+
+        NSString *str1 = [leftHandside stringByReplacingOccurrencesOfString:@"x" withString:@"*"];
+        NSString *str2 = [rightHandside stringByReplacingOccurrencesOfString:@"x" withString:@"*"];
+        
+        NSExpression *myExp = [NSExpression expressionWithFormat:str1];
+        double result = [[myExp expressionValueWithObject:nil context:nil] floatValue];
+        
+        NSExpression *myExp2 = [NSExpression expressionWithFormat:str2];
+        double result2 = [[myExp2 expressionValueWithObject:nil context:nil] floatValue];
+        
+        return (result == result2);
+    } else {
+        return NO;
+    }
+    
 }
 
 @end
