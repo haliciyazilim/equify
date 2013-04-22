@@ -12,6 +12,7 @@
 #import "GameCenterManager.h"
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
+#import "EquifyIAPHelper.h"
 
 #import <QuartzCore/QuartzCore.h>
 

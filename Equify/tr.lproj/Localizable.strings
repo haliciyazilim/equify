@@ -36,4 +36,15 @@
 "RESET_STATS_APPROVE" = "Oyun verilerini silmek istediğinize emin misiniz?";
 "OK" = "Sil";
 "CANCEL" = "İptal";
-"PURCHASE"="satın al";
+"PURCHASE"="reklamları kaldır";
+"RESTORE"="alınanları geri yükle";
+
+// in app
+"COULD_NOT_MAKE_PURCHASES" = "Tam sürümü edinebilmek için Ayarlar uygulamasından Uygulama İçi Alım seçeneğini etkinleştirmeniz gerekmektedir.";
+"IN_APP_PURCHASES" = "Uygulama İçi Alım";
+"OK" = "Tamam";
+"CONNECTION_ERROR" = "Bağlantı hatası oluştu. Lütfen daha sonra tekrar deneyin.";
+"SERVER_ERROR" = "iTunes Store ile ilgili bir hata oluştu. Lütfen daha sonra tekrar deneyin.";
+"PRODUCT_PURCHASED" = "Tam sürüme başarıyla geçildi. İyi oyunlar!";
+"PRODUCT_PURCHASE_FAILED" = "Hata: ";
+"BUY" = "Satın Al!";

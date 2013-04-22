@@ -6,11 +6,12 @@
 //  Copyright (c) 2013 Halıcı. All rights reserved.
 //
 
-#define kAdRepeatMin 3
-#define kAdRepeatMax 5
+#define kAdRepeatMin 4
+#define kAdRepeatMax 6
 
 #import "AdManager.h"
 #import "FlurryAds.h"
+#import "EquifyIAPHelper.h"
 
 static AdManager *sharedInstance = nil;
 
@@ -55,10 +56,10 @@ static AdManager *sharedInstance = nil;
            withBlock:(CallbackBlock)callbackBlock {
     self.callbackBlock = callbackBlock;
 
-//    if ([[EquifyIAPHelper sharedInstance] isPro]){
-//        callbackBlock();
-//        self.callbackBlock = nil;
-//    } else {
+    if ([[EquifyIAPHelper sharedInstance] isPro]){
+        callbackBlock();
+        self.callbackBlock = nil;
+    } else {
         if (self.adCountDown == 0) {
             if ([FlurryAds adReadyForSpace:@"Equify"]) {
                 self.adCountDown = arc4random_uniform(kAdRepeatMax - kAdRepeatMin) + kAdRepeatMin - 1;
@@ -78,7 +79,7 @@ static AdManager *sharedInstance = nil;
             callbackBlock();
             self.callbackBlock = nil;
         }
-//    }
+    }
 }
 
 - (BOOL) spaceShouldDisplay:(NSString*)adSpace interstitial:(BOOL)

@@ -12,6 +12,7 @@
 #import "EQSettingsViewController.h"
 #import "EQStatistic.h"
 #import "EQScore.h"
+#import "EquifyIAPHelper.h"
 #import "StopWatch.h"
 #import "MoreGamesView.h"
 #import "Flurry.h"
@@ -32,7 +33,6 @@
     int didScrolled;
     BOOL ishowtoPlayOpen;
     UIView * howtoPlayView;
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,7 +51,13 @@
 -(CGSize)buttonSize{
     return CGSizeMake(250.0, 40.0);
 }
+- (CGRect) buyActivityFrame {
+    return CGRectMake(([[UIScreen mainScreen] bounds].size.height-60.0)*0.15, ([[UIScreen mainScreen] bounds].size.width-60.0)*0.5, 60.0, 60.0);
+}
+- (CGRect) restoreActivityFrame {
+    return CGRectMake(0.0, 0.0, 0.0, 0.0);
 
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -107,20 +113,19 @@
     UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, 1.0)];
     [seperator5 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
-    UIButton * btnPurchase=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, buttonWidth) title:NSLocalizedString(@"PURCHASE", nil)];
+    UIButton *btnPurchase=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, buttonWidth) title:NSLocalizedString(@"PURCHASE", nil)];
     
-    [btnPurchase addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
+    [btnPurchase addTarget:self action:@selector(purchaseAdsFreeVersion) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *seperator6 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, 1.0)];
     [seperator6 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
     
     UIButton * btnRestore=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, buttonWidth) title:NSLocalizedString(@"RESTORE", nil)];
-    
+
     [btnRestore addTarget:self action:@selector(restore) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *seperator7 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*6, buttonWidth, 1.0)];
     [seperator7 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
-
 
     
     [settingView addSubview:closeButton];
@@ -141,6 +146,14 @@
     [settingView addSubview:buttonsView];
     [self.view addSubview:settingView];
     ishowtoPlayOpen=NO;
+}
+- (void) purchaseAdsFreeVersion {
+    [[EquifyIAPHelper sharedInstance] setPresentingController:self];
+    [[EquifyIAPHelper sharedInstance] getProductAndBuyWithActivityFrame:[self buyActivityFrame]];
+}
+- (void) restorePurchases {
+    [[EquifyIAPHelper sharedInstance] setPresentingController:self];
+    [[EquifyIAPHelper sharedInstance] restorePurchasesWithActivityFrame:[self buyActivityFrame]];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
