@@ -43,10 +43,6 @@
     
     [[GameCenterManager sharedInstance] authenticateLocalUser];
     
-    if ([[EquifyIAPHelper sharedInstance] isPro]) {
-        NSLog(@"yes the user is pro");
-    }
-    
     return YES;
 }
 
