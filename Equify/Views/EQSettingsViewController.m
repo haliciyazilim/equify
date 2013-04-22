@@ -56,6 +56,7 @@
 }
 - (CGRect) restoreActivityFrame {
     return CGRectMake(0.0, 0.0, 0.0, 0.0);
+
 }
 - (void)viewDidLoad
 {
@@ -120,11 +121,12 @@
     [seperator6 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
     
     UIButton * btnRestore=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, buttonWidth) title:NSLocalizedString(@"RESTORE", nil)];
-    
-    [btnRestore addTarget:self action:@selector(restorePurchases) forControlEvents:UIControlEventTouchUpInside];
+
+    [btnRestore addTarget:self action:@selector(restore) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *seperator7 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*6, buttonWidth, 1.0)];
     [seperator7 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
+
     
     [settingView addSubview:closeButton];
     [buttonsView addSubview:seperator1];
