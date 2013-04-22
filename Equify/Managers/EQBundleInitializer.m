@@ -15,13 +15,17 @@
 @implementation EQBundleInitializer
 
 + (void) initializeBundle {
-    if([[EQDatabaseManager sharedInstance] isEmpty]){
-        [EQStatistic initializeStatistics];
-        [EQMetadata initializeMetadata];
-    }
+    
     [EQBundleInitializer loadQuestionsWithDifficulty:1];
     [EQBundleInitializer loadQuestionsWithDifficulty:2];
     [EQBundleInitializer loadQuestionsWithDifficulty:3];
+    
+    if([[EQDatabaseManager sharedInstance] isEmpty]){
+        [EQStatistic initializeStatistics];
+        [EQMetadata initializeMetadata];
+    } else if ([[EQMetadata getCurrentVersion] isEqualToString:@"1.0"]) {
+        [EQMetadata updateMetadata];
+    }
 }
 + (void) loadQuestionsWithDifficulty:(int)difficulty {
     NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"standard-3000-%d",difficulty] ofType:@"questionpack"]
