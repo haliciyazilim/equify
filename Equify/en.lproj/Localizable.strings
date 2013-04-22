@@ -36,4 +36,5 @@
 "RESET_STATS_APPROVE" = "Are you sure you want to reset your statistics?";
 "OK" = "Reset";
 "CANCEL" = "Cancel";
+"PURCHASE"="unlock";
 

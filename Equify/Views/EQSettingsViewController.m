@@ -73,7 +73,7 @@
     [closeButton addTarget:self action:@selector(closeSettings) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
-    float buttonsViewHeight=buttonHeight*0.4+buttonHeight*4;
+    float buttonsViewHeight=buttonHeight*0.5+buttonHeight*5;
     UIView * buttonsView=[[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonsViewHeight)/2, buttonWidth, buttonsViewHeight)];
 //    [buttonsView setBackgroundColor:[UIColor redColor]];
     
@@ -107,6 +107,14 @@
     UIView *seperator5 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, 1.0)];
     [seperator5 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
 
+    UIButton * btnPurchase=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*4, buttonWidth, buttonWidth) title:NSLocalizedString(@"PURCHASE", nil)];
+    
+    [btnPurchase addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *seperator6 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, 1.0)];
+    [seperator6 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
+
+    
     [settingView addSubview:closeButton];
     [buttonsView addSubview:seperator1];
     [buttonsView addSubview:btnReset];
@@ -117,6 +125,8 @@
     [buttonsView addSubview:seperator4];
     [buttonsView addSubview:btnHowtoPlay];
     [buttonsView addSubview:seperator5];
+    [buttonsView addSubview:btnPurchase];
+    [buttonsView addSubview:seperator6];
 
     [settingView addSubview:buttonsView];
     [self.view addSubview:settingView];
