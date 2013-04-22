@@ -9,6 +9,7 @@
 #import "EquifyIAPHelper.h"
 #import "EquifyIAPSpecificValues.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Reachability.h"
 
 @implementation EquifyIAPHelper
 {
@@ -17,20 +18,15 @@
     UILabel *priceLabel;
     UIButton *buyButton;
     UIActivityIndicatorView *activity;
-    Gallery *currentGallery;
-    UIViewController *currentController;
+    UIAlertView *currentAlert;
     BOOL canShowCompletedAlert;
 }
 
-+ (RotateMeIAPHelper *)sharedInstance {
++ (EquifyIAPHelper *)sharedInstance {
     static dispatch_once_t once;
-    static RotateMeIAPHelper * sharedInstance;
+    static EquifyIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
-        NSDictionary *products = @{iYourGalleryKey : iYourGallerySecret,
-                                   iArchitectureGalleryKey : iArchitectureGallerySecret,
-                                   iWaterGalleryKey : iWaterGallerySecret,
-                                   iMiscellaneousGalleryKey : iMiscellaneousGallerySecret,
-                                   iPatternGalleryKey : iPatternGallerySecret};
+        NSDictionary *products = @{iProKey : iProSecret};
         sharedInstance = [[self alloc] initWithProductsDictionary:products];
         [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(productPurchaseCompleted:) name:IAPHelperProductPurchasedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(enableBuyButton) name:IAPHelperEnableBuyButtonNotification object:nil];
@@ -39,152 +35,18 @@
 }
 
 - (void)productPurchaseCompleted:(NSNotification *)notif {
-    currentGallery = nil;
-    currentController = nil;
-    [self closeStore];
-    
     [self enableBuyButton];
-    if (canShowCompletedAlert) {
-        UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
-                                                                   message:NSLocalizedString(@"PRODUCT_PURCHASE_COMPLETED", nil)
-                                                                  delegate:self
-                                                         cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                                         otherButtonTitles:nil,nil];
-        [productPurchased show];
-        canShowCompletedAlert = NO;
-    }
+    UIAlertView *productPurchased = [[UIAlertView alloc] initWithTitle:@""
+                                       message:NSLocalizedString(@"PRODUCT_PURCHASED", nil)
+                                      delegate:self
+                             cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                             otherButtonTitles:nil,nil];
+    [productPurchased show];
 }
 - (void) provideContentForProductIdentifier:(NSString *)productIdentifier {
-    Gallery* gallery = [Gallery getGalleryWithName:productIdentifier];
-    [gallery purchaseGallery];
     [super provideContentForProductIdentifier:productIdentifier];
 }
 
--(void) setBackground
-{
-    CGFloat currentScreenWidth = [[UIScreen mainScreen] bounds].size.height;
-    if(currentScreenWidth == 568){
-        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg-568h.png"]]];
-    }
-    else{
-        [self.currentStore setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"inapp_bg.png"]]];
-    }
-}
-
-- (void) appendGalleryItemForGallery:(Gallery*)gallery
-{
-    
-    UIView* view = [[RMGallerySelectionItemView alloc] initForInAppPurchaseWithGallery:gallery];
-    view.transform = CGAffineTransformRotate(view.transform, -M_PI*0.06);
-    [self.storeContainer addSubview:view];
-    
-}
-
-- (void) showProduct:(Gallery*)gallery onViewController:(UIViewController*) viewController
-{
-    canShowCompletedAlert = YES;
-    currentGallery = gallery;
-    currentController = viewController;
-    CGFloat currentScreenWidth = [[UIScreen mainScreen] bounds].size.height;
-    CGFloat currentScreenHeight = [[UIScreen mainScreen] bounds].size.width;
-    
-    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [activity setHidesWhenStopped:YES];
-    [activity startAnimating];
-    activity.frame = CGRectMake(241.0, 115.0, 60.0, 60.0);
-    
-    CGRect frame = viewController.view.frame;
-    currentProductIdentifier = [NSString stringWithString:gallery.name];
-    
-    self.currentStore = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y,frame.size.height,frame.size.width)];
-    
-    
-    self.storeContainer = [[UIView alloc] initWithFrame:CGRectMake((currentScreenWidth-438.0)*0.5, (currentScreenHeight-278.0)*0.5, 438.0, 278.0)];
-    [self.storeContainer setBackgroundColor:[UIColor clearColor]];
-    
-    [self setBackground];
-    
-    [self appendGalleryItemForGallery:gallery];
-    
-    // alloc, init and customize description label here
-    descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(219.0, 65.0, 219.0, 106.0)];
-    [descriptionLabel setBackgroundColor:[UIColor clearColor]];
-    [descriptionLabel setNumberOfLines:7];
-    [descriptionLabel setFont:[UIFont fontWithName:@"TRMcLean" size:18.0]];
-    [descriptionLabel setTextColor:[UIColor whiteColor]];
-    [descriptionLabel setShadowColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
-    [descriptionLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    
-    // alloc, init and customize price label here
-    priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(219.0, 170.0, 112.0, 30.0)];
-    [priceLabel setBackgroundColor:[UIColor clearColor]];
-    [priceLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:18.0]];
-    [priceLabel setTextColor:[UIColor whiteColor]];
-    [priceLabel setShadowColor:[UIColor colorWithWhite:0.0 alpha:0.6]];
-    [priceLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    
-    // alloc, init, customize and add target to buy button here
-    buyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buyButton setFrame:CGRectMake(219.0, 215.0, 99.0, 36.0)];
-    [buyButton setBackgroundImage:[UIImage imageNamed:@"buy_btn_bg.png"] forState:UIControlStateNormal];
-    [buyButton setBackgroundImage:[UIImage imageNamed:@"buy_btn_bg_hover.png"] forState:UIControlStateHighlighted];
-    buyButton.layer.cornerRadius = 7.0;
-    UILabel *buyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 97.0, 34.0)];
-    [buyLabel setBackgroundColor:[UIColor clearColor]];
-    [buyLabel setFont:[UIFont fontWithName:@"TRMcLeanBold" size:18]];
-    [buyLabel setTextColor:[UIColor colorWithRed:0.420 green:0.227 blue:0.082 alpha:1.0]];
-    [buyLabel setShadowColor:[UIColor whiteColor]];
-    [buyLabel setShadowOffset:CGSizeMake(0.0, 1.0)];
-    [buyLabel setText:NSLocalizedString(@"BUY_NOW", nil)];
-    [buyLabel setTextAlignment:NSTextAlignmentCenter];
-    [buyButton addSubview:buyLabel];
-    
-    // alloc, init, customize and add target to close button here
-    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeButton setFrame:CGRectMake(394.0, 0.0, 42.0, 42.0)];
-    UIImageView *closeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete_photo_btn.png"]];
-    [closeImage setFrame:CGRectMake(10.0, 10.0, 21.0, 21.0)];
-    [closeButton addTarget:self action:@selector(closeStore) forControlEvents:UIControlEventTouchUpInside];
-    [closeButton addSubview:closeImage];
-    
-    [self.storeContainer addSubview:activity];
-    [self.storeContainer addSubview:descriptionLabel];
-    [self.storeContainer addSubview:priceLabel];
-    [self.storeContainer addSubview:buyButton];
-    [self.storeContainer addSubview:closeButton];
-    
-    [self.currentStore addSubview:self.storeContainer];
-    
-    [viewController.view addSubview:self.currentStore];
-    
-    if (!self.products) {
-        [self requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-            if ([self isPro]) {
-            } else {
-            }
-            self.products = products;
-            [self productBlock];
-        }];
-    } else {
-        [self productBlock];
-    }
-}
-- (void) productBlock {
-    [activity stopAnimating];
-    NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
-    [priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    SKProduct *myProduct = [self getProductWithProductIdentifier:currentProductIdentifier];
-    
-    [priceFormatter setLocale:myProduct.priceLocale];
-    
-    NSString *priceStr = [priceFormatter stringFromNumber:[myProduct price]];
-    NSString *descriptionStr = [myProduct localizedDescription];
-    
-    [descriptionLabel setText:descriptionStr];
-    [priceLabel setText:priceStr];
-    [buyButton addTarget:self action:@selector(buyCurrentProduct) forControlEvents:UIControlEventTouchUpInside];
-}
 - (SKProduct *) getProductWithProductIdentifier:(NSString *)productIdentifier {
     for (SKProduct* product in self.products) {
         if ([product.productIdentifier isEqualToString:productIdentifier]) {
@@ -206,8 +68,8 @@
 }
 - (void) buyCurrentProduct {
     [self disableBuyButton];
-    if([[RotateMeIAPHelper sharedInstance] canMakePurchases]){
-        [[RotateMeIAPHelper sharedInstance] buyProduct:[[RotateMeIAPHelper sharedInstance] getProductWithProductIdentifier:currentProductIdentifier]];
+    if([[EquifyIAPHelper sharedInstance] canMakePurchases]){
+        [[EquifyIAPHelper sharedInstance] buyProduct:[[EquifyIAPHelper sharedInstance] getProductWithProductIdentifier:currentProductIdentifier]];
     }
     else{
         UIAlertView *couldNotMakePurchasesAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"IN_APP_PURCHASES", nil)
@@ -219,11 +81,85 @@
     }
 }
 
-- (void)restorePurchases {
-    canShowCompletedAlert = YES; 
-    [[RotateMeIAPHelper sharedInstance] restoreCompletedTransactions];
+- (void)restorePurchasesWithActivityFrame:(CGRect)frame {
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    if (status != NotReachable) {
+        [self.presentingController.view setUserInteractionEnabled:NO];
+        
+        [self addActivityToView:self.presentingController.view withFrame:frame];
+        
+        [[EquifyIAPHelper sharedInstance] restoreCompletedTransactions];
+    } else {
+        UIAlertView *noConnection = [[UIAlertView alloc] initWithTitle:@""
+                                    message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                    delegate:self
+                                    cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                    otherButtonTitles:nil,nil];
+        [noConnection show];
+    }
 }
-
+- (void) getProductAndBuyWithActivityFrame:(CGRect)frame {
+    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
+    
+    NetworkStatus status = [reachability currentReachabilityStatus];
+    if (status != NotReachable) {
+    
+        [self.presentingController.view setUserInteractionEnabled:NO];
+        
+        [self addActivityToView:self.presentingController.view withFrame:frame];
+        
+        if (!self.products) {
+            [self requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+                self.products = products;
+                [self productBlock];
+            }];
+        } else {
+            [self productBlock];
+        }
+    } else {
+        UIAlertView *noConnection = [[UIAlertView alloc] initWithTitle:@""
+                                            message:NSLocalizedString(@"CONNECTION_ERROR", nil)
+                                            delegate:self
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                            otherButtonTitles:nil,nil];
+        [noConnection show];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        [self buyProduct:[self getProductWithProductIdentifier:iProKey]];
+    } else {
+        [self enableBuyButton];
+    }
+}
+- (void) productBlock {
+//    [self removeActivity];
+    NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
+    [priceFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    SKProduct *myProduct = [self getProductWithProductIdentifier:iProKey];
+    
+    [priceFormatter setLocale:myProduct.priceLocale];
+    
+    NSString *priceStr = [priceFormatter stringFromNumber:[myProduct price]];
+    NSString *descriptionStr = [myProduct localizedDescription];
+    
+    NSString *messageStr = [NSString stringWithFormat:@"%@ \n %@",descriptionStr, priceStr];
+    
+    currentAlert = [[UIAlertView alloc]
+                    initWithTitle:[myProduct localizedTitle]
+                    message:messageStr
+                    delegate:self
+                    cancelButtonTitle:NSLocalizedString(@"CANCEL", nil)
+                    otherButtonTitles:NSLocalizedString(@"BUY", nil), nil];
+    
+    [currentAlert show];
+}
 - (BOOL) isProductPurchased:(NSString *)productKey {
     return [self productPurchased:productKey];
 }
@@ -241,6 +177,7 @@
     [buyButton setEnabled:NO];
 }
 - (void) enableBuyButton {
-    [buyButton setEnabled:YES];
+    [self removeActivity];
+    [self.presentingController.view setUserInteractionEnabled:YES];
 }
 @end

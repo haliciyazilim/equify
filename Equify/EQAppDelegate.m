@@ -12,6 +12,7 @@
 #import "GameCenterManager.h"
 #import "EQGameViewController.h"
 #import "TypeDefs.h"
+#import "EquifyIAPHelper.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -41,6 +42,10 @@
     [EQBundleInitializer initializeBundle];
     
     [[GameCenterManager sharedInstance] authenticateLocalUser];
+    
+    if ([[EquifyIAPHelper sharedInstance] isPro]) {
+        NSLog(@"yes the user is pro");
+    }
     
     return YES;
 }

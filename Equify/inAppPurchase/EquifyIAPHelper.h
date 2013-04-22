@@ -8,13 +8,17 @@
 
 #import "IAPHelper.h"
 
-@interface EquifyIAPHelper : IAPHelper
+@interface EquifyIAPHelper : IAPHelper <UIAlertViewDelegate>
+
+@property UIViewController *presentingController;
 
 + (EquifyIAPHelper *) sharedInstance;
 
 - (BOOL) isProductPurchased:(NSString *)productKey;
 - (SKProduct *)getProductWithProductIdentifier:(NSString *)productIdentifier;
-- (void)restorePurchases;
 - (BOOL)isPro;
+
+- (void)restorePurchasesWithActivityFrame:(CGRect)frame;
+- (void) getProductAndBuyWithActivityFrame:(CGRect)frame;
 
 @end

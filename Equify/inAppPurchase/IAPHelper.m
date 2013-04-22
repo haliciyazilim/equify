@@ -8,10 +8,8 @@
 
 #import "IAPHelper.h"
 #import <CommonCrypto/CommonDigest.h>
-#import "RotateMeIAPSpecificValues.h"
+#import "EquifyIAPSpecificValues.h"
 #import "Flurry.h"
-
-#define PAYMENT_ACTIVITY_TAG 145
 
 @interface IAPHelper () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 @end
@@ -52,7 +50,8 @@
     return self;
 }
 - (void)addActivityToView:(UIView *)view withFrame:(CGRect)frame {
-    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activity setColor:[UIColor blackColor]];
     [activity setHidesWhenStopped:YES];
     activity.frame = frame;
     activity.tag = PAYMENT_ACTIVITY_TAG;
@@ -61,7 +60,6 @@
     
 }
 - (void)restoreCompletedTransactions {
-//    [self addActivityToView:self.storeContainer withFrame:CGRectMake(320.0, 220.0, 30.0, 30.0)];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 - (void)requestProductsWithCompletionHandler:(RequestProductsCompletionHandler)completionHandler {
@@ -94,22 +92,22 @@
 }
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
-    [self removeActivity];
+//    [self removeActivity];
     // do not delete, this notification also handles to enable restore button
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 -(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
-    [self removeActivity];
+//    [self removeActivity];
     // do not delete, this notification also handles to enable restore button
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
 }
 - (void)completeTransaction:(SKPaymentTransaction *)transaction {
-    [self removeActivity];
+//    [self removeActivity];
     [self provideContentForProductIdentifier:transaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 - (void)restoreTransaction:(SKPaymentTransaction *)transaction {
-    [self removeActivity];
+//    [self removeActivity];
     [self provideContentForProductIdentifier:transaction.originalTransaction.payment.productIdentifier];
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
@@ -133,18 +131,10 @@
     [_purchasedProductIdentifiers addObject:productIdentifier];
     NSString *productDeviceStr = [NSString stringWithFormat:@"%@%@",[_iProducts objectForKey:productIdentifier],_deviceName];
     
-    NSString *proString = [NSString stringWithFormat:@"%@%@",iProSecret,_deviceName];
-    
     [[NSUserDefaults standardUserDefaults] setObject:[self sha1:productDeviceStr] forKey:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] setObject:[self sha1:proString] forKey:iProKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperEnableBuyButtonNotification object:nil userInfo:nil];
-    
-    if (productIdentifier) {
-        [Flurry logEvent:kFlurryEventGalleryPurchased
-          withParameters:@{@"Gallery Identifier": productIdentifier}];
-    }
 }
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
     _productsRequest = nil;
@@ -171,11 +161,8 @@
 }
 - (void)buyProduct:(SKProduct *)product {
     if([self canMakePurchases]){
-        [self addActivityToView:self.storeContainer withFrame:CGRectMake(320.0, 220.0, 30.0, 30.0)];
         SKPayment * payment = [SKPayment paymentWithProduct:product];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
-    }
-    else{
     }
 }
 -(NSString*) sha1:(NSString*)input

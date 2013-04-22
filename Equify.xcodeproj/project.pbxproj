@@ -293,6 +293,7 @@
 		0581DFA11725159100AFC82C /* EquifyIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquifyIAPHelper.m; sourceTree = "<group>"; };
 		0581DFA21725159100AFC82C /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		0581DFA31725159100AFC82C /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		0581DFA617251B1E00AFC82C /* EquifyIAPSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquifyIAPSpecificValues.h; sourceTree = "<group>"; };
 		0591869516EE1CF600FF9881 /* EQBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EQBox.h; sourceTree = "<group>"; };
 		0591869616EE1CF600FF9881 /* EQBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EQBox.m; sourceTree = "<group>"; };
 		0591869B16EE1F3A00FF9881 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -700,6 +701,7 @@
 		0581DF9F1725159100AFC82C /* inAppPurchase */ = {
 			isa = PBXGroup;
 			children = (
+				0581DFA617251B1E00AFC82C /* EquifyIAPSpecificValues.h */,
 				0581DFA01725159100AFC82C /* EquifyIAPHelper.h */,
 				0581DFA11725159100AFC82C /* EquifyIAPHelper.m */,
 				0581DFA21725159100AFC82C /* IAPHelper.h */,

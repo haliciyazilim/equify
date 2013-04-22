@@ -39,3 +39,13 @@
 "PURCHASE"="unlock";
 "RESTORE"="restore purchases";
 
+// in app
+
+"COULD_NOT_MAKE_PURCHASES" = "You need to enable In-App Purchases in the Settings application in order to unlock the full game.";
+"IN_APP_PURCHASES" = "In-App Purchases";
+"OK" = "OK";
+"CONNECTION_ERROR" = "There seems to be a connection error. Please try again later.";
+"SERVER_ERROR" = "There seems to be an error with the iTunes Store. Please try again later.";
+"PRODUCT_PURCHASED" = "You have successfully unlocked the full game. Enjoy!";
+"PRODUCT_PURCHASE_FAILED" = "Error: ";
+
