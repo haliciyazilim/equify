@@ -15,6 +15,8 @@
 @property int difficulty;
 
 +(void)initializeMetadata;
++(void)updateMetadata;
++(NSString *)getCurrentVersion;
 +(void)incrementQuestionIdWithDifficulty:(int)difficulty;
 +(int)getCurrentQuestionWithDifficulty:(int)difficulty;
 

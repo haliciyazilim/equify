@@ -9,6 +9,7 @@
 #import "EQMetadata.h"
 #import "EQDatabaseManager.h"
 #import "EQAppConfigValues.h"
+#import "EQQuestion.h"
 
 @implementation EQMetadata
 
@@ -21,11 +22,35 @@
         EQMetadata* metadata = (EQMetadata*)[[EQDatabaseManager sharedInstance] createEntity:@"Metadata"];
         metadata.versionNumber = @"1.0";
         metadata.difficulty = i;
-        metadata.currentQuestionId = arc4random() % TOTAL_QUESTION_COUNT + 1;
+        
+        int questionCount = [[EQQuestion getAllQuestionsWithDifficulty:i] count];
+        
+        metadata.currentQuestionId = arc4random() % questionCount + 1;
         
         [[EQDatabaseManager sharedInstance] saveContext];
     }
 }
+
++(void)updateMetadata {
+    for (int i = 1; i < 4; i++) {
+        
+        NSFetchRequest* request = [[NSFetchRequest alloc] init];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"difficulty == %d", i];
+        [request setPredicate:predicate];
+        
+        EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
+        currentMeta.versionNumber = @"1.1";
+        
+        int questionCount = [[EQQuestion getAllQuestionsWithDifficulty:i] count];
+        
+        currentMeta.currentQuestionId = arc4random() % questionCount + 1;
+        
+        [[EQDatabaseManager sharedInstance] saveContext];
+    }
+}
+
 +(void)incrementQuestionIdWithDifficulty:(int)difficulty{
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
     
@@ -33,9 +58,13 @@
                               @"difficulty == %d", difficulty];
     [request setPredicate:predicate];
     
+    int questionCount = [[EQQuestion getAllQuestionsWithDifficulty:difficulty] count];
+    
     EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
     
-    currentMeta.currentQuestionId = (currentMeta.currentQuestionId%TOTAL_QUESTION_COUNT)+1;
+    currentMeta.currentQuestionId = (currentMeta.currentQuestionId%questionCount)+1;
+    
+    NSLog(@"total question count: %d, current question: %d",questionCount,currentMeta.currentQuestionId);
     
     [[EQDatabaseManager sharedInstance] saveContext];
     
@@ -51,5 +80,15 @@
     
     return currentMeta.currentQuestionId;
 }
-
++(NSString *)getCurrentVersion {
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"difficulty == %d", 1];
+    [request setPredicate:predicate];
+    
+    EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
+    
+    return currentMeta.versionNumber;
+}
 @end
