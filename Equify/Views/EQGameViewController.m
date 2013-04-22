@@ -680,4 +680,10 @@ static EQGameViewController* __runningInstance;
     [self setStopWatchLabelMS:nil];
     [super viewDidUnload];
 }
+- (void) myControl {
+    NSString *eqString = @"50/1+584";
+    
+    NSExpression *myExp = [NSExpression expressionWithFormat:eqString];
+    double result = [[myExp expressionValueWithObject:nil context:nil] floatValue];
+}
 @end
