@@ -20,7 +20,7 @@
 +(void)initializeMetadata{
     for (int i = 1; i < 4; i++) {
         EQMetadata* metadata = (EQMetadata*)[[EQDatabaseManager sharedInstance] createEntity:@"Metadata"];
-        metadata.versionNumber = @"1.0";
+        metadata.versionNumber = @"1.1";
         metadata.difficulty = i;
         
         int questionCount = [[EQQuestion getAllQuestionsWithDifficulty:i] count];
@@ -64,8 +64,6 @@
     
     currentMeta.currentQuestionId = (currentMeta.currentQuestionId%questionCount)+1;
     
-    NSLog(@"total question count: %d, current question: %d",questionCount,currentMeta.currentQuestionId);
-    
     [[EQDatabaseManager sharedInstance] saveContext];
     
 }
@@ -78,7 +76,9 @@
     
     EQMetadata *currentMeta = (EQMetadata *)[[EQDatabaseManager sharedInstance] entityWithRequest:request forName:@"Metadata"];
     
-    return currentMeta.currentQuestionId;
+    int questionCount = [[EQQuestion getAllQuestionsWithDifficulty:difficulty] count];
+    
+    return (currentMeta.currentQuestionId)%questionCount;
 }
 +(NSString *)getCurrentVersion {
     NSFetchRequest* request = [[NSFetchRequest alloc] init];
