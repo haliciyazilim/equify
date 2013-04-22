@@ -37,4 +37,5 @@
 "OK" = "Reset";
 "CANCEL" = "Cancel";
 "PURCHASE"="unlock";
+"RESTORE"="restore purchases";
 
