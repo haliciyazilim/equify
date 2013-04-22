@@ -50,3 +50,7 @@
 "PRODUCT_PURCHASE_FAILED" = "Error: ";
 "BUY" = "Buy!";
 
+// Credits
+"PROGRAMMING"="PROGRAMMING";
+"ART"="GUI DESIGN";
+"MUSIC"="MUSIC";
