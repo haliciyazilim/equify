@@ -49,7 +49,7 @@
 }
 
 -(CGSize)buttonSize{
-    return CGSizeMake(175.0, 40.0);
+    return CGSizeMake(250.0, 40.0);
 }
 
 - (void)viewDidLoad
@@ -73,7 +73,7 @@
     [closeButton addTarget:self action:@selector(closeSettings) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(winWidth-45.0, 5.0, imgClose.size.width, imgClose.size.height);
     
-    float buttonsViewHeight=buttonHeight*0.5+buttonHeight*5;
+    float buttonsViewHeight=buttonHeight*0.4+buttonHeight*6;
     UIView * buttonsView=[[UIView alloc] initWithFrame:CGRectMake((winWidth-buttonWidth)/2, (winHeight-buttonsViewHeight)/2, buttonWidth, buttonsViewHeight)];
 //    [buttonsView setBackgroundColor:[UIColor redColor]];
     
@@ -113,6 +113,14 @@
     
     UIView *seperator6 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, 1.0)];
     [seperator6 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
+    
+    UIButton * btnRestore=[self makeButton:CGRectMake(0, buttonHeight*0.3+buttonHeight*5, buttonWidth, buttonWidth) title:NSLocalizedString(@"RESTORE", nil)];
+    
+    [btnRestore addTarget:self action:@selector(restore) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *seperator7 = [[UIView alloc] initWithFrame:CGRectMake(0, buttonHeight*0.3+buttonHeight*6, buttonWidth, 1.0)];
+    [seperator7 setBackgroundColor:[UIColor colorWithPatternImage:imgSeperator]];
+
 
     
     [settingView addSubview:closeButton];
@@ -127,6 +135,8 @@
     [buttonsView addSubview:seperator5];
     [buttonsView addSubview:btnPurchase];
     [buttonsView addSubview:seperator6];
+    [buttonsView addSubview:btnRestore];
+    [buttonsView addSubview:seperator7];
 
     [settingView addSubview:buttonsView];
     [self.view addSubview:settingView];
